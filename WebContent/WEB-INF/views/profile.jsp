@@ -51,12 +51,9 @@
 							<div class="col-lg-6">
 								<ul>
 									<li></li>
-									<li><i class="icofont-rounded-right"></i> <strong>게시물
-											:</strong> 게시물 숫자</li>
-									<li><i class="icofont-rounded-right"></i> <strong>팔로워
-											:</strong> 팔로워 숫자</li>
-									<li><i class="icofont-rounded-right"></i> <strong>팔로잉
-											:</strong> 팔로잉 숫자</li>
+									<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> 게시물 숫자</li>
+									<li><i class="icofont-rounded-right"></i> <strong>팔로워:</strong> 팔로워 숫자</li>
+									<li><i class="icofont-rounded-right"></i> <strong>팔로잉:</strong> 팔로잉 숫자</li>
 								</ul>
 							</div>
 						</div>
