@@ -44,7 +44,7 @@ public class HomeController {
 	public String tag() {
 		logger.info("실행");
 		return "tag";
-	}//
+	}
 	
 	@RequestMapping("/profile")
 	public String profile() {
