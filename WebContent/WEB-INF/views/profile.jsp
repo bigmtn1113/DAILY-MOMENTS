@@ -51,17 +51,17 @@
 							<div class="col-lg-6">
 								<ul>
 									<li></li>
-									<li><i class="icofont-rounded-right"></i> <strong>ê²ìë¬¼
-											:</strong> ê²ìë¬¼ ì«ì</li>
-									<li><i class="icofont-rounded-right"></i> <strong>íë¡ì
-											:</strong> íë¡ì ì«ì</li>
-									<li><i class="icofont-rounded-right"></i> <strong>íë¡ì
-											:</strong> íë¡ì ì«ì</li>
+									<li><i class="icofont-rounded-right"></i> <strong>게시물
+											:</strong> 게시물 숫자</li>
+									<li><i class="icofont-rounded-right"></i> <strong>팔로워
+											:</strong> 팔로워 숫자</li>
+									<li><i class="icofont-rounded-right"></i> <strong>팔로잉
+											:</strong> 팔로잉 숫자</li>
 								</ul>
 							</div>
 						</div>
 						<p>
-							ìëíì¸ì. ê¹ëì´ìëë¤.<br /> ìëíì¸ì. ê¹ëì´ìëë¤.<br /> ìëíì¸ì. ê¹ëì´ìëë¤.<br />
+							test<br /> test<br /> test<br />
 						</p>
 					</div>
 				</div>
@@ -70,15 +70,15 @@
 				<div class="container">
 					<div class="section-title">
 						<h2>Portfolio</h2>
-						<p>ë´ ììë¤</p>
+						<p>내 작업들</p>
 					</div>
 	
 					<div class="row">
 						<div class="col-lg-12 d-flex justify-content-center">
 							<ul id="portfolio-flters">
-								<li data-filter=".filter-app">ê²ìë¬¼</li>
-								<li data-filter=".filter-card">ëìì</li>
-								<li data-filter=".filter-web">ë¶ë§í¬</li>
+								<li data-filter=".filter-app">게시물</li>
+								<li data-filter=".filter-card">동영상</li>
+								<li data-filter=".filter-web">북마크</li>
 							</ul>
 						</div>
 					</div>
