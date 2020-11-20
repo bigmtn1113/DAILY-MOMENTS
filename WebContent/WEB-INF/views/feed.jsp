@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<section id="feed" class="feed">
-	<div class="container">
+<section id="feed">
+	<div class="portfolio container">
 		<div class="row portfolio-container">
 
 			<div class="col portfolio-item filter-app">

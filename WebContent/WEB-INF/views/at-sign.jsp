@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<section id="at-sign" class="at-sign">
+<section id="at-sign">
 	<div class="about-me container">
 
 		<div class="section-title">

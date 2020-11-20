@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<section id="login" class="login">
+<section id="login" class="input-form">
 	<div class="container">
 
 		<div class="section-title">

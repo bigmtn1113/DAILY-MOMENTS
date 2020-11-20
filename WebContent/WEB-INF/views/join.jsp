@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<section id="join" class="join">
+<section id="join" class="input-form">
 	<div class="container">
 
 		<div class="section-title">
