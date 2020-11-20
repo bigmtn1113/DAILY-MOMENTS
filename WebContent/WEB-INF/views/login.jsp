@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
 <div class="input-form container">
 
@@ -8,16 +7,14 @@
 		<p>Login</p>
 	</div>
 
-	<form action="forms/contact.php" method="post" role="form"
+	<form action="login" method="post" role="form"
 		class="php-email-form mt-4">
 		<div class="form-group">
-			<input type="text" name="loginId" class="form-control" id="loginId"
-				placeholder="Your ID" />
+			<input type="text" name="mid" class="form-control" id="mid" placeholder="Your ID" />
 			<div class="validate"></div>
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" name="loginPassword"
-				id="loginPassword" placeholder="Your Password" />
+			<input type="password" class="form-control" name="mpassword" id="mpassword" placeholder="Your Password" />
 			<div class="validate"></div>
 		</div>
 

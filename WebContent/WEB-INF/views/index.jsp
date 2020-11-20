@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,135 +45,141 @@
 	
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
-						<li><input class="form-control search" type="text" placeholder="search.." /></li>
+						<c:if test="${mid != null}">
+							<li><input class="form-control search" type="text" placeholder="search.." /></li>
+						</c:if>
 						
 						<li class="active"><a href="#header">Home</a></li>
 						
-						<li><a id="li-login" href="javascript:login()">Login</a>
-							<script type="text/javascript">
-								function login() {
-									$.ajax({
-										url : "login",
-										method : "POST",
-										success : function(data) {
-											$("#login").html(data);
-											$("#li-login").attr("href", "#login");
-											$("#li-login").click();
-											$("#li-login").attr("href", "javascript:login()");
-										}
-									});
-								}
-							</script>
-						</li>
-						
-						<li><a id="li-join" href="javascript:join()">Join</a>
-							<script type="text/javascript">
-								function join() {
-									$.ajax({
-										url : "join",
-										method : "POST",
-										success : function(data) {
-											$("#join").html(data);
-											$("#li-join").attr("href", "#join");
-											$("#li-join").click();
-											$("#li-join").attr("href", "javascript:join()");
-										}
-									});
-								}
-							</script>
-						</li>
-	
-						<li><a id="li-at-sign" href="javascript:atSign()">At-Sign</a>
-							<script type="text/javascript">
-								function atSign() {
-									$.ajax({
-										url : "at-sign",
-										method : "GET",
-										success : function(data) {
-											$("#at-sign").html(data);
-											$("#li-at-sign").attr("href", "#at-sign");
-											$("#li-at-sign").click();
-											$("#li-at-sign").attr("href", "javascript:atSign()");
-										}
-									});
-								}
-							</script>
-						</li>
-	
-						<li><a id="li-feed" href="javascript:feed()">Feed</a>
-							<script type="text/javascript">
-								function feed() {
-									$.ajax({
-										url : "feed",
-										method : "GET",
-										success : function(data) {
-											$("#feed").html(data);
-											$("#li-feed").attr("href", "#feed");
-											$("#li-feed").click();
-											$("#li-feed").attr("href", "javascript:feed()");
-										}
-									});
-								}
-							</script>
-						</li>
-	
-						<li><a id="li-tag" href="javascript:tag()">Tag</a>
-							<script type="text/javascript">
-								function tag() {
-									$.ajax({
-										url : "tag",
-										method : "GET",
-										success : function(data) {
-											$("#tag").html(data);
-											$("#li-tag").attr("href", "#tag");
-											$("#li-tag").click();
-											$("#li-tag").attr("href", "javascript:tag()");
-										}
-									});
-								}
-							</script>
-						</li>
-	
-						<li><a href="#">Notification</a></li>
-	
-						<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
-							<div class="dropdown-menu" style="opacity: 0.5;">
-	
-								<a id="li-profile" class="dropdown-item" style="color: #0000ff;" href="javascript:profile()">Profile</a>
+						<c:if test="${mid == null}">
+							<li><a id="li-login" href="javascript:login()">Login</a>
 								<script type="text/javascript">
-									function profile() {
+									function login() {
 										$.ajax({
-											url : "profile",
+											url : "login",
 											method : "GET",
 											success : function(data) {
-												$("#profile").html(data);
-												$("#li-profile").attr("href", "#profile");
-												$("#li-profile").click();
-												$("#li-profile").attr("href", "javascript:profile()");
+												$("#login").html(data);
+												$("#li-login").attr("href", "#login");
+												$("#li-login").click();
+												$("#li-login").attr("href", "javascript:login()");
 											}
 										});
 									}
 								</script>
-	
-								<a id="li-setting" class="dropdown-item" style="color: #0000ff;" href="javascript:setting()">Setting</a>
+							</li>
+							
+							<li><a id="li-join" href="javascript:join()">Join</a>
 								<script type="text/javascript">
-									function setting() {
+									function join() {
 										$.ajax({
-											url : "setting",
-											method : "POST",
+											url : "join",
+											method : "GET",
 											success : function(data) {
-												$("#setting").html(data);
-												$("#li-setting").attr("href", "#setting");
-												$("#li-setting").click();
-												$("#li-setting").attr("href", "javascript:setting()");
+												$("#join").html(data);
+												$("#li-join").attr("href", "#join");
+												$("#li-join").click();
+												$("#li-join").attr("href", "javascript:join()");
 											}
 										});
 									}
 								</script>
+							</li>
+						</c:if>
 	
-								<a class="dropdown-item" style="color: #0000ff;" href="logout">Logout</a>
-							</div>
-						</li>
+						<c:if test="${mid != null}">
+							<li><a id="li-at-sign" href="javascript:atSign()">At-Sign</a>
+								<script type="text/javascript">
+									function atSign() {
+										$.ajax({
+											url : "at-sign",
+											method : "GET",
+											success : function(data) {
+												$("#at-sign").html(data);
+												$("#li-at-sign").attr("href", "#at-sign");
+												$("#li-at-sign").click();
+												$("#li-at-sign").attr("href", "javascript:atSign()");
+											}
+										});
+									}
+								</script>
+							</li>
+		
+							<li><a id="li-feed" href="javascript:feed()">Feed</a>
+								<script type="text/javascript">
+									function feed() {
+										$.ajax({
+											url : "feed",
+											method : "GET",
+											success : function(data) {
+												$("#feed").html(data);
+												$("#li-feed").attr("href", "#feed");
+												$("#li-feed").click();
+												$("#li-feed").attr("href", "javascript:feed()");
+											}
+										});
+									}
+								</script>
+							</li>
+		
+							<li><a id="li-tag" href="javascript:tag()">Tag</a>
+								<script type="text/javascript">
+									function tag() {
+										$.ajax({
+											url : "tag",
+											method : "GET",
+											success : function(data) {
+												$("#tag").html(data);
+												$("#li-tag").attr("href", "#tag");
+												$("#li-tag").click();
+												$("#li-tag").attr("href", "javascript:tag()");
+											}
+										});
+									}
+								</script>
+							</li>
+		
+							<li><a href="#">Notification</a></li>
+		
+							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
+								<div class="dropdown-menu" style="opacity: 0.5;">
+		
+									<a id="li-profile" class="dropdown-item" style="color: #0000ff;" href="javascript:profile()">Profile</a>
+									<script type="text/javascript">
+										function profile() {
+											$.ajax({
+												url : "profile",
+												method : "GET",
+												success : function(data) {
+													$("#profile").html(data);
+													$("#li-profile").attr("href", "#profile");
+													$("#li-profile").click();
+													$("#li-profile").attr("href", "javascript:profile()");
+												}
+											});
+										}
+									</script>
+		
+									<a id="li-setting" class="dropdown-item" style="color: #0000ff;" href="javascript:setting()">Setting</a>
+									<script type="text/javascript">
+										function setting() {
+											$.ajax({
+												url : "setting",
+												method : "GET",
+												success : function(data) {
+													$("#setting").html(data);
+													$("#li-setting").attr("href", "#setting");
+													$("#li-setting").click();
+													$("#li-setting").attr("href", "javascript:setting()");
+												}
+											});
+										}
+									</script>
+		
+									<a class="dropdown-item" style="color: #0000ff;" href="logout">Logout</a>
+								</div>
+							</li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>
