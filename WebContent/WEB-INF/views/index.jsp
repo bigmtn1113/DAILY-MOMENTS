@@ -57,7 +57,7 @@
 	<header id="header" class="header-tops">
 		<div class="container">
 			<h1>
-				<a href="index">FaceGram</a>
+				<a href="">FaceGram</a>
 			</h1>
 			<h2>
 				I'm a passionate <span>graphic designer</span> from New York
@@ -69,8 +69,10 @@
 						placeholder="search.." />
 					</li>
 					
+					<li class="active"><a href="#header">Home</a></li>
+					
 					<li>
-						<a href="javascript:fun1()">At-sign</a>
+						<a id="fun1_resultA" href="javascript:fun1()">At-sign</a>
 						<script type="text/javascript">
 							function fun1() {
 								$.ajax({
@@ -78,6 +80,9 @@
 									method : "GET",
 									success : function(data) {
 										$("#fun1_result").html(data);
+			          					$("#fun1_resultA").attr("href", "#fun1_result");
+			          					$("#fun1_resultA").click();
+			          					$("#fun1_resultA").attr("href", "javascript:fun1()");
 									}
 								});
 							}
@@ -85,7 +90,7 @@
 					</li>
 					
 					<li>
-						<a href="javascript:fun2()">Feed</a>
+						<a id="fun2_resultA" href="javascript:fun2()">Feed</a>
 						<script type="text/javascript">
 							function fun2() {
 								$.ajax({
@@ -93,6 +98,9 @@
 									method : "GET",
 									success : function(data) {
 										$("#fun2_result").html(data);
+										$("#fun2_resultA").attr("href", "#fun2_result");
+			          					$("#fun2_resultA").click();
+			          					$("#fun2_resultA").attr("href", "javascript:fun2()");
 									}
 								});
 							}
@@ -100,7 +108,7 @@
 					</li>
 					
 					<li>
-						<a href="javascript:fun3()">Join</a>
+						<a id="fun3_resultA" href="javascript:fun3()">Join</a>
 						<script type="text/javascript">
 							function fun3() {
 								$.ajax({
@@ -108,15 +116,17 @@
 									method : "POST",
 									success : function(data) {
 										$("#fun3_result").html(data);
+										$("#fun3_resultA").attr("href", "#fun3_result");
+			          					$("#fun3_resultA").click();
+			          					$("#fun3_resultA").attr("href", "javascript:fun3()");
 									}
 								});
 							}
 						</script>
 					</li>
 					
-					<li class="active"><a href="index">Home</a></li>
 					<li>
-						<a href="javascript:fun4()">Login</a>
+						<a id="fun4_resultA" href="javascript:fun4()">Login</a>
 						<script type="text/javascript">
 							function fun4() {
 								$.ajax({
@@ -124,6 +134,9 @@
 									method : "POST",
 									success : function(data) {
 										$("#fun4_result").html(data);
+										$("#fun4_resultA").attr("href", "#fun4_result");
+			          					$("#fun4_resultA").click();
+			          					$("#fun4_resultA").attr("href", "javascript:fun4()");
 									}
 								});
 							}
@@ -131,7 +144,7 @@
 					</li>
 					
 					<li>
-						<a href="javascript:fun7()">tag</a>
+						<a id="fun7_resultA" href="javascript:fun7()">tag</a>
 						<script type="text/javascript">
 							function fun7() {
 								$.ajax({
@@ -139,6 +152,9 @@
 									method : "GET",
 									success : function(data) {
 										$("#fun7_result").html(data);
+										$("#fun7_resultA").attr("href", "#fun7_result");
+			          					$("#fun7_resultA").click();
+			          					$("#fun7_resultA").attr("href", "javascript:fun7()");
 									}
 								});
 							}
@@ -151,7 +167,7 @@
 						href="#" data-toggle="dropdown">My Page</a>
 						<div class="dropdown-menu" style="opacity: 0.5;">
 						
-							<a class="dropdown-item" style="color: #0000ff;" href="javascript:fun5()">Profile</a>
+							<a id="fun5_resultA" class="dropdown-item" style="color: #0000ff;" href="javascript:fun5()">Profile</a>
 							<script type="text/javascript">
 								function fun5() {
 									$.ajax({
@@ -159,12 +175,15 @@
 										method : "GET",
 										success : function(data) {
 											$("#fun5_result").html(data);
+											$("#fun5_resultA").attr("href", "#fun5_result");
+				          					$("#fun5_resultA").click();
+				          					$("#fun5_resultA").attr("href", "javascript:fun5()");
 										}
 									});
 								}
 							</script>
 							
-							<a class="dropdown-item" style="color: #0000ff;" href="javascript:fun6()">Setting</a>
+							<a id="fun6_resultA" class="dropdown-item" style="color: #0000ff;" href="javascript:fun6()">Setting</a>
 							<script type="text/javascript">
 								function fun6() {
 									$.ajax({
@@ -172,6 +191,9 @@
 										method : "POST",
 										success : function(data) {
 											$("#fun6_result").html(data);
+											$("#fun6_resultA").attr("href", "#fun6_result");
+				          					$("#fun6_resultA").click();
+				          					$("#fun6_resultA").attr("href", "javascript:fun6()");
 										}
 									});
 								}
@@ -185,13 +207,13 @@
 		</div>
 	</header>
 	
-	<div id="fun1_result"></div>
-	<div id="fun2_result"></div>
-	<div id="fun3_result"></div>
-	<div id="fun4_result"></div>
-	<div id="fun5_result"></div>
-	<div id="fun6_result"></div>
-	<div id="fun7_result"></div>
+	<section id="fun1_result"></section>
+	<section id="fun2_result"></section>
+	<section class="input-form" id="fun3_result"></section>
+	<section class="input-form" id="fun4_result"></section>
+	<section id="fun5_result"></section>
+	<section class="input-form" id="fun6_result"></section>
+	<section id="fun7_result"></section>
 
 	<!-- Vendor JS Files -->
 	<script

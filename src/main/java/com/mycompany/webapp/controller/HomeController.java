@@ -11,10 +11,10 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String index() {
 		logger.info("실행");
-		return "redirect:/index.jsp";
+		return "index";
 	}
 	
 	@RequestMapping("/login")
@@ -62,6 +62,6 @@ public class HomeController {
 	@RequestMapping("/logout")
 	public String logout() {
 		logger.info("실행");
-		return "redirect:/index.jsp";
+		return "index";
 	}
 }
