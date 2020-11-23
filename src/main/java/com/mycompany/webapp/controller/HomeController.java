@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,9 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.Member;
+import com.mycompany.webapp.service.WebService;
 
 @Controller
 public class HomeController {
+	
+	@Resource
+	private WebService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping("/")
@@ -108,5 +114,11 @@ public class HomeController {
 		logger.info("실행");
 		session.invalidate();
 		return "index";
+	}
+	
+	@RequestMapping("/portfoliodetail")
+	public String portfoliodetail() {
+		logger.info("실행");
+		return "portfolio-details";
 	}
 }

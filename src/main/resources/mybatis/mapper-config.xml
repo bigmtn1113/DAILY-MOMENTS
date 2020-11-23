@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+							   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="board" type="com.mycompany.webapp.dto.Board" />
+		<typeAlias alias="bookmark" type="com.mycompany.webapp.dto.Bookmark" />
+		<typeAlias alias="comment" type="com.mycompany.webapp.dto.Comment"/>
+		<typeAlias alias="follow" type="com.mycompany.webapp.dto.Follow"/>
+		<typeAlias alias="like" type="com.mycompany.webapp.dto.Like"/>
+		<typeAlias alias="member" type="com.mycompany.webapp.dto.Member"/>
+	</typeAliases>
+</configuration>
