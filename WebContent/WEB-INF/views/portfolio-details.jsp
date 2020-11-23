@@ -64,14 +64,14 @@
 	
 								<script>
 									function change1() {
-									var img1 = "http://<%=request.getLocalAddr()%>:8080<%=request.getContextPath()%>/<%=request.getContextPath()%>/resources/assets/img/need/heart.png",
-										img2 = "http://<%=request.getLocalAddr()%>:8080<%=request.getContextPath()%>/<%=request.getContextPath()%>/resources/assets/img/need/heart1.png";
+									var img1 = "http://<%=request.getLocalAddr()%>:8080<%=request.getContextPath()%>/resources/assets/img/need/heart.png",
+										img2 = "http://<%=request.getLocalAddr()%>:8080<%=request.getContextPath()%>/resources/assets/img/need/heart1.png";
 									var imgElement = document.getElementById('test1');
 										imgElement.src = (imgElement.src === img1) ? img2 : img1;
 									}
 								</script>
 								
-								<img src="http://<%=request.getLocalAddr()%>:8080<%=request.getContextPath()%>/<%=request.getContextPath()%>/resources/assets/img/need/heart.png" id="test1" onclick="change1();" style="float: left" />
+								<img src="http://<%=request.getLocalAddr()%>:8080<%=request.getContextPath()%>/resources/assets/img/need/heart.png" id="test1" onclick="change1();" style="float: left" />
 								
 								<button type="button" class="btn btn-default btn-xs" style="float: right">
 									<img src="<%=request.getContextPath()%>/resources/assets/img/need/book.png">
