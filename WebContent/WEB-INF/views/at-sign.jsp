@@ -66,10 +66,28 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-1.jpg"
 								data-gall="portfolioGallery" class="venobox" title="App 1"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i>
+							</a>
+							<a
+							    id="li-portfoliodetail" href="javascript:portfoliodetail()"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
+								class="bx bx-link"></i>
+							</a>
+							<script type="text/javascript">
+								function portfoliodetail() {
+									$.ajax({
+										url : "portfoliodetail",
+										method : "GET",
+										success : function(data) {
+											$("#at-sign").html(data);
+											$("#li-portfoliodetail").attr("href", "#at-sign");
+											$("#li-portfoliodetail").click();
+											$("#li-portfoliodetail").attr("href", "javascript:portfoliodetail()");
+										}
+									});
+								}
+							</script>
 						</div>
 					</div>
 				</div>
