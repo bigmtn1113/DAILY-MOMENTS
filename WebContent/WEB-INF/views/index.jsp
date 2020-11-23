@@ -138,6 +138,23 @@
 									}
 								</script>
 							</li>
+							
+							<li><a id="li-write" href="javascript:write()">Write</a>
+								<script type="text/javascript">
+									function write() {
+										$.ajax({
+											url : "write",
+											method : "GET",
+											success : function(data) {
+												$("#write").html(data);
+												$("#li-write").attr("href", "#write");
+												$("#li-write").click();
+												$("#li-write").attr("href", "javascript:write()");
+											}
+										});
+									}
+								</script>
+							</li>
 		
 							<li><a href="#">Notification</a></li>
 		
@@ -190,6 +207,7 @@
 		<section id="at-sign"></section>
 		<section id="feed"></section>
 		<section id="tag"></section>
+		<section id="write"></section>
 		<section id="profile"></section>
 		<section id="setting"></section>
 	

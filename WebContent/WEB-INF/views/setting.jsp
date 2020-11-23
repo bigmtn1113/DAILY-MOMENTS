@@ -4,8 +4,8 @@
 <div class="input-form container">
 
 	<div class="section-title">
-		<h2>setting</h2>
-		<p>setting</p>
+		<h2>Setting</h2>
+		<p>Setting</p>
 	</div>
 
 	<form action="setting" method="post" role="form" class="php-email-form mt-4">

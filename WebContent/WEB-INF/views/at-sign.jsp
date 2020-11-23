@@ -20,12 +20,9 @@
 				<div class="col-lg-6">
 					<ul>
 						<li></li>
-						<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong>
-							게시물 숫자</li>
-						<li><i class="icofont-rounded-right"></i> <strong>팔로워:</strong>
-							팔로워 숫자</li>
-						<li><i class="icofont-rounded-right"></i> <strong>팔로잉:</strong>
-							팔로잉 숫자</li>
+						<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> 게시물 숫자</li>
+						<li><i class="icofont-rounded-right"></i> <strong>팔로워:</strong> 팔로워 숫자</li>
+						<li><i class="icofont-rounded-right"></i> <strong>팔로잉:</strong> 팔로잉 숫자</li>
 					</ul>
 				</div>
 			</div>
@@ -58,7 +55,8 @@
 				<div class="portfolio-wrap">
 					<img
 						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-1.jpg"
-						class="img-fluid" alt="">
+						class="img-fluid">
+					
 					<div class="portfolio-info">
 						<h4>App 1</h4>
 						<p>App</p>
@@ -66,7 +64,10 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-1.jpg"
 								data-gall="portfolioGallery" class="venobox" title="App 1"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a>
+								
+							<a
+								href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -87,7 +88,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-2.jpg"
 								data-gall="portfolioGallery" class="venobox" title="Web 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -108,7 +109,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-3.jpg"
 								data-gall="portfolioGallery" class="venobox" title="App 2"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -129,7 +130,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-4.jpg"
 								data-gall="portfolioGallery" class="venobox" title="Card 2"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -150,7 +151,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-5.jpg"
 								data-gall="portfolioGallery" class="venobox" title="Web 2"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -171,7 +172,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-6.jpg"
 								data-gall="portfolioGallery" class="venobox" title="App 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -192,7 +193,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-7.jpg"
 								data-gall="portfolioGallery" class="venobox" title="Card 1"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -213,7 +214,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-8.jpg"
 								data-gall="portfolioGallery" class="venobox" title="Card 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
@@ -234,7 +235,7 @@
 							<a
 								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-9.jpg"
 								data-gall="portfolioGallery" class="venobox" title="Web 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i></a> <a href="portfolio-details"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
 								class="bx bx-link"></i></a>
