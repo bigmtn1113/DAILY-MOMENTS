@@ -1,6 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <div class="portfolio container">
+	
+	<div class="section-title">
+		<h2>Feed</h2>
+		<p>Feed</p>
+	</div>
+
 	<div class="row portfolio-container">
 		<div class="col portfolio-item filter-app">
 			<div>

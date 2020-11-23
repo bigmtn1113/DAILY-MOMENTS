@@ -78,10 +78,22 @@ public class HomeController {
 		return "tag";
 	}
 	
+	@GetMapping("/write")
+	public String write() {
+		logger.info("실행");
+		return "write";
+	}
+	
 	@RequestMapping("/profile")
 	public String profile() {
 		logger.info("실행");
 		return "profile";
+	}
+	
+	@GetMapping("/portfolio-details")
+	public String portfolioDetails() {
+		logger.info("실행");
+		return "portfolio-details";
 	}
 	
 	@GetMapping("/setting")

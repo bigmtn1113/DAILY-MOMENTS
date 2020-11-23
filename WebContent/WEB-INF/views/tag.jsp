@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="portfolio" id="protfolio">
+<div class="portfolio">
 	<div class="container">
 		<div class="section-title">
+			<h2>Tag</h2>
 			<p># 검색 내용</p>
 			<i class="icofont-rounded-right"></i> <strong>게시물 :</strong> 게시물 숫자
 		</div>
