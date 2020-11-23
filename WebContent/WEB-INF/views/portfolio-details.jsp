@@ -62,6 +62,7 @@
 							
 							<div style="height: 40px">
 	
+							<button type="button" style="float:left; border:none; outline:none; background:none;"><img onclick ="change1();" id="img-heart" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"></button>
 								<script>
 									function change1() {
 										var img1 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
@@ -71,12 +72,18 @@
 									}
 								</script>
 								
-								<img id="img-heart" onclick="change1();" style="float: left" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"/>
-								
-								<button type="button" class="btn btn-default btn-xs" style="float: right">
-									<img src="<%=request.getContextPath()%>/resources/assets/img/need/book.png">
-								</button>
-								<br/> 좋아요x개
+							
+		              		<button type="button" style="float:right; border:none; outline:none; background:none;"><img onclick ="change2();" id="img-book" src="<%=application.getContextPath()%>/resources/assets/img/need/book.png"></button>
+		              		<script>
+								   function change2() {
+								   var img3 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book.png",
+								       img4 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book3.png";
+								   var imgElement = document.getElementById('img-book');
+								   imgElement.src = (imgElement.src === img3)? img4 : img3;
+								}
+							</script> 								
+
+								<div style="text-align:left; padding-top:10px">좋아요x개</div>
 							</div>
 	
 							<div style="height: 20px">
