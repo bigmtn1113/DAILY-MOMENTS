@@ -19,6 +19,7 @@
 
 			<div class="col-lg-4 portfolio-info">
 				<textarea
+				    class="invisible-scrollbar" 
 					style="height: 80%; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; color: white; border: 1px solid white; white-space: pre-line; overflow-y: auto;"
 					readonly="readonly">
 								아이디 : 내용<br />
@@ -34,7 +35,7 @@
 								아이디 : 내용<br />																																																
 							</textarea>
 
-				<div style="height: 40px">
+				<div style="height: 40px"; margin-bottom:5px">
 
 					<button type="button"
 						style="float: left; border: none; outline: none; background: none;">
