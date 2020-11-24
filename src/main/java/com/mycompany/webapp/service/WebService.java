@@ -12,6 +12,7 @@ import com.mycompany.webapp.dao.CommentDao;
 import com.mycompany.webapp.dao.FollowDao;
 import com.mycompany.webapp.dao.LikeDao;
 import com.mycompany.webapp.dao.MemberDao;
+import com.mycompany.webapp.dto.Board;
 
 @Service
 public class WebService {
@@ -19,7 +20,7 @@ public class WebService {
 	private static final Logger logger=LoggerFactory.getLogger(WebService.class);
 	
 	@Resource
-	private BoardDao boarDao;
+	private BoardDao boardDao;
 	
 	@Resource
 	private BookmarkDao bookmarkDao;
@@ -35,6 +36,10 @@ public class WebService {
 	
 	@Resource
 	private MemberDao memberDao;
+
+	public void write(Board board) {
+		boardDao.insert(board);
+	}
 	
 	
 }
