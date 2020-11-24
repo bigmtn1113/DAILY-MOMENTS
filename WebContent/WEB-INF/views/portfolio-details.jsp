@@ -14,7 +14,15 @@
 						</div>
 	
 						<div class="col-lg-4 portfolio-info">
-							<textarea style="height: 80%; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; color: white; border: 1px solid white; white-space: pre-line; overflow-y: auto;" readonly="readonly">
+							<textarea class="invisible-scrollbar" style="height: 80%; width: 100%; resize: none; -ms-overflow-style:none; scrollbar-width:none; background-color: #1B1B1B; color: white; border: 1px solid white; white-space: pre-line; overflow-y: auto;" readonly="readonly">
+								아이디 : 내용<br/>
+								아이디 : 내용<br/>
+								아이디 : 내용<br/>
+								아이디 : 내용<br/>
+								아이디 : 내용<br/>
+								아이디 : 내용<br/>
+								아이디 : 내용<br/>
+								아이디 : 내용<br/>
 								아이디 : 내용<br/>
 								아이디 : 내용<br/>
 								아이디 : 내용<br/>
@@ -28,7 +36,7 @@
 								아이디 : 내용<br/>																																																
 							</textarea>
 							
-							<div style="height: 40px">
+							<div style="height: 40px; margin-bottom:5px">
 	
 							<button type="button" style="float:left; border:none; outline:none; background:none;"><img onclick ="change1();" id="img-heart" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"></button>
 								<script>
@@ -55,7 +63,7 @@
 							</div>
 	
 							<div style="height: 20px">
-								<textarea class="invisible-scrollbar" style="float: left; resize: none; width: 87%; height: 50px; padding: 0.8em; -ms-overflow-style: none; scrollbar-width: none;" placeholder="댓글달기... "></textarea>
+								<textarea class="invisible-scrollbar" style="float: left; resize: none; width: 87%; height: 50px; padding: 0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
 								<button class="bx bx-subdirectory-left" style="float: right; background-color: #15BB62; color: white; width: 13%; height: 50px; font-size: 20px;"></button>
 							</div>
 						</div>
