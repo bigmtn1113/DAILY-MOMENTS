@@ -7,7 +7,7 @@
 		<p>Join</p>
 	</div>
 
-	<form action="join" method="post" role="form" class="php-email-form mt-4">
+	<form action="join" method="post" role="form">
 		<div class="form-group">
 			<input type="text" name="mname" class="form-control" id="mname" placeholder="Your Name" />
 			<div class="validate"></div>

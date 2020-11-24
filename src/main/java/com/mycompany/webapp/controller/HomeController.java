@@ -56,7 +56,7 @@ public class HomeController {
 	@PostMapping("/join")
 	public String join(Member member, HttpSession session) {
 		logger.info("실행");
-		session.setAttribute("member", member);
+		
 		return "index";
 	}
 	

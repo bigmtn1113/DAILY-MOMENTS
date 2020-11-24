@@ -19,7 +19,7 @@ public class WebService {
 	private static final Logger logger=LoggerFactory.getLogger(WebService.class);
 	
 	@Resource
-	private BoardDao boarDao;
+	private BoardDao boardDao;
 	
 	@Resource
 	private BookmarkDao bookmarkDao;
