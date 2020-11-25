@@ -10,5 +10,17 @@
 		insert into board(bno, bphoto, bcontent, bdate, mid)
 		values(#{bno}, #{bphoto}, #{bcontent}, sysdate, #{mid})
 	</insert>
+	
+	<select id="selectMemberBcnt" parameterType="String" resultType="int">
+		select count(*)
+		from board
+		where mid=#{mid}
+	</select>
+	
+	<select id="selectMemberBphoto" parameterType="String" resultType="String">
+		select bphoto
+		from board
+		where mid=#{mid}
+	</select>
 
 </mapper>

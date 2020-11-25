@@ -2,13 +2,16 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,12 +93,12 @@ public class HomeController {
 	}
 	
 	@PostMapping("/write")
-	public String write(String bcontent, MultipartFile bphoto, String mid) {
+	public String write(String bcontent, MultipartFile bphoto, String mid, HttpServletRequest request) {
 		if(!bphoto.isEmpty()) {
 			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
 			try {
-				bphoto.transferTo(new File("D:/File/" + saveFileName));
+				bphoto.transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/board/" + saveFileName));
 				
 				Board board = new Board();
 				board.setBcontent(bcontent);
@@ -107,9 +110,25 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping("/profile")
-	public String profile() {
+	@GetMapping("/profile")
+	public String profile(HttpSession session, Model model) {
 		logger.info("실행");
+		String mid = (String) session.getAttribute("mid");
+		
+		Member member = service.getMember(mid);
+		int memberBcnt = service.getMemberBcnt(mid);
+		List<String> memberBphotos = service.getMemberBphoto(mid);
+		
+		int followerCnt = service.getFollowerCnt(mid);
+		int followingCnt = service.getFollowingCnt(mid);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("memberBcnt", memberBcnt);
+		model.addAttribute("memberBphotos", memberBphotos);
+		
+		model.addAttribute("followerCnt", followerCnt);
+		model.addAttribute("followingCnt", followingCnt);
+		
 		return "profile";
 	}
 	
