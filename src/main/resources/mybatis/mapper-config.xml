@@ -5,9 +5,9 @@
 	<typeAliases>
 		<typeAlias alias="board" type="com.mycompany.webapp.dto.Board" />
 		<typeAlias alias="bookmark" type="com.mycompany.webapp.dto.Bookmark" />
-		<typeAlias alias="comment" type="com.mycompany.webapp.dto.Comment"/>
+		<typeAlias alias="bcomment" type="com.mycompany.webapp.dto.Bcomment"/>
 		<typeAlias alias="follow" type="com.mycompany.webapp.dto.Follow"/>
-		<typeAlias alias="like" type="com.mycompany.webapp.dto.Like"/>
+		<typeAlias alias="blike" type="com.mycompany.webapp.dto.Blike"/>
 		<typeAlias alias="member" type="com.mycompany.webapp.dto.Member"/>
 	</typeAliases>
 </configuration>
