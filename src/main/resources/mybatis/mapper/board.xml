@@ -26,6 +26,7 @@
 	<select id="selectBoards" resultType="board">
 		select bno, bphoto, bcontent, bdate, mid
 		from board
+		order by bdate desc
 	</select>
 
 </mapper>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
 import com.mycompany.webapp.service.WebService;
@@ -65,12 +66,16 @@ public class HomeController {
 	public String feed(Model model) {
 		List<Board> boards = service.getBoards();
 		List<Integer> likeCnts = new ArrayList<>();
+		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
 		
-		for (Board board : boards)
+		for (Board board : boards) {
 			likeCnts.add(service.getLikeCnt(board.getBno()));
+			boardCommentsList.add(service.getBoardComments(board.getBno()));
+		}
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("likeCnts", likeCnts);
+		model.addAttribute("boardCommentsList", boardCommentsList);
 		return "feed";
 	}
 	
