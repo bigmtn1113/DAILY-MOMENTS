@@ -6,8 +6,9 @@ public class Member {
 	private String mpassword;
 	private String mtel;
 	private String mintroduce;
-	private String msex;
+	private boolean msex;
 	private String mphoto;
+	private boolean menabled;
 	
 	public String getMid() {
 		return mid;
@@ -49,12 +50,20 @@ public class Member {
 		this.mtel = mtel;
 	}
 
-	public String getMsex() {
+	public boolean isMsex() {
 		return msex;
 	}
 
-	public void setMsex(String msex) {
+	public void setMsex(boolean msex) {
 		this.msex = msex;
+	}
+
+	public boolean isMenabled() {
+		return menabled;
+	}
+
+	public void setMenabled(boolean menabled) {
+		this.menabled = menabled;
 	}
 
 	public String getMphoto() {

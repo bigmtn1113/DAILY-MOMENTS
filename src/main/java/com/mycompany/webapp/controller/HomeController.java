@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,25 +29,11 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
+	@RequestMapping("/loginForm")
+	public String loginForm() {
+		return "loginForm";
 	}
-	
-	@PostMapping("/login")
-	public String login(String mid, String mpassword, HttpSession session) {
-		logger.info("실행");
-		Member member = (Member)session.getAttribute("member");
-		if (member == null)
-			return "index";
-		
-		if (member.getMid().equals(mid) && member.getMpassword().equals(mpassword)) {
-			session.setAttribute("mid", mid);
-			return "index";
-		} else {
-			return "index";
-		}
-	}
+
 	
 	@GetMapping("/join")
 	public String join() {
@@ -54,9 +42,15 @@ public class HomeController {
 	}
 	
 	@PostMapping("/join")
-	public String join(Member member, HttpSession session) {
+	public String join(Member member) {
 		logger.info("실행");
 		
+		PasswordEncoder passwordEncoder=PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		String encodedPassword=passwordEncoder.encode(member.getMpassword());
+		member.setMpassword(encodedPassword);
+		
+		member.setMenabled(true);
+		service.join(member);
 		return "index";
 	}
 	
@@ -106,13 +100,6 @@ public class HomeController {
 	public String setting(Member member, HttpSession session) {
 		logger.info("실행");
 		session.setAttribute("member", member);
-		return "index";
-	}
-	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		logger.info("실행");
-		session.invalidate();
 		return "index";
 	}
 	

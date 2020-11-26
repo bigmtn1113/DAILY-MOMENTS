@@ -12,6 +12,7 @@ import com.mycompany.webapp.dao.CommentDao;
 import com.mycompany.webapp.dao.FollowDao;
 import com.mycompany.webapp.dao.LikeDao;
 import com.mycompany.webapp.dao.MemberDao;
+import com.mycompany.webapp.dto.Member;
 
 @Service
 public class WebService {
@@ -35,6 +36,8 @@ public class WebService {
 	
 	@Resource
 	private MemberDao memberDao;
-	
-	
+
+	public void join(Member member) {
+		memberDao.insert(member);
+	}
 }

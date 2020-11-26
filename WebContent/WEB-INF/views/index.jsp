@@ -52,17 +52,17 @@
 						<li class="active"><a href="#header">Home</a></li>
 						
 						<c:if test="${mid == null}">
-							<li><a id="li-login" href="javascript:login()">Login</a>
+							<li><a id="li-loginForm" href="javascript:loginForm()">Login</a>
 								<script type="text/javascript">
-									function login() {
+									function loginForm() {
 										$.ajax({
-											url : "login",
+											url : "loginForm",
 											method : "GET",
 											success : function(data) {
-												$("#login").html(data);
-												$("#li-login").attr("href", "#login");
-												$("#li-login").click();
-												$("#li-login").attr("href", "javascript:login()");
+												$("#loginForm").html(data);
+												$("#li-loginForm").attr("href", "#loginForm");
+												$("#li-loginForm").click();
+												$("#li-loginForm").attr("href", "javascript:loginForm()");
 											}
 										});
 									}
@@ -202,7 +202,7 @@
 			</div>
 		</header>
 	
-		<section id="login"></section>
+		<section id="loginForm"></section>
 		<section id="join"></section>
 		<section id="at-sign"></section>
 		<section id="feed"></section>
