@@ -16,7 +16,7 @@ public class BoardDao {
 	private SqlSessionTemplate sst;
 
 	public int write(Board board) {
-		int rows = sst.insert("mybatis.mapper.board.insert", board);
+		int rows = sst.insert("mybatis.mapper.board.insertBoard", board);
 		return rows;
 	}
 
@@ -25,8 +25,13 @@ public class BoardDao {
 		return memberBcnt;
 	}
 
-	public List<String> getMemberBphoto(String mid) {
-		List<String> memberBphotos = sst.selectList("mybatis.mapper.board.selectMemberBphoto", mid);
+	public List<String> getMemberBphotos(String mid) {
+		List<String> memberBphotos = sst.selectList("mybatis.mapper.board.selectMemberBphotos", mid);
 		return memberBphotos;
+	}
+
+	public List<Board> getBoards() {
+		List<Board> boards = sst.selectList("mybatis.mapper.board.selectBoards");
+		return boards;
 	}
 }

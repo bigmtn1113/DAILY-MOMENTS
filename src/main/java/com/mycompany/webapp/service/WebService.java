@@ -54,8 +54,8 @@ public class WebService {
 		return memberBcnt;
 	}
 
-	public List<String> getMemberBphoto(String mid) {
-		List<String> memberBphotos = boardDao.getMemberBphoto(mid);
+	public List<String> getMemberBphotos(String mid) {
+		List<String> memberBphotos = boardDao.getMemberBphotos(mid);
 		return memberBphotos;
 	}
 
@@ -67,5 +67,10 @@ public class WebService {
 	public int getFollowingCnt(String mid) {
 		int followingCnt = followDao.getFollowingCnt(mid);
 		return followingCnt;
+	}
+
+	public List<Board> getBoards() {
+		List<Board> boards = boardDao.getBoards();
+		return boards;
 	}
 }

@@ -3,7 +3,7 @@
 <mapper namespace="mybatis.mapper.member">
 	
 	<select id="selectMember" parameterType="String" resultType="member">
-		select mphoto, mintroduce
+		select mid, mphoto, mintroduce
 		from member
 		where mid=#{mid}
 	</select>

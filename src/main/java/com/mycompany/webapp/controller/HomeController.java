@@ -69,15 +69,30 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/feed")
-	public String feed() {
-		logger.info("실행");
+	public String feed(Model model) {
+		List<Board> boards = service.getBoards();
+		
+		model.addAttribute("boards", boards);
 		return "feed";
 	}
 	
-	@RequestMapping("/at-sign")
-	public String atSign() {
-		logger.info("실행");
-		return "at-sign";
+	@RequestMapping("/atSign")
+	public String atSign(String mid, Model model) {
+		Member member = service.getMember(mid);
+		int memberBcnt = service.getMemberBcnt(mid);
+		List<String> memberBphotos = service.getMemberBphotos(mid);
+		
+		int followerCnt = service.getFollowerCnt(mid);
+		int followingCnt = service.getFollowingCnt(mid);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("memberBcnt", memberBcnt);
+		model.addAttribute("memberBphotos", memberBphotos);
+		
+		model.addAttribute("followerCnt", followerCnt);
+		model.addAttribute("followingCnt", followingCnt);
+		
+		return "atSign";
 	}
 	
 	@RequestMapping("/tag")
@@ -93,7 +108,7 @@ public class HomeController {
 	}
 	
 	@PostMapping("/write")
-	public String write(String bcontent, MultipartFile bphoto, String mid, HttpServletRequest request) {
+	public String write(String bcontent, MultipartFile bphoto, String mid) {
 		if(!bphoto.isEmpty()) {
 			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
@@ -112,12 +127,11 @@ public class HomeController {
 	
 	@GetMapping("/profile")
 	public String profile(HttpSession session, Model model) {
-		logger.info("실행");
 		String mid = (String) session.getAttribute("mid");
 		
 		Member member = service.getMember(mid);
 		int memberBcnt = service.getMemberBcnt(mid);
-		List<String> memberBphotos = service.getMemberBphoto(mid);
+		List<String> memberBphotos = service.getMemberBphotos(mid);
 		
 		int followerCnt = service.getFollowerCnt(mid);
 		int followingCnt = service.getFollowingCnt(mid);
@@ -132,10 +146,10 @@ public class HomeController {
 		return "profile";
 	}
 	
-	@GetMapping("/portfolio-details")
+	@GetMapping("/portfolioDetails")
 	public String portfolioDetails() {
 		logger.info("실행");
-		return "portfolio-details";
+		return "portfolioDetails";
 	}
 	
 	@GetMapping("/setting")
@@ -156,11 +170,5 @@ public class HomeController {
 		logger.info("실행");
 		session.invalidate();
 		return "index";
-	}
-	
-	@RequestMapping("/portfoliodetail")
-	public String portfoliodetail() {
-		logger.info("실행");
-		return "portfolio-details";
 	}
 }

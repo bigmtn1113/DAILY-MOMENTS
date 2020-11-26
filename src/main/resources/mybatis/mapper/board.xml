@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.board">
 
-	<insert id="insert" parameterType="board">
+	<insert id="insertBoard" parameterType="board">
 		<selectKey order="BEFORE" resultType="int" keyProperty="bno">
 			select seq_board_bno.nextval from dual
 		</selectKey>
@@ -17,10 +17,15 @@
 		where mid=#{mid}
 	</select>
 	
-	<select id="selectMemberBphoto" parameterType="String" resultType="String">
+	<select id="selectMemberBphotos" parameterType="String" resultType="String">
 		select bphoto
 		from board
 		where mid=#{mid}
+	</select>
+	
+	<select id="selectBoards" resultType="board">
+		select bphoto, bcontent, bdate, mid
+		from board
 	</select>
 
 </mapper>
