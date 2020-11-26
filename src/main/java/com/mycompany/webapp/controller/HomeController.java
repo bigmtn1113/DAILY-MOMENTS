@@ -2,8 +2,10 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -29,7 +31,7 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String index() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "index";
 	}
 	
@@ -40,7 +42,7 @@ public class HomeController {
 	
 	@PostMapping("/login")
 	public String login(String mid, String mpassword, HttpSession session) {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		Member member = (Member)session.getAttribute("member");
 		if (member == null)
 			return "index";
@@ -55,95 +57,110 @@ public class HomeController {
 	
 	@GetMapping("/join")
 	public String join() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "join";
 	}
 	
 	@PostMapping("/join")
 	public String join(Member member, HttpSession session) {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		session.setAttribute("member", member);
 		return "index";
 	}
 	
 	@RequestMapping("/feed")
 	public String feed() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "feed";
 	}
 	
 	@RequestMapping("/at-sign")
 	public String atSign() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "at-sign";
 	}
 	
 	@RequestMapping("/tag")
 	public String tag() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "tag";
 	}
 	
 	@GetMapping("/write")
 	public String write() {
-		
+		logger.info("실행");
 		return "write";
 	}
 	
 	@PostMapping("/write")
-	public String write(String bcontent, MultipartFile bphoto, String mid, Model model) {
+	public String write(String bcontent, MultipartFile bphoto, String mid, HttpServletRequest request) {
 		if(!bphoto.isEmpty()) {
+			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
-			
 			try {
-				bphoto.transferTo(new File("C:/Temp/upload/" + saveFileName));
+				bphoto.transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/board/" + saveFileName));
+				
 				Board board = new Board();
 				board.setBcontent(bcontent);
 				board.setBphoto(saveFileName);
 				board.setMid(mid);
-				service.boardwrite(board);
-			
+				service.write(board);
 			} catch (Exception e) {}
 		}
 		return "index";
 	}
-
 	
-	@RequestMapping("/profile")
-	public String profile() {
-		logger.info("�떎�뻾");
+	@GetMapping("/profile")
+	public String profile(HttpSession session, Model model) {
+		logger.info("실행");
+		String mid = (String) session.getAttribute("mid");
+		
+		Member member = service.getMember(mid);
+		int memberBcnt = service.getMemberBcnt(mid);
+		List<String> memberBphotos = service.getMemberBphoto(mid);
+		
+		int followerCnt = service.getFollowerCnt(mid);
+		int followingCnt = service.getFollowingCnt(mid);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("memberBcnt", memberBcnt);
+		model.addAttribute("memberBphotos", memberBphotos);
+		
+		model.addAttribute("followerCnt", followerCnt);
+		model.addAttribute("followingCnt", followingCnt);
+		
 		return "profile";
 	}
 	
 	@GetMapping("/portfolio-details")
 	public String portfolioDetails() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "portfolio-details";
 	}
 	
 	@GetMapping("/setting")
 	public String setting() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "setting";
 	}
 	
 	@PostMapping("/setting")
 	public String setting(Member member, HttpSession session) {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		session.setAttribute("member", member);
 		return "index";
 	}
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		session.invalidate();
 		return "index";
 	}
 	
 	@RequestMapping("/portfoliodetail")
 	public String portfoliodetail() {
-		logger.info("�떎�뻾");
+		logger.info("실행");
 		return "portfolio-details";
 	}
 }

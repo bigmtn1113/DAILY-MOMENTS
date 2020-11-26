@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,14 +15,18 @@ public class BoardDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public int insert(Board board) {
-		System.out.println(board.getBcontent());
-		int rows = sst.insert("mybatis.mapper.board.insert",board);
+	public int write(Board board) {
+		int rows = sst.insert("mybatis.mapper.board.insert", board);
 		return rows;
 	}
 
-	public int select(Board board) {
-		int rows = sst.selectOne("mybatis.mapper.board.select",board);
-		return rows;
+	public int getMemberBcnt(String mid) {
+		int memberBcnt = sst.selectOne("mybatis.mapper.board.selectMemberBcnt", mid);
+		return memberBcnt;
+	}
+
+	public List<String> getMemberBphoto(String mid) {
+		List<String> memberBphotos = sst.selectList("mybatis.mapper.board.selectMemberBphoto", mid);
+		return memberBphotos;
 	}
 }

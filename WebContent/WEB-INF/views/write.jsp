@@ -43,6 +43,5 @@
 			<button type="submit" class="btn btn-primary btn-lg btn-block">게시</button>
 		</div>
 	</form>
-	
 
 </div>

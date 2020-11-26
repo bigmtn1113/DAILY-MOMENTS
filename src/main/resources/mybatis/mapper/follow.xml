@@ -2,4 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.follow">
 
+	<select id="selectFollowerCnt" parameterType="String" resultType="int">
+		select count(*)
+		from follow
+		where following=#{mid}
+	</select>
+	
+	<select id="selectFollowingCnt" parameterType="String" resultType="int">
+		select count(*)
+		from follow
+		where follower=#{mid}
+	</select>
+
 </mapper>
