@@ -77,4 +77,9 @@ public class WebService {
 		List<Board> boards = boardDao.getBoards();
 		return boards;
 	}
+
+	public Integer getLikeCnt(int bno) {
+		Integer likeCnt = likeDao.getLikeCnt(bno);
+		return likeCnt;
+	}
 }

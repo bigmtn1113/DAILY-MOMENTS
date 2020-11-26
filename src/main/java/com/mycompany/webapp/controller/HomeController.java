@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,8 +65,13 @@ public class HomeController {
 	@RequestMapping("/feed")
 	public String feed(Model model) {
 		List<Board> boards = service.getBoards();
+		List<Integer> likeCnts = new ArrayList<>();
+		
+		for (Board board : boards)
+			likeCnts.add(service.getLikeCnt(board.getBno()));
 		
 		model.addAttribute("boards", boards);
+		model.addAttribute("likeCnts", likeCnts);
 		return "feed";
 	}
 	

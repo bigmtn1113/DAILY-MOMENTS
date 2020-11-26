@@ -24,7 +24,7 @@
 	</select>
 
 	<select id="selectBoards" resultType="board">
-		select bphoto, bcontent, bdate, mid
+		select bno, bphoto, bcontent, bdate, mid
 		from board
 	</select>
 
