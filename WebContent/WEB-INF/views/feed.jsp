@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="portfolio container">
 	
@@ -13,22 +14,42 @@
 			<div class="col-sm-12 portfolio-item filter-app">
 				<div style="background-color: #1B1B1B;">
 					<c:if test="${board.mid == mid}">
-						<a href="profile"
-							style="text-decoration: none; color: white; font-size: 30px;">${mid}</a>
+						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/assets/img/need/unnamed.png"/>
+							<a href="profile"
+								style="text-decoration: none; color: white; font-size: 30px;">${mid}</a>
+								<span style="float: right; margin-top: 15px; margin-right: 15px">
+									<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
+								</span>
 					</c:if>
+					
 					<c:if test="${board.mid != mid}">
-						<a href="atSign?mid=${board.mid}"
-							style="text-decoration: none; color: white; font-size: 30px;">${board.mid}</a>
+						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/assets/img/need/unnamed.png"/>
+							<a href="atSign?mid=${board.mid}"
+								style="text-decoration: none; color: white; font-size: 30px;">${board.mid}</a>	
+								<span style="float: right; margin-top: 15px; margin-right: 15px">
+									<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
+								</span>
 					</c:if>
 				</div>
 	
-				<div>
+				<div >
 					<div class="container mt-3" style="text-align: center">
 						<img
 							src="<%=request.getContextPath()%>/resources/images/board/${board.bphoto}"
 							class="img-fluid">
 					</div>
-	
+					  	
+			          	<textarea
+						    class="invisible-scrollbar" 
+							style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; color: white; border: 1px solid white; white-space: pre-line; overflow-y: auto;"
+							readonly="readonly">
+										 내용들어가는 곳~~1<br/>
+										  내용들어가는 곳~~2	<br/>	
+										   내용들어가는 곳~~3<br/>	
+										    내용들어가는 곳~~4<br/>	
+										     내용들어가는 곳~~	5<br/>																																															
+						</textarea>
+		          	
 							<div style="height: 40px; margin-bottom:10px">
 	
 							<button type="button" style="float:left; border:none; outline:none; background:none;"><img onclick ="change1();" id="img-heart" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"></button>
