@@ -99,7 +99,7 @@
 												$("#atSign").html(data);
 												$("#li-atSign").attr("href", "#atSign");
 												$("#li-atSign").click();
-												$("#li-atSign").attr("href", "javascript:atSign()");
+												$("#li-atSign").attr("href", "javascript:atSign(${mid})");
 											}
 										});
 									}
