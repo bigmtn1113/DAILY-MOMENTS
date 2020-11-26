@@ -1,15 +1,21 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
 import com.mycompany.webapp.service.WebService;
 
@@ -23,7 +29,7 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String index() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "index";
 	}
 	
@@ -34,7 +40,7 @@ public class HomeController {
 	
 	@PostMapping("/login")
 	public String login(String mid, String mpassword, HttpSession session) {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		Member member = (Member)session.getAttribute("member");
 		if (member == null)
 			return "index";
@@ -49,76 +55,95 @@ public class HomeController {
 	
 	@GetMapping("/join")
 	public String join() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "join";
 	}
 	
 	@PostMapping("/join")
 	public String join(Member member, HttpSession session) {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		session.setAttribute("member", member);
 		return "index";
 	}
 	
 	@RequestMapping("/feed")
 	public String feed() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "feed";
 	}
 	
 	@RequestMapping("/at-sign")
 	public String atSign() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "at-sign";
 	}
 	
 	@RequestMapping("/tag")
 	public String tag() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "tag";
 	}
 	
 	@GetMapping("/write")
 	public String write() {
-		logger.info("실행");
+		
 		return "write";
 	}
 	
+	@PostMapping("/write")
+	public String write(String bcontent, MultipartFile bphoto, String mid, Model model) {
+		if(!bphoto.isEmpty()) {
+			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
+			
+			try {
+				bphoto.transferTo(new File("C:/Temp/upload/" + saveFileName));
+				Board board = new Board();
+				board.setBcontent(bcontent);
+				board.setBphoto(saveFileName);
+				board.setMid(mid);
+				service.boardwrite(board);
+			
+			} catch (Exception e) {}
+		}
+		return "index";
+	}
+
+	
 	@RequestMapping("/profile")
 	public String profile() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "profile";
 	}
 	
 	@GetMapping("/portfolio-details")
 	public String portfolioDetails() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "portfolio-details";
 	}
 	
 	@GetMapping("/setting")
 	public String setting() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "setting";
 	}
 	
 	@PostMapping("/setting")
 	public String setting(Member member, HttpSession session) {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		session.setAttribute("member", member);
 		return "index";
 	}
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		session.invalidate();
 		return "index";
 	}
 	
 	@RequestMapping("/portfoliodetail")
 	public String portfoliodetail() {
-		logger.info("실행");
+		logger.info("�떎�뻾");
 		return "portfolio-details";
 	}
 }
