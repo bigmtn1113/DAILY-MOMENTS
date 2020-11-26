@@ -88,17 +88,18 @@
 						</c:if>
 	
 						<c:if test="${mid != null}">
-							<li><a id="li-at-sign" href="javascript:atSign()">At-Sign</a>
+							<li><a id="li-atSign" href="javascript:atSign(${mid})">At-Sign</a>
 								<script type="text/javascript">
-									function atSign() {
+									function atSign(mid) {
 										$.ajax({
-											url : "at-sign",
+											url : "atSign",
 											method : "GET",
+											data: {mid: mid},
 											success : function(data) {
-												$("#at-sign").html(data);
-												$("#li-at-sign").attr("href", "#at-sign");
-												$("#li-at-sign").click();
-												$("#li-at-sign").attr("href", "javascript:atSign()");
+												$("#atSign").html(data);
+												$("#li-atSign").attr("href", "#atSign");
+												$("#li-atSign").click();
+												$("#li-atSign").attr("href", "javascript:atSign()");
 											}
 										});
 									}
@@ -204,7 +205,7 @@
 	
 		<section id="loginForm"></section>
 		<section id="join"></section>
-		<section id="at-sign"></section>
+		<section id="atSign"></section>
 		<section id="feed"></section>
 		<section id="tag"></section>
 		<section id="write"></section>

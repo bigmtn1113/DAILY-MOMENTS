@@ -1,17 +1,25 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ui.Model;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
 import com.mycompany.webapp.service.WebService;
 
@@ -29,11 +37,10 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping("/loginForm")
+	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "loginForm";
 	}
-
 	
 	@GetMapping("/join")
 	public String join() {
@@ -55,15 +62,30 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/feed")
-	public String feed() {
-		logger.info("실행");
+	public String feed(Model model) {
+		List<Board> boards = service.getBoards();
+		
+		model.addAttribute("boards", boards);
 		return "feed";
 	}
 	
-	@RequestMapping("/at-sign")
-	public String atSign() {
-		logger.info("실행");
-		return "at-sign";
+	@RequestMapping("/atSign")
+	public String atSign(String mid, Model model) {
+		Member member = service.getMember(mid);
+		int memberBcnt = service.getMemberBcnt(mid);
+		List<String> memberBphotos = service.getMemberBphotos(mid);
+		
+		int followerCnt = service.getFollowerCnt(mid);
+		int followingCnt = service.getFollowingCnt(mid);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("memberBcnt", memberBcnt);
+		model.addAttribute("memberBphotos", memberBphotos);
+		
+		model.addAttribute("followerCnt", followerCnt);
+		model.addAttribute("followingCnt", followingCnt);
+		
+		return "atSign";
 	}
 	
 	@RequestMapping("/tag")
@@ -78,16 +100,49 @@ public class HomeController {
 		return "write";
 	}
 	
-	@RequestMapping("/profile")
-	public String profile() {
-		logger.info("실행");
+	@PostMapping("/write")
+	public String write(String bcontent, MultipartFile bphoto, String mid) {
+		if(!bphoto.isEmpty()) {
+			// 중복 방지를 위해 파일 앞에 시간 붙이기
+			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
+			try {
+				bphoto.transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/board/" + saveFileName));
+				
+				Board board = new Board();
+				board.setBcontent(bcontent);
+				board.setBphoto(saveFileName);
+				board.setMid(mid);
+				service.write(board);
+			} catch (Exception e) {}
+		}
+		return "index";
+	}
+	
+	@GetMapping("/profile")
+	public String profile(HttpSession session, Model model) {
+		String mid = (String) session.getAttribute("mid");
+		
+		Member member = service.getMember(mid);
+		int memberBcnt = service.getMemberBcnt(mid);
+		List<String> memberBphotos = service.getMemberBphotos(mid);
+		
+		int followerCnt = service.getFollowerCnt(mid);
+		int followingCnt = service.getFollowingCnt(mid);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("memberBcnt", memberBcnt);
+		model.addAttribute("memberBphotos", memberBphotos);
+		
+		model.addAttribute("followerCnt", followerCnt);
+		model.addAttribute("followingCnt", followingCnt);
+		
 		return "profile";
 	}
 	
-	@GetMapping("/portfolio-details")
+	@GetMapping("/portfolioDetails")
 	public String portfolioDetails() {
 		logger.info("실행");
-		return "portfolio-details";
+		return "portfolioDetails";
 	}
 	
 	@GetMapping("/setting")
@@ -101,11 +156,5 @@ public class HomeController {
 		logger.info("실행");
 		session.setAttribute("member", member);
 		return "index";
-	}
-	
-	@RequestMapping("/portfoliodetail")
-	public String portfoliodetail() {
-		logger.info("실행");
-		return "portfolio-details";
 	}
 }

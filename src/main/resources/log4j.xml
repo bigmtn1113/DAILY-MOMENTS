@@ -17,7 +17,7 @@
 
 	<!-- SQL 로그 레벨 성정 -->
 	<logger name="jdbc.sqltiming">
-		<level value="info"/>
+		<level value="error"/>
 	</logger>
 
 	<root>
@@ -25,4 +25,3 @@
 		<appender-ref ref="console" />
 	</root>
 </log4j:configuration>
-
