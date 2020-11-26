@@ -62,13 +62,18 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/feed")
-	public String feed(Model model) {
+	public String feed(Model model, HttpSession session) {
+		/*String mid = (String) session.getAttribute("mid");
+		Member member = service.getMember(mid);*/
+		
 		List<Board> boards = service.getBoards();
 		List<Integer> likeCnts = new ArrayList<>();
+		
 		
 		for (Board board : boards)
 			likeCnts.add(service.getLikeCnt(board.getBno()));
 		
+		/*model.addAttribute("member", member);*/
 		model.addAttribute("boards", boards);
 		model.addAttribute("likeCnts", likeCnts);
 		return "feed";
