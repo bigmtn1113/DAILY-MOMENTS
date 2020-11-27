@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,11 +18,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Qna;
 import com.mycompany.webapp.service.WebService;
 
 @Controller
@@ -183,4 +187,38 @@ public class HomeController {
 		session.setAttribute("member", member);
 		return "index";
 	}
+	
+	//이부분은 준엽이가 한 부분이므로 지우지 말것 ///////////////////////////////////////
+	
+	@GetMapping("/qna")
+	public String qna(Model model) {
+		//게시물 목록 가져오기
+		int totalRows = service.getQnaTotalRows();
+		Pager pager = new Pager(5, 5, totalRows, 1);
+		List<Qna> list = service.getQnaList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "qna";
+	}
+	
+	@PostMapping("/qnaWrite")
+	public String qnaWrite(Qna qna, HttpServletRequest request, Model model) throws Exception {
+		//로그인한 mid 세팅
+		HttpSession session = request.getSession();
+		String mid = (String) session.getAttribute("mid");
+		qna.setMid(mid);
+		
+		//서비스를 이용해서 게시물 쓰기
+		service.qnaWrite(qna);
+		
+		//게시물 목록 가져오기
+		int totalRows = service.getQnaTotalRows();
+		Pager pager = new Pager(5, 5, totalRows, 1);
+		List<Qna> list = service.getQnaList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "qnaList";
+	}
+	
+	
 }
