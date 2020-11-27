@@ -92,6 +92,11 @@ public class WebService {
 		return boardComments;
 	}
 	
+	public String getMemberPhoto(String mid) {
+		String memberPhoto = memberDao.getMemberPhoto(mid);
+		return memberPhoto;
+	}
+	
 	public void memberUpdate(Member member) {
 		memberDao.updateMember(member);
 	}	

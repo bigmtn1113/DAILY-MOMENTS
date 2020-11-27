@@ -22,6 +22,11 @@ public class MemberDao {
 		Member member = sst.selectOne("mybatis.mapper.member.selectMember", mid);
 		return member;
 	}
+
+	public String getMemberPhoto(String mid) {
+		String memberPhoto = sst.selectOne("mybatis.mapper.member.selectMemberPhoto", mid);
+		return memberPhoto;
+	}
 	
 	public int updateMember(Member member) {
 		int rows = sst.update("mybatis.mapper.member.updateSetting", member);
