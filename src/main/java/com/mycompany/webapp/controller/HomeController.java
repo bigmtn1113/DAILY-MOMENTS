@@ -1,13 +1,16 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Board;
@@ -104,14 +108,18 @@ public class HomeController {
 		return "tag";
 	}
 	
-	@GetMapping("/write")
-	public String write() {
+	@GetMapping("/writeForm")
+	public String writeForm() {
 		logger.info("실행");
-		return "write";
+		return "writeForm";
 	}
 	
 	@PostMapping("/write")
-	public String write(String bcontent, MultipartFile bphoto, String mid) {
+	public String write(MultipartHttpServletRequest request, HttpServletResponse response) {
+		
+		MultipartFile bphoto=request.getFile("bphoto");
+		String mid=(String) request.getParameter("mid");
+		String bcontent=(String) request.getParameter("bcontent");
 		if(!bphoto.isEmpty()) {
 			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
@@ -125,7 +133,7 @@ public class HomeController {
 				service.write(board);
 			} catch (Exception e) {}
 		}
-		return "index";
+		return "feed";
 	}
 	
 	@GetMapping("/profile")

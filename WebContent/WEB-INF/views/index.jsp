@@ -140,17 +140,17 @@
 								</script>
 							</li>
 							
-							<li><a id="li-write" href="javascript:write()">Write</a>
+							<li><a id="li-writeForm" href="javascript:writeForm()">Write</a>
 								<script type="text/javascript">
-									function write() {
+									function writeForm() {
 										$.ajax({
-											url : "write",
+											url : "writeForm",
 											method : "GET",
 											success : function(data) {
-												$("#write").html(data);
-												$("#li-write").attr("href", "#write");
-												$("#li-write").click();
-												$("#li-write").attr("href", "javascript:write()");
+												$("#writeForm").html(data);
+												$("#li-writeForm").attr("href", "#writeForm");
+												$("#li-writeForm").click();
+												$("#li-writeForm").attr("href", "javascript:writeForm()");
 											}
 										});
 									}
@@ -208,7 +208,7 @@
 		<section id="atSign"></section>
 		<section id="feed"></section>
 		<section id="tag"></section>
-		<section id="write"></section>
+		<section id="writeForm"></section>
 		<section id="profile"></section>
 		<section id="setting"></section>
 	

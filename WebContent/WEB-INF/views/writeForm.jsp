@@ -7,8 +7,7 @@
 		<p>Write</p>
 	</div>
 
-	<form action="write" method="post" class="php-email-form mt-4" enctype="multipart/form-data">
-
+	<form class="php-email-form mt-4">
 		<input type="hidden" name="mid" id="mid" value="${mid}"/>
 
 		<div class="form-group" id="imageChange" style="display:none; text-align: center">
@@ -17,7 +16,7 @@
 		
 		
 		<div class="form-group">
-			<textarea class="form-control" name="bcontent" rows="5"
+			<textarea class="form-control" name="bcontent" id="bcontent" rows="5"
 				data-rule="required" data-msg="Please write something for us"
 				placeholder="내용을 작성하세요."></textarea>
 		</div>
@@ -40,8 +39,37 @@
 		<div style="clear: both"></div>
 
 		<div style="margin-top: 15px">
-			<button type="submit" class="btn btn-primary btn-lg btn-block">게시</button>
+			<a class="btn btn-primary btn-lg btn-block" href="javascript:write()" id="li-write">게시</a>
 		</div>
 	</form>
-
+	
+	<script type="text/javascript">
+		function write() {
+			var formdata=new FormData();
+			formdata.append("mid",$("#mid").val());
+			formdata.append("bcontent",$("#bcontent").val());
+			formdata.append("bphoto",$("#bphoto")[0].files[0], $("#bphoto")[0].files[0].name);
+			console.log(formdata.get("mid"));
+			
+			$.ajax({
+				url: "write",
+				processData: false,
+				contentType: false,
+				data: formdata,
+				method:"post",
+				success: function(data) {
+					$.ajax({
+						url : "feed",
+						method : "GET",
+						success : function(data) {
+							$("#feed").html(data);
+							$("#li-feed").attr("href", "#feed");
+							$("#li-feed").click();
+							$("#li-feed").attr("href", "javascript:feed()");
+						}
+					});
+				}
+			});
+		}
+	</script>
 </div>
