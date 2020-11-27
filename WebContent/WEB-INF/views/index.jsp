@@ -193,6 +193,22 @@
 											});
 										}
 									</script>
+									
+									<a id="li-qna" class="dropdown-item" style="color: #0000ff;" href="javascript:qna()">Q&A</a>
+									<script type="text/javascript">
+										function qna() {
+											$.ajax({
+												url : "qna",
+												method : "GET",
+												success : function(data) {
+													$("#qna").html(data);
+													$("#li-qna").attr("href", "#qna");
+													$("#li-qna").click();
+													$("#li-qna").attr("href", "javascript:qna()");
+												}
+											});
+										}
+									</script>
 		
 									<a class="dropdown-item" style="color: #0000ff;" href="logout">Logout</a>
 								</div>
@@ -211,6 +227,7 @@
 		<section id="writeForm"></section>
 		<section id="profile"></section>
 		<section id="setting"></section>
+		<section id="qna"></section>
 	
 		<!-- Vendor JS Files -->
 		<script src="<%=request.getContextPath()%>/resources/assets/vendor/jquery/jquery.min.js"></script>

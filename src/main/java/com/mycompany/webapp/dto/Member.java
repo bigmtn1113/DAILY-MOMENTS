@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
 	private String mid;
 	private String mname;
@@ -9,6 +11,7 @@ public class Member {
 	private boolean msex;
 	private String mphoto;
 	private boolean menabled;
+	private MultipartFile attachMphoto;
 	
 	public String getMid() {
 		return mid;
@@ -72,5 +75,13 @@ public class Member {
 
 	public void setMphoto(String mphoto) {
 		this.mphoto = mphoto;
+	}
+	
+	public MultipartFile getAttachMphoto() {
+		return attachMphoto;
+	}
+
+	public void setAttachMphoto(MultipartFile attachMphoto) {
+		this.attachMphoto = attachMphoto;
 	}
 }

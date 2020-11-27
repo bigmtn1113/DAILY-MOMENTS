@@ -1,16 +1,15 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -26,6 +25,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Qna;
 import com.mycompany.webapp.service.WebService;
 
 @Controller
@@ -59,10 +60,11 @@ public class HomeController {
 		
 		PasswordEncoder passwordEncoder=PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String encodedPassword=passwordEncoder.encode(member.getMpassword());
-		member.setMpassword(encodedPassword);
 		
+		member.setMpassword(encodedPassword);
 		member.setMenabled(true);
 		service.join(member);
+		
 		return "index";
 	}
 	
@@ -71,15 +73,18 @@ public class HomeController {
 		List<Board> boards = service.getBoards();
 		List<Integer> likeCnts = new ArrayList<>();
 		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
+		List<String> memberPhotos = new ArrayList<>();
 		
 		for (Board board : boards) {
 			likeCnts.add(service.getLikeCnt(board.getBno()));
 			boardCommentsList.add(service.getBoardComments(board.getBno()));
+			memberPhotos.add(service.getMemberPhoto(board.getMid()));
 		}
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("likeCnts", likeCnts);
 		model.addAttribute("boardCommentsList", boardCommentsList);
+		model.addAttribute("memberPhotos", memberPhotos);
 		return "feed";
 	}
 	
@@ -164,15 +169,61 @@ public class HomeController {
 	}
 	
 	@GetMapping("/setting")
-	public String setting() {
-		logger.info("실행");
+	public String setting(HttpSession session, Model model) {
+		String mid = (String) session.getAttribute("mid");
+		
+		Member member = service.getMember(mid);
+		model.addAttribute("member", member);
 		return "setting";
 	}
 	
 	@PostMapping("/setting")
 	public String setting(Member member, HttpSession session) {
-		logger.info("실행");
+
+		String saveFileName = new Date().getTime() + "_" + member.getAttachMphoto().getOriginalFilename();
+
+		try {
+			member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + saveFileName));
+			member.setMphoto(saveFileName);
+			service.memberUpdate(member);
+			
+		} catch (Exception e) {}
+		
 		session.setAttribute("member", member);
 		return "index";
 	}
+	
+	//이부분은 준엽이가 한 부분이므로 지우지 말것 ///////////////////////////////////////
+	
+	@GetMapping("/qna")
+	public String qna(Model model) {
+		//게시물 목록 가져오기
+		int totalRows = service.getQnaTotalRows();
+		Pager pager = new Pager(5, 5, totalRows, 1);
+		List<Qna> list = service.getQnaList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "qna";
+	}
+	
+	@PostMapping("/qnaWrite")
+	public String qnaWrite(Qna qna, HttpServletRequest request, Model model) throws Exception {
+		//로그인한 mid 세팅
+		HttpSession session = request.getSession();
+		String mid = (String) session.getAttribute("mid");
+		qna.setMid(mid);
+		
+		//서비스를 이용해서 게시물 쓰기
+		service.qnaWrite(qna);
+		
+		//게시물 목록 가져오기
+		int totalRows = service.getQnaTotalRows();
+		Pager pager = new Pager(5, 5, totalRows, 1);
+		List<Qna> list = service.getQnaList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "qnaList";
+	}
+	
+	
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.qna">
+
+
+	<select id="countAll" resultType="int">
+		select count(*) from qnaboard
+	</select>
+
+	<select id="selectByPage" parameterType="pager" resultType="qna">
+		select rnum, bno, btitle, mphoto, bcontent, bdate, mid
+		from(
+		    select rownum as rnum, bno, btitle, mphoto, bcontent, bdate, mid
+		    from (
+		    	select bno, btitle, mphoto, bcontent, bdate, m.mid 
+		    	from qnaboard qb, member m 
+		    	where qb.mid = m.mid  
+		    	order by bno desc
+		    )
+		    where rownum &lt;=#{endRowNo}   <!-- &lt; : less than ~보다 적은  -->
+		)
+		where rnum &gt;=#{startRowNo}
+	</select>
+
+
+	<insert id="insert" parameterType="qna"> 
+		<selectKey order="BEFORE" resultType="int" keyProperty="bno">  <!-- before면 아래 sql문 보다 selectKey 부분을 먼저 실행하겠다. after면 반대. -->
+			select seq_qnaboard_bno.nextval from dual
+		</selectKey>	
+	
+		insert into qnaboard (bno, btitle, bcontent, bdate, mid)
+		values(#{bno}, #{btitle}, #{bcontent}, sysdate, #{mid})
+	
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<delete id="deleteByBno" parameterType="int">
+		delete from board where bno = #{bno}	
+	</delete>
+
+	<update id="update" parameterType="board">
+		update board set btitle = #{btitle}, bcontent = #{bcontent} where bno = #{bno}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
