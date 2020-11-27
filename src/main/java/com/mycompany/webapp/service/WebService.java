@@ -88,4 +88,10 @@ public class WebService {
 		List<Bcomment> boardComments = bcommentDao.getBoardComments(bno);
 		return boardComments;
 	}
+
+	public String getMemberPhoto(String mid) {
+		String memberPhoto = memberDao.getMemberPhoto(mid);
+		return memberPhoto;
+	}
+
 }

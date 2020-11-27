@@ -12,10 +12,12 @@
 	<div class="row portfolio-container">
 		<c:forEach var="board" items="${boards}" varStatus="status">
 			<div class="col-sm-12 portfolio-item filter-app">
-				<div style="background-color: #1B1B1B;">
-					<c:if test="${board.mid == mid}">
-						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/assets/img/need/unnamed.png"/>
-							<a href="profile"
+			
+				<c:set var="index" value="${status.index}"/>
+				<div style="background-color: #1B1B1B;">	
+					<c:if test="${board.mid == mid}">																																																	
+						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}"/>
+							<a href="profile"					
 								style="text-decoration: none; color: white; font-size: 30px;">${mid}</a>
 								<span style="float: right; margin-top: 15px; margin-right: 15px">
 									<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
@@ -23,7 +25,7 @@
 					</c:if>
 					
 					<c:if test="${board.mid != mid}">
-						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/assets/img/need/unnamed.png"/>
+						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}"/>
 							<a href="atSign?mid=${board.mid}"
 								style="text-decoration: none; color: white; font-size: 30px;">${board.mid}</a>	
 								<span style="float: right; margin-top: 15px; margin-right: 15px">
@@ -68,7 +70,6 @@
 							}
 						</script>
 						
-						<c:set var="index" value="${status.index}"/>
 						<div style="text-align:left; padding-top:10px">좋아요 ${likeCnts.get(index)}개</div>
 					</div>
 					

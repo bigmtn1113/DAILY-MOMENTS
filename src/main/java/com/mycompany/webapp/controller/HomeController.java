@@ -67,15 +67,18 @@ public class HomeController {
 		List<Board> boards = service.getBoards();
 		List<Integer> likeCnts = new ArrayList<>();
 		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
+		List<String> memberPhotos = new ArrayList<>();
 		
 		for (Board board : boards) {
 			likeCnts.add(service.getLikeCnt(board.getBno()));
 			boardCommentsList.add(service.getBoardComments(board.getBno()));
+			memberPhotos.add(service.getMemberPhoto(board.getMid()));
 		}
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("likeCnts", likeCnts);
 		model.addAttribute("boardCommentsList", boardCommentsList);
+		model.addAttribute("memberPhotos", memberPhotos);
 		return "feed";
 	}
 	
