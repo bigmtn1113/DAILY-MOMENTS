@@ -49,6 +49,7 @@
 		</div>
 
 		<div class="row portfolio-container">
+		
 			<c:if test="${memberBcnt > 0}">
 				<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
 					<div class="col-lg-4 col-md-6 portfolio-item filter-app">

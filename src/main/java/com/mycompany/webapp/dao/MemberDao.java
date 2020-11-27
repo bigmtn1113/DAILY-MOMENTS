@@ -14,7 +14,7 @@ public class MemberDao {
 	private SqlSessionTemplate sst;
 
 	public int insert(Member member) {
-		int row=sst.insert("mybatis.mapper.member.insert",member);
+		int row = sst.insert("mybatis.mapper.member.insert",member);
 		return row;
 	}
 	

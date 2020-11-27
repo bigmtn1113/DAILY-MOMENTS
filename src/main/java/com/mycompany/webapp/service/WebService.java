@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.BookmarkDao;
-import com.mycompany.webapp.dao.CommentDao;
+import com.mycompany.webapp.dao.BcommentDao;
 import com.mycompany.webapp.dao.FollowDao;
-import com.mycompany.webapp.dao.LikeDao;
+import com.mycompany.webapp.dao.BlikeDao;
 import com.mycompany.webapp.dao.MemberDao;
+import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
 
@@ -29,13 +30,13 @@ public class WebService {
 	private BookmarkDao bookmarkDao;
 	
 	@Resource
-	private CommentDao commentDao;
+	private BcommentDao bcommentDao;
 	
 	@Resource
 	private FollowDao followDao;
 	
 	@Resource
-	private LikeDao likeDao;
+	private BlikeDao blikeDao;
 	
 	@Resource
 	private MemberDao memberDao;
@@ -76,6 +77,16 @@ public class WebService {
 	public List<Board> getBoards() {
 		List<Board> boards = boardDao.getBoards();
 		return boards;
+	}
+
+	public Integer getLikeCnt(int bno) {
+		Integer likeCnt = blikeDao.getLikeCnt(bno);
+		return likeCnt;
+	}
+
+	public List<Bcomment> getBoardComments(int bno) {
+		List<Bcomment> boardComments = bcommentDao.getBoardComments(bno);
+		return boardComments;
 	}
 	
 	public void memberUpdate(Member member) {
