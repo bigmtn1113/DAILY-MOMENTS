@@ -9,17 +9,22 @@
 	</div>
 
 	<div class="row portfolio-container">
+
 		<c:forEach var="board" items="${boards}">
 			<div class="col-sm-12 portfolio-item filter-app">
 				<div style="background-color: #1B1B1B;">
 					<c:if test="${board.mid == mid}">
-						<a href="profile"
-							style="text-decoration: none; color: white; font-size: 30px;">${mid}</a>
+						<a href="javascript:Goprofile()"
+						   style="text-decoration: none; color: white; font-size: 30px;"
+						   id="li-profile">${mid}</a>
+						
 					</c:if>
 					<c:if test="${board.mid != mid}">
-						<a href="atSign?mid=${board.mid}"
-							style="text-decoration: none; color: white; font-size: 30px;">${board.mid}</a>
+						<a href="javascript:GoatSign('${board.mid}')"
+						   style="text-decoration: none; color: white; font-size: 30px;"
+						   id="li-atSign">${board.mid}</a>
 					</c:if>
+					
 				</div>
 	
 				<div>
@@ -67,5 +72,34 @@
 				</div>
 			</div>
 		</c:forEach>
+		<script type="text/javascript">
+			function GoatSign(mid) {
+				$.ajax({
+					url : "atSign",
+					data:{mid:mid},
+					method : "POST",
+					success : function(data) {
+						$("#atSign").html(data);
+						$("#li-atSign").attr("href", "#atSign");
+						$("#li-atSign").click();
+						$("#li-atSign").attr("href", "javascript:GoatSign()");
+					}
+				});
+			}
+		</script>
+		<script type="text/javascript">
+			function Goprofile() {
+				$.ajax({
+					url : "profile",
+					method : "GET",
+					success : function(data) {
+						$("#profile").html(data);
+						$("#li-profile").attr("href", "#profile");
+						$("#li-profile").click();
+						$("#li-profile").attr("href", "javascript:Goprofile()");
+					}
+				});
+			}
+		</script>
 	</div>
 </div>
