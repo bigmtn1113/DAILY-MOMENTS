@@ -41,14 +41,7 @@
 							src="<%=request.getContextPath()%>/resources/images/board/${board.bphoto}"
 							class="img-fluid">
 					</div>
-					  	
-		          	<textarea
-					    class="invisible-scrollbar" 
-						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; color: white; border: 1px solid white; white-space: pre-line; overflow-y: auto;"
-						readonly="readonly">
-							${board.bcontent}																																														
-					</textarea>
-		          	
+
 					<div style="height: 40px; margin-bottom:10px">
 
 						<button type="button" style="float:left; border:none; outline:none; background:none;"><img onclick ="change1();" id="img-heart" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"></button>
@@ -63,24 +56,37 @@
 						
 	              		<button type="button" style="float:right; border:none; outline:none; background:none;"><img onclick ="change2();" id="img-book" src="<%=application.getContextPath()%>/resources/assets/img/need/book.png"></button>
 	              		<script>
-							   function change2() {
-							   var img3 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book.png",
-							       img4 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book3.png";
-							   var imgElement = document.getElementById('img-book');
-							   imgElement.src = (imgElement.src === img3)? img4 : img3;
-							}
+							function change2() {
+								var img3 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book.png",
+									img4 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book3.png";
+								var imgElement = document.getElementById('img-book');
+									imgElement.src = (imgElement.src === img3)? img4 : img3;
+								}
 						</script>
 						
 						<c:set var="index" value="${status.index}"/>
 						<div style="text-align:left; padding-top:10px">좋아요 ${likeCnts.get(index)}개</div>
 					</div>
-					
-					<div style="clear: both; height: 70px; background-color: #1B1B1B; border: 1px solid white;">
-						<c:forEach var="boardComment" items="${boardCommentsList.get(index)}">
-							<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
-						</c:forEach>
+
+		          	<div
+					    class="invisible-scrollbar" 
+						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
+						 color: white; overflow-y: auto;">
+						<div style="padding-left:30px; padding-right:30px; padding-top:15px">
+							<a href="javascript:GoatSign('${board.mid}')" style="text-decoration: none; color: white; padding-top:2px"
+							id="li-atSign">${board.mid}</a> ${board.bcontent}
+						</div>
+						
+						<hr	style="height:1px; 
+									background: linear-gradient(to right, gray, lightgray, gray); width:95%">
+						
+						<div style="padding-left:30px; padding-right:30px;">
+							<c:forEach var="boardComment" items="${boardCommentsList.get(index)}">
+								<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+							</c:forEach>
+						</div>
 					</div>
-	
+					
 					<div style="height:20px">
 			             <textarea class="invisible-scrollbar" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
 			             <button class="bx bx-subdirectory-left" style="float:right; background-color:#15BB62; color:white; width:13%; height:50px; font-size:20px;"></button>
