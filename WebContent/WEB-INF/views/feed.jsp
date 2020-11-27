@@ -63,7 +63,7 @@
 									img4 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book3.png";
 								var imgElement = document.getElementById('img-book');
 									imgElement.src = (imgElement.src === img3)? img4 : img3;
-								}
+							}
 						</script>
 						
 						<div style="text-align:left; padding-top:10px">좋아요 ${likeCnts.get(index)}개</div>
@@ -72,14 +72,13 @@
 		          	<div
 					    class="invisible-scrollbar" 
 						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
-						 color: white; overflow-y: auto;">
+						color: white; overflow-y: auto;">
 						<div style="padding-left:30px; padding-right:30px; padding-top:15px">
 							<a href="javascript:GoatSign('${board.mid}')" style="text-decoration: none; color: white; padding-top:2px"
 							id="li-atSign">${board.mid}</a> ${board.bcontent}
 						</div>
 						
-						<hr	style="height:1px; 
-									background: linear-gradient(to right, gray, lightgray, gray); width:95%">
+						<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
 						
 						<div style="padding-left:30px; padding-right:30px;">
 							<c:forEach var="boardComment" items="${boardCommentsList.get(index)}">
