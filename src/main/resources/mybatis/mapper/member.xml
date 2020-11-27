@@ -8,7 +8,7 @@
 	</insert>
 
 	<select id="selectMember" parameterType="String" resultType="member">
-		select mid, mphoto, mintroduce
+		select mid, mname, mtel, msex, mintroduce, mphoto
 		from member
 		where mid=#{mid}
 	</select>
@@ -18,5 +18,10 @@
 		from member
 		where mid=#{mid}
 	</select>
+	
+	<update id="updateSetting" parameterType="member">
+		update member set mname=#{mname}, mtel=#{mtel}, msex='1', mpassword=#{mpassword}, mintroduce=#{mintroduce}, mphoto=#{mphoto} 
+		where mid=#{mid}
+	</update>
 	
 </mapper>

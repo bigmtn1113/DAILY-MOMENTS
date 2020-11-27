@@ -1,7 +1,5 @@
 package com.mycompany.webapp.dao;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,8 +27,9 @@ public class MemberDao {
 		String memberPhoto = sst.selectOne("mybatis.mapper.member.selectMemberPhoto", mid);
 		return memberPhoto;
 	}
-
 	
-	
-
+	public int updateMember(Member member) {
+		int rows = sst.update("mybatis.mapper.member.updateSetting", member);
+		return rows;
+	}
 }

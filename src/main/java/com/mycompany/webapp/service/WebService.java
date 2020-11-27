@@ -36,7 +36,7 @@ public class WebService {
 	private FollowDao followDao;
 	
 	@Resource
-	private BlikeDao likeDao;
+	private BlikeDao blikeDao;
 	
 	@Resource
 	private MemberDao memberDao;
@@ -80,7 +80,7 @@ public class WebService {
 	}
 
 	public Integer getLikeCnt(int bno) {
-		Integer likeCnt = likeDao.getLikeCnt(bno);
+		Integer likeCnt = blikeDao.getLikeCnt(bno);
 		return likeCnt;
 	}
 
@@ -88,10 +88,13 @@ public class WebService {
 		List<Bcomment> boardComments = bcommentDao.getBoardComments(bno);
 		return boardComments;
 	}
-
+	
 	public String getMemberPhoto(String mid) {
 		String memberPhoto = memberDao.getMemberPhoto(mid);
 		return memberPhoto;
 	}
-
+	
+	public void memberUpdate(Member member) {
+		memberDao.updateMember(member);
+	}
 }

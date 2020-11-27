@@ -11,10 +11,9 @@
 	<div class="row">
 		<div class="col-lg-4" data-aos="fade-right">
 			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
-				class="img-fluid" alt="">
+				class="img-fluid" style="width:340px; height:340px;">
 		</div>
-		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-			<br /> <br /> <br />
+		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">	
 			<h3>ID : ${mid}</h3>
 			<div class="row">
 				<div class="col-lg-6">
@@ -50,8 +49,8 @@
 		</div>
 
 		<div class="row portfolio-container">
-
-			<c:if test="${memberBcnt != 0}">
+		
+			<c:if test="${memberBcnt > 0}">
 				<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
 					<div class="col-lg-4 col-md-6 portfolio-item filter-app">
 						<div class="portfolio-wrap">
