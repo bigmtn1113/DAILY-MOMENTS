@@ -2,7 +2,7 @@ package com.mycompany.webapp.dto;
 
 import java.util.Date;
 
-public class Comment {
+public class Bcomment {
 	private int cno;
 	private String mid;
 	private int bno;

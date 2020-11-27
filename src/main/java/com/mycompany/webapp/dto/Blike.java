@@ -1,6 +1,6 @@
 package com.mycompany.webapp.dto;
 
-public class Like {
+public class Blike {
 	private int bno;
 	private String mid;
 	
