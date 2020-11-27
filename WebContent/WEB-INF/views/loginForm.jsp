@@ -8,8 +8,7 @@
 		<p>Login</p>
 	</div>
 
-	<form action="<%=application.getContextPath()%>/login" method="post" role="form"
-		class="php-email-form mt-4">
+	<form method="post" role="form" class="php-email-form mt-4">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="form-group">
 			<input type="text" name="mid" class="form-control" id="mid" placeholder="Your ID" value="${mid}"/>
