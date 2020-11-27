@@ -8,15 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.webapp.dao.BcommentDao;
+import com.mycompany.webapp.dao.BlikeDao;
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.BookmarkDao;
-import com.mycompany.webapp.dao.BcommentDao;
 import com.mycompany.webapp.dao.FollowDao;
-import com.mycompany.webapp.dao.BlikeDao;
 import com.mycompany.webapp.dao.MemberDao;
+import com.mycompany.webapp.dao.QnaDao;
 import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Qna;
 
 @Service
 public class WebService {
@@ -92,4 +95,24 @@ public class WebService {
 	public void memberUpdate(Member member) {
 		memberDao.updateMember(member);
 	}	
+	
+	//이부분은 준엽이가 한 부분이므로 지우지 말것 ///////////////////////////////////////
+	
+	@Resource
+	private QnaDao qnaDao;
+	
+	public int getQnaTotalRows() {
+		int totalRows = qnaDao.countAll();
+		return totalRows;
+	}
+
+	public List<Qna> getQnaList(Pager pager) {
+		List<Qna> list = qnaDao.selectByPage(pager);
+		return list;
+	}
+
+	public void qnaWrite(Qna qna) {
+		qnaDao.insert(qna);
+
+	}
 }
