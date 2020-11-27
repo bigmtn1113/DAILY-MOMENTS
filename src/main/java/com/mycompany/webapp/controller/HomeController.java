@@ -54,10 +54,11 @@ public class HomeController {
 		
 		PasswordEncoder passwordEncoder=PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String encodedPassword=passwordEncoder.encode(member.getMpassword());
-		member.setMpassword(encodedPassword);
 		
+		member.setMpassword(encodedPassword);
 		member.setMenabled(true);
 		service.join(member);
+		
 		return "index";
 	}
 	
@@ -146,14 +147,26 @@ public class HomeController {
 	}
 	
 	@GetMapping("/setting")
-	public String setting() {
-		logger.info("실행");
+	public String setting(HttpSession session, Model model) {
+		String mid = (String) session.getAttribute("mid");
+		
+		Member member = service.getMember(mid);
+		model.addAttribute("member", member);
 		return "setting";
 	}
 	
 	@PostMapping("/setting")
 	public String setting(Member member, HttpSession session) {
-		logger.info("실행");
+
+		String saveFileName = new Date().getTime() + "_" + member.getAttachMphoto().getOriginalFilename();
+
+		try {
+			member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + saveFileName));
+			member.setMphoto(saveFileName);
+			service.memberUpdate(member);
+			
+		} catch (Exception e) {}
+		
 		session.setAttribute("member", member);
 		return "index";
 	}

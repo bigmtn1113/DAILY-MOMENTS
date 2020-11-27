@@ -22,4 +22,9 @@ public class MemberDao {
 		Member member = sst.selectOne("mybatis.mapper.member.selectMember", mid);
 		return member;
 	}
+	
+	public int updateMember(Member member) {
+		int rows = sst.update("mybatis.mapper.member.updateSetting", member);
+		return rows;
+	}
 }

@@ -11,10 +11,9 @@
 	<div class="row">
 		<div class="col-lg-4" data-aos="fade-right">
 			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
-				class="img-fluid" alt="">
+				class="img-fluid" style="width:340px; height:340px;">
 		</div>
-		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-			<br /> <br /> <br />
+		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">	
 			<h3>ID : ${mid}</h3>
 			<div class="row">
 				<div class="col-lg-6">
@@ -50,29 +49,30 @@
 		</div>
 
 		<div class="row portfolio-container">
-
-			<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
-				<div class="col-lg-4 col-md-6 portfolio-item filter-app">
-					<div class="portfolio-wrap">
-						<img
-							src="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
-							class="img-fluid" alt="">
-						<div class="portfolio-info">
-							<h4>App 1</h4>
-							<p>App</p>
-							<div class="portfolio-links">
-								<a
-									href="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
-									data-gall="portfolioGallery" class="venobox" title="App 1"><i
-									class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-									data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-									class="venobox" title="Portfolio Details"><i
-									class="bx bx-link"></i></a>
+			<c:if test="${memberBcnt > 0}">
+				<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
+					<div class="col-lg-4 col-md-6 portfolio-item filter-app">
+						<div class="portfolio-wrap">
+							<img
+								src="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
+								class="img-fluid" alt="">
+							<div class="portfolio-info">
+								<h4>App 1</h4>
+								<p>App</p>
+								<div class="portfolio-links">
+									<a
+										href="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
+										data-gall="portfolioGallery" class="venobox" title="App 1"><i
+										class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+										data-gall="portfolioDetailsGallery" data-vbtype="iframe"
+										class="venobox" title="Portfolio Details"><i
+										class="bx bx-link"></i></a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</c:if>
 		</div>
 
 	</div>

@@ -77,4 +77,8 @@ public class WebService {
 		List<Board> boards = boardDao.getBoards();
 		return boards;
 	}
+	
+	public void memberUpdate(Member member) {
+		memberDao.updateMember(member);
+	}	
 }
