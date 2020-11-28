@@ -13,12 +13,6 @@
 		where mid=#{mid}
 	</select>
 	
-	<select id="selectMemberPhoto" parameterType="String" resultType="String">
-		select mphoto
-		from member
-		where mid=#{mid}
-	</select>
-	
 	<update id="updateSetting" parameterType="member">
 		update member set mname=#{mname}, mtel=#{mtel}, msex='1', mpassword=#{mpassword}, mintroduce=#{mintroduce}, mphoto=#{mphoto} 
 		where mid=#{mid}

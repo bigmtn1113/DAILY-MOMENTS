@@ -70,37 +70,25 @@ public class HomeController {
 	
 	@RequestMapping("/feed")
 	public String feed(HttpSession session, Model model) {
-		/*List<Board> boards = service.getBoards();
-		List<String> memberPhotos = new ArrayList<>();
+		String mid = (String) session.getAttribute("mid");
+		
+		List<Board> boards = service.getBoards(mid);
 		List<Integer> likeCnts = new ArrayList<>();
 		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
 		
 		for (Board board : boards) {
-			memberPhotos.add(service.getMemberPhoto(board.getMid()));
 			likeCnts.add(service.getLikeCnt(board.getBno()));
 			boardCommentsList.add(service.getBoardComments(board.getBno()));
 		}
 		
 		model.addAttribute("boards", boards);
-		model.addAttribute("memberPhotos", memberPhotos);
 		model.addAttribute("likeCnts", likeCnts);
-		model.addAttribute("boardCommentsList", boardCommentsList);*/
-		
-		String mid = (String) session.getAttribute("mid");
-		List<Board> boards = service.getBoards(mid);
-		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
-		
-		for (Board board : boards)
-			boardCommentsList.add(service.getBoardComments(board.getBno()));
-		
-		model.addAttribute("boards", boards);
 		model.addAttribute("boardCommentsList", boardCommentsList);
 		return "feed";
 	}
 	
 	@RequestMapping("/atSign")
 	public String atSign(String mid, Model model) {
-		logger.info(mid);
 		Member member = service.getMember(mid);
 		int memberBcnt = service.getMemberBcnt(mid);
 		List<String> memberBphotos = service.getMemberBphotos(mid);
@@ -133,9 +121,9 @@ public class HomeController {
 	@PostMapping("/write")
 	public String write(MultipartHttpServletRequest request, HttpServletResponse response) {
 		
-		MultipartFile bphoto=request.getFile("bphoto");
-		String mid=(String) request.getParameter("mid");
-		String bcontent=(String) request.getParameter("bcontent");
+		MultipartFile bphoto = request.getFile("bphoto");
+		String mid = (String) request.getParameter("mid");
+		String bcontent = (String) request.getParameter("bcontent");
 		if(!bphoto.isEmpty()) {
 			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
@@ -158,18 +146,15 @@ public class HomeController {
 		
 		Member member = service.getMember(mid);
 		int memberBcnt = service.getMemberBcnt(mid);
-		List<String> memberBphotos = service.getMemberBphotos(mid);
-		
 		int followerCnt = service.getFollowerCnt(mid);
 		int followingCnt = service.getFollowingCnt(mid);
+		List<String> memberBphotos = service.getMemberBphotos(mid);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("memberBcnt", memberBcnt);
-		model.addAttribute("memberBphotos", memberBphotos);
-		
 		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("followingCnt", followingCnt);
-		
+		model.addAttribute("memberBphotos", memberBphotos);
 		return "profile";
 	}
 	

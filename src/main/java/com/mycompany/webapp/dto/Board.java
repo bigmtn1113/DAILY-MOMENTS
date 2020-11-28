@@ -9,7 +9,6 @@ public class Board {
 	private Date bdate;
 	private String mid;
 	private String mphoto;
-	private int likeCnt;
 	
 	public int getBno() {
 		return bno;
@@ -46,11 +45,5 @@ public class Board {
 	}
 	public void setMphoto(String mphoto) {
 		this.mphoto = mphoto;
-	}
-	public int getLikeCnt() {
-		return likeCnt;
-	}
-	public void setLikeCnt(int likeCnt) {
-		this.likeCnt = likeCnt;
 	}
 }

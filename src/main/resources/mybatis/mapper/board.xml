@@ -24,16 +24,13 @@
 	</select>
 
 	<select id="selectBoards" parameterType="String" resultType="board">
-		select fbm.bno, fbm.bphoto, fbm.bcontent, fbm.bdate, fbm.mid, fbm.mphoto, count(*) as likeCnt
-		from(select bno, bphoto, bcontent, bdate, m.mid, mphoto
-		    from(select bno, bphoto, bcontent, bdate, mid
-		        from(select following
-		            from follow
-		            where follower=#{mid}) f join board b
-		            on f.following = b.mid) fb join member m
-		    on fb.mid = m.mid) fbm join blike l
-		on fbm.bno = l.bno
-		group by fbm.bno, fbm.bphoto, fbm.bcontent, fbm.bdate, fbm.mid, fbm.mphoto
+		select bno, bphoto, bcontent, bdate, m.mid, mphoto
+		from(select bno, bphoto, bcontent, bdate, mid
+		    from(select following
+		        from follow
+		        where follower=#{mid}) f join board b
+		        on f.following = b.mid) fb join member m
+		on fb.mid = m.mid
 	</select>
 
 </mapper>
