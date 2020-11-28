@@ -88,7 +88,7 @@
 						</c:if>
 	
 						<c:if test="${mid != null}">
-							<li><a id="li-atSign" href="javascript:atSign(${mid})">At-Sign</a>
+							<li><a id="li-atSign" href="javascript:atSign('${mid}')">At-Sign</a>
 								<script type="text/javascript">
 									function atSign(mid) {
 										$.ajax({
@@ -99,7 +99,7 @@
 												$("#atSign").html(data);
 												$("#li-atSign").attr("href", "#atSign");
 												$("#li-atSign").click();
-												$("#li-atSign").attr("href", "javascript:atSign(${mid})");
+												$("#li-atSign").attr("href", "javascript:atSign('${mid}')");
 											}
 										});
 									}

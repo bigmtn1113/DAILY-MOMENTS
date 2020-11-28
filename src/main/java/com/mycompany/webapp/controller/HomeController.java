@@ -89,19 +89,18 @@ public class HomeController {
 	
 	@RequestMapping("/atSign")
 	public String atSign(String mid, Model model) {
+
 		Member member = service.getMember(mid);
 		int memberBcnt = service.getMemberBcnt(mid);
-		List<String> memberBphotos = service.getMemberBphotos(mid);
-		
 		int followerCnt = service.getFollowerCnt(mid);
 		int followingCnt = service.getFollowingCnt(mid);
+		List<String> memberBphotos = service.getMemberBphotos(mid);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("memberBcnt", memberBcnt);
-		model.addAttribute("memberBphotos", memberBphotos);
-		
 		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("followingCnt", followingCnt);
+		model.addAttribute("memberBphotos", memberBphotos);
 		
 		return "atSign";
 	}
@@ -155,6 +154,7 @@ public class HomeController {
 		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("followingCnt", followingCnt);
 		model.addAttribute("memberBphotos", memberBphotos);
+		
 		return "profile";
 	}
 	
