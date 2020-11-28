@@ -77,8 +77,8 @@ public class WebService {
 		return followingCnt;
 	}
 
-	public List<Board> getBoards() {
-		List<Board> boards = boardDao.getBoards();
+	public List<Board> getBoards(String mid) {
+		List<Board> boards = boardDao.getBoards(mid);
 		return boards;
 	}
 

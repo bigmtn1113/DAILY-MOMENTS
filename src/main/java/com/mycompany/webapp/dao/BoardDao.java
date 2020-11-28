@@ -30,8 +30,8 @@ public class BoardDao {
 		return memberBphotos;
 	}
 
-	public List<Board> getBoards() {
-		List<Board> boards = sst.selectList("mybatis.mapper.board.selectBoards");
+	public List<Board> getBoards(String mid) {
+		List<Board> boards = sst.selectList("mybatis.mapper.board.selectBoards", mid);
 		return boards;
 	}
 }

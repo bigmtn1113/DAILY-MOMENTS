@@ -8,6 +8,8 @@ public class Board {
 	private String bphoto;
 	private Date bdate;
 	private String mid;
+	private String mphoto;
+	private int likeCnt;
 	
 	public int getBno() {
 		return bno;
@@ -38,5 +40,17 @@ public class Board {
 	}
 	public void setMid(String mid) {
 		this.mid = mid;
+	}
+	public String getMphoto() {
+		return mphoto;
+	}
+	public void setMphoto(String mphoto) {
+		this.mphoto = mphoto;
+	}
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
 	}
 }

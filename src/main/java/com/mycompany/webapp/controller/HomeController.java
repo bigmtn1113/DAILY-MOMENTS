@@ -69,8 +69,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/feed")
-	public String feed(Model model) {
-		List<Board> boards = service.getBoards();
+	public String feed(HttpSession session, Model model) {
+		/*List<Board> boards = service.getBoards();
 		List<String> memberPhotos = new ArrayList<>();
 		List<Integer> likeCnts = new ArrayList<>();
 		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
@@ -84,12 +84,23 @@ public class HomeController {
 		model.addAttribute("boards", boards);
 		model.addAttribute("memberPhotos", memberPhotos);
 		model.addAttribute("likeCnts", likeCnts);
+		model.addAttribute("boardCommentsList", boardCommentsList);*/
+		
+		String mid = (String) session.getAttribute("mid");
+		List<Board> boards = service.getBoards(mid);
+		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
+		
+		for (Board board : boards)
+			boardCommentsList.add(service.getBoardComments(board.getBno()));
+		
+		model.addAttribute("boards", boards);
 		model.addAttribute("boardCommentsList", boardCommentsList);
 		return "feed";
 	}
 	
 	@RequestMapping("/atSign")
 	public String atSign(String mid, Model model) {
+		logger.info(mid);
 		Member member = service.getMember(mid);
 		int memberBcnt = service.getMemberBcnt(mid);
 		List<String> memberBphotos = service.getMemberBphotos(mid);
