@@ -11,7 +11,7 @@
 		<input type="hidden" name="mid" id="mid" value="${mid}"/>
 
 		<div class="form-group" id="imageChange" style="display:none; text-align: center">
-			<img id="id_viewimg" src="<%=request.getContextPath()%>/resources/assets/img/need/movie1.png" style=" max-width:100%; height:auto" name="preview" border="0"/>
+			<img id="id_viewimg" src="<%=request.getContextPath()%>/resources/assets/img/need/movie.png" style=" max-width:100%; height:auto" name="preview" border="0"/>
 		</div>
 		
 		
@@ -23,7 +23,7 @@
 
 		<div class="form-group">
 			<input style="display:none;" type="file" id="bphoto" name="bphoto" accept="image/*" onchange="loadFile(event)"/>
-				<label for="bphoto" style="float: right; margin-left:8px"><img src="<%=request.getContextPath()%>/resources/assets/img/need/camera1.png"/></label>
+				<label for="bphoto" style="float: right; margin-left:8px"><img src="<%=request.getContextPath()%>/resources/assets/img/need/camera.png"/></label>
 				<script>
 					var loadFile = function(event) {
 						document.getElementById("imageChange").style.removeProperty("display");
@@ -33,7 +33,7 @@
 				</script>
 			
 			<input style="display:none" type="file" id="bmovie" accept="video/*"/>
-				<label for="bmovie" style="float: right;"><img src="<%=request.getContextPath()%>/resources/assets/img/need/movie1.png"/></label>
+				<label for="bmovie" style="float: right;"><img src="<%=request.getContextPath()%>/resources/assets/img/need/movie.png"/></label>
 		</div>
 		
 		<div style="clear: both"></div>
