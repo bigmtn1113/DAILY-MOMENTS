@@ -1,2 +1,10 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/mycompany/webapp/controller/AtSignController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/FeedController.java=UTF-8
 encoding//src/main/java/com/mycompany/webapp/controller/HomeController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/PortFolioDetailsController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/ProfileController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/QnaController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/SettingController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/TagController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/WriteController.java=UTF-8
