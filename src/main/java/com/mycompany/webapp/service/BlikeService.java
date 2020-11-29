@@ -16,7 +16,7 @@ public class BlikeService {
 	private BlikeDao blikeDao;
 	
 	public Integer getLikeCnt(int bno) {
-		Integer likeCnt = blikeDao.getLikeCnt(bno);
+		Integer likeCnt = blikeDao.selectLikeCnt(bno);
 		return likeCnt;
 	}
 }

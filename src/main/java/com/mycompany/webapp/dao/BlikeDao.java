@@ -11,7 +11,7 @@ public class BlikeDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public Integer getLikeCnt(int bno) {
+	public Integer selectLikeCnt(int bno) {
 		Integer likeCnt = sst.selectOne("mybatis.mapper.blike.selectLikeCnt", bno);
 		return likeCnt;
 	}

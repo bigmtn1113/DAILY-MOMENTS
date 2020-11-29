@@ -21,7 +21,7 @@ public class MemberService {
 	}
 	
 	public Member getMember(String mid) {
-		Member member = memberDao.getMember(mid);
+		Member member = memberDao.selectMember(mid);
 		return member;
 	}
 	

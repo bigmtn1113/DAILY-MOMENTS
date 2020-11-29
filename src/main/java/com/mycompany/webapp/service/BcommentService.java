@@ -19,7 +19,7 @@ public class BcommentService {
 	private BcommentDao bcommentDao;
 	
 	public List<Bcomment> getBoardComments(int bno) {
-		List<Bcomment> boardComments = bcommentDao.getBoardComments(bno);
+		List<Bcomment> boardComments = bcommentDao.selectBoardComments(bno);
 		return boardComments;
 	}
 }

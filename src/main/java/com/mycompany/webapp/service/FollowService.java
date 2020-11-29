@@ -16,12 +16,12 @@ public class FollowService {
 	private FollowDao followDao;
 	
 	public int getFollowerCnt(String mid) {
-		int followerCnt = followDao.getFollowerCnt(mid);
+		int followerCnt = followDao.selectFollowerCnt(mid);
 		return followerCnt;
 	}
 	
 	public int getFollowingCnt(String mid) {
-		int followingCnt = followDao.getFollowingCnt(mid);
+		int followingCnt = followDao.selectFollowingCnt(mid);
 		return followingCnt;
 	}
 }

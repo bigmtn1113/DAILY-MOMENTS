@@ -19,21 +19,21 @@ public class BoardService {
 	private BoardDao boardDao;
 	
 	public void write(Board board) {
-		boardDao.write(board);
+		boardDao.insert(board);
 	}
 
 	public int getMemberBcnt(String mid) {
-		int memberBcnt = boardDao.getMemberBcnt(mid);
+		int memberBcnt = boardDao.selectMemberBcnt(mid);
 		return memberBcnt;
 	}
 
 	public List<String> getMemberBphotos(String mid) {
-		List<String> memberBphotos = boardDao.getMemberBphotos(mid);
+		List<String> memberBphotos = boardDao.selectMemberBphotos(mid);
 		return memberBphotos;
 	}
 
 	public List<Board> getBoards(String mid) {
-		List<Board> boards = boardDao.getBoards(mid);
+		List<Board> boards = boardDao.selectBoards(mid);
 		return boards;
 	}
 }

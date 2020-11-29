@@ -15,7 +15,7 @@ public class BcommentDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public List<Bcomment> getBoardComments(int bno) {
+	public List<Bcomment> selectBoardComments(int bno) {
 		List<Bcomment> boardComments = sst.selectList("mybatis.mapper.bcomment.selectBoardComments", bno);
 		return boardComments;
 	}

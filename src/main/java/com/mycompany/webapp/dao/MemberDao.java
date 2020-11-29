@@ -18,13 +18,13 @@ public class MemberDao {
 		return row;
 	}
 	
-	public Member getMember(String mid) {
+	public Member selectMember(String mid) {
 		Member member = sst.selectOne("mybatis.mapper.member.selectMember", mid);
 		return member;
 	}
 	
 	public int updateMember(Member member) {
-		int rows = sst.update("mybatis.mapper.member.updateSetting", member);
+		int rows = sst.update("mybatis.mapper.member.updateMember", member);
 		return rows;
 	}
 }

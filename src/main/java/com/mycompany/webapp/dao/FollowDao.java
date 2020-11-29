@@ -11,12 +11,12 @@ public class FollowDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public int getFollowerCnt(String mid) {
+	public int selectFollowerCnt(String mid) {
 		int followerCnt = sst.selectOne("mybatis.mapper.follow.selectFollowerCnt", mid);
 		return followerCnt;
 	}
 
-	public int getFollowingCnt(String mid) {
+	public int selectFollowingCnt(String mid) {
 		int followingCnt = sst.selectOne("mybatis.mapper.follow.selectFollowingCnt", mid);
 		return followingCnt;
 	}

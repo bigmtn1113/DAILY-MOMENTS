@@ -13,7 +13,7 @@
 		where mid=#{mid}
 	</select>
 	
-	<update id="updateSetting" parameterType="member">
+	<update id="updateMember" parameterType="member">
 		update member set mname=#{mname}, mtel=#{mtel}, msex='1', mpassword=#{mpassword}, mintroduce=#{mintroduce}, mphoto=#{mphoto} 
 		where mid=#{mid}
 	</update>
