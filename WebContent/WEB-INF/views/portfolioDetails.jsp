@@ -35,34 +35,34 @@
 								아이디 : 내용<br />																																																
 							</textarea>
 
-				<div style="height: 40px"; margin-bottom:5px">
+				<div style="height: 40px; margin-bottom:5px">
 
 					<button type="button"
 						style="float: left; border: none; outline: none; background: none;">
-						<img onclick="change1();" id="img-heart"
+						<img onclick="changeHeartImg();" id="img-heart"
 							src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png">
 					</button>
 					<script>
-								function change1() {
-									var img1 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
-									var	img2 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart1.png";
+								function changeHeartImg() {
+									var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
+									var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
 									var imgElement = document.getElementById('img-heart');
-									imgElement.src = (imgElement.src == img1) ? img2 : img1;
+									imgElement.src = (imgElement.src === heart) ? selectedHeart : heart;
 								}
 							</script>
 
 
 					<button type="button"
 						style="float: right; border: none; outline: none; background: none;">
-						<img onclick="change2();" id="img-book"
-							src="<%=application.getContextPath()%>/resources/assets/img/need/book.png">
+						<img onclick="changeBookmarkImg();" id="img-bookmark"
+							src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
 					</button>
 					<script>
-						   function change2() {
-						   var img3 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book.png",
-						       img4 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book3.png";
-						   var imgElement = document.getElementById('img-book');
-						   imgElement.src = (imgElement.src === img3) ? img4:img3;
+						   function changeBookmarkImg() {
+						   var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png",
+						       selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
+						   var imgElement = document.getElementById('img-bookmark');
+						   imgElement.src = (imgElement.src === bookmark) ? selectedBookmark:bookmark;
 						}
 					</script>
 

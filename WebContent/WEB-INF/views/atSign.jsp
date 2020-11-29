@@ -11,11 +11,10 @@
 	<div class="row">
 		<div class="col-lg-4" data-aos="fade-right">
 			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
-				class="img-fluid" alt="">
+				class="img-fluid" style="width:340px; height:340px;">
 		</div>
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-			<br /> <br /> <br />
-			<h3 style="display: inline">ID : ${member.mid}</h3>
+			<h3 style="display: inline; margin-right: 10px">ID : ${member.mid}</h3>
 			<button class="btn btn-info btn-sm" onclick="">팔로우</button>
 			<div class="row">
 				<div class="col-lg-6">
