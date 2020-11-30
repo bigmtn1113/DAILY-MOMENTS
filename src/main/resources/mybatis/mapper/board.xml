@@ -24,13 +24,22 @@
 	</select>
 
 	<select id="selectBoards" parameterType="String" resultType="board">
-		select bno, bphoto, bcontent, bdate, m.mid, mphoto
+		(select bno, bphoto, bcontent, bdate, m.mid, mphoto
 		from(select bno, bphoto, bcontent, bdate, mid
 		    from(select following
 		        from follow
-		        where follower=#{mid}) f join board b
+		        where follower = #{mid}) f join board b
 		        on f.following = b.mid) fb join member m
 		on fb.mid = m.mid
+		
+		union
+		
+		select bno, bphoto, bcontent, bdate, m.mid, mphoto
+		from(select bno, bphoto, bcontent, bdate, mid
+		    from board
+		    where mid = #{mid}) b join member m
+		on b.mid = m.mid)
+		order by bdate desc
 	</select>
 
 </mapper>
