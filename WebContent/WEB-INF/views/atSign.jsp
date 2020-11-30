@@ -15,13 +15,64 @@
 		</div>
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
 			<h3 style="display: inline; margin-right: 10px">ID : ${member.mid}</h3>
-			<button class="btn btn-info btn-sm" onclick="">팔로우</button>
+			<c:forEach var="followingMember" items="${followingMembers}">
+				<c:if test="${followingMember == member.mid}">
+					<c:set var="isFollowingMember" value="true"/>
+				</c:if>
+			</c:forEach>
+			<c:if test="${isFollowingMember == true}">
+					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('false', '${mid}', '${member.mid}')" style="background-color:#bbb">언팔로우</button>
+			</c:if>
+			<c:if test="${isFollowingMember != true}">
+					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('true', '${mid}', '${member.mid}')">팔로우</button>
+			</c:if>
+			<script>
+				var followerCnt = ${followerCnt};
+				
+				function follow(isFollowing, follower, following) {
+					if (isFollowing === "true") {
+						++followerCnt;
+						
+						$.ajax({
+							url: "follow",
+							method: "GET",
+							data: {follower: follower, following: following},
+							success: function(data) {
+								if (data.result == "success") {
+									$("#button-follow").html("언팔로우");
+									$("#button-follow").attr("style", "background-color:#bbb");
+									$("#button-follow").attr("onclick", "follow('false', '${mid}', '${member.mid}', '${followerCnt}')");
+									
+									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i> <strong>팔로워:</strong> " + followerCnt);
+								}
+							}
+						});
+					} else if (isFollowing === "false") {
+						--followerCnt;
+						
+						$.ajax({
+							url: "unFollow",
+							method: "GET",
+							data: {follower: follower, following: following},
+							success: function(data) {
+								if (data.result == "success") {
+									$("#button-follow").html("팔로우");
+									$("#button-follow").removeAttr("style");
+									$("#button-follow").attr("onclick", "follow('true', '${mid}', '${member.mid}', '${followerCnt}')");
+									
+									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i> <strong>팔로워:</strong> " + followerCnt);
+								}
+							}
+						});
+					}
+				}
+			</script>
 			<div class="row">
 				<div class="col-lg-6">
 					<ul>
 						<li></li>
 						<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> ${memberBcnt}</li>
-						<li><i class="icofont-rounded-right"></i> <strong>팔로워:</strong> ${followerCnt}</li>
+						<li id="li-followerCnt"><i class="icofont-rounded-right"></i> <strong>팔로워:</strong> ${followerCnt}</li>
 						<li><i class="icofont-rounded-right"></i> <strong>팔로잉:</strong> ${followingCnt}</li>
 					</ul>
 				</div>

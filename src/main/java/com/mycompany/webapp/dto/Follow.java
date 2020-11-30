@@ -1,19 +1,19 @@
 package com.mycompany.webapp.dto;
 
 public class Follow {
-	private int follower;
-	private int following;
+	private String follower;
+	private String following;
 	
-	public int getFollower() {
+	public String getFollower() {
 		return follower;
 	}
-	public void setFollower(int follower) {
+	public void setFollower(String follower) {
 		this.follower = follower;
 	}
-	public int getFollowing() {
+	public String getFollowing() {
 		return following;
 	}
-	public void setFollowing(int following) {
+	public void setFollowing(String following) {
 		this.following = following;
 	}
 }
