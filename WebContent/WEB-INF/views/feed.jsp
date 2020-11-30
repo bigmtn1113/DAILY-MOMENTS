@@ -16,7 +16,9 @@
 				<c:set var="index" value="${status.index}"/>
 				<div style="background-color: #1B1B1B;">	
 					<c:if test="${board.mid == mid}">																																																	
-						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}"/>
+						<a href="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}">
+							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}"/>
+						</a>
 						<a href="javascript:goProfile()"
 						   style="text-decoration: none; color: white; font-size: 30px;"
 						   id="li-profile">${mid}</a>
@@ -26,7 +28,9 @@
 					</c:if>
 					
 					<c:if test="${board.mid != mid}">
-						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
+						<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
+							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
+						</a>
 						<a href="javascript:goAtSign('${board.mid}')"
 						   style="text-decoration: none; color: white; font-size: 30px;"
 						   id="li-atSign">${board.mid}</a>	
@@ -118,7 +122,7 @@
 						$("#atSign").html(data);
 						$("#li-atSign").attr("href", "#atSign");
 						$("#li-atSign").click();
-						$("#li-atSign").attr("href", "javascript:goAtSign()");
+						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')";
 					}
 				});
 			}
