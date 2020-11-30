@@ -118,7 +118,7 @@
 						$("#atSign").html(data);
 						$("#li-atSign").attr("href", "#atSign");
 						$("#li-atSign").click();
-						$("#li-atSign").attr("href", "javascript:goAtSign()");
+						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')");
 					}
 				});
 			}
