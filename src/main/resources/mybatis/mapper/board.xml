@@ -21,6 +21,7 @@
 		select bphoto
 		from board
 		where mid=#{mid}
+		order by bdate desc
 	</select>
 
 	<select id="selectBoards" parameterType="String" resultType="board">
