@@ -17,7 +17,7 @@
 				<div style="background-color: #1B1B1B;">	
 					<c:if test="${board.mid == mid}">																																																	
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}"/>
-						<a href="javascript:Goprofile()"
+						<a href="javascript:goProfile()"
 						   style="text-decoration: none; color: white; font-size: 30px;"
 						   id="li-profile">${mid}</a>
 						<span style="float: right; margin-top: 15px; margin-right: 15px">
@@ -26,8 +26,8 @@
 					</c:if>
 					
 					<c:if test="${board.mid != mid}">
-						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}"/>
-						<a href="javascript:GoatSign('${board.mid}')"
+						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
+						<a href="javascript:goAtSign('${board.mid}')"
 						   style="text-decoration: none; color: white; font-size: 30px;"
 						   id="li-atSign">${board.mid}</a>	
 						<span style="float: right; margin-top: 15px; margin-right: 15px">
@@ -46,23 +46,23 @@
 
 					<div style="height: 40px; margin-bottom:10px">
 
-						<button type="button" style="float:left; border:none; outline:none; background:none;"><img onclick ="change1();" id="img-heart" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"></button>
+						<button type="button" style="float:left; border:none; outline:none; background:none;"><img onclick ="changeHeartImg();" id="img-heart" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"></button>
 						<script>
-							function change1() {
-								var img1 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
-								var	img2 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart1.png";
+							function changeHeartImg() {
+								var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
+								var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
 								var imgElement = document.getElementById('img-heart');
-								imgElement.src = (imgElement.src == img1) ? img2 : img1;
+								imgElement.src = (imgElement.src === heart) ? selectedHeart : heart;
 							}
 						</script>
 						
-	              		<button type="button" style="float:right; border:none; outline:none; background:none;"><img onclick ="change2();" id="img-book" src="<%=application.getContextPath()%>/resources/assets/img/need/book.png"></button>
+	              		<button type="button" style="float:right; border:none; outline:none; background:none;"><img onclick ="changeBookmarkImg();" id="img-bookmark" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png"></button>
 	              		<script>
-							function change2() {
-								var img3 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book.png",
-									img4 = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/book3.png";
-								var imgElement = document.getElementById('img-book');
-									imgElement.src = (imgElement.src === img3)? img4 : img3;
+							function changeBookmarkImg() {
+								var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png",
+									selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
+								var imgElement = document.getElementById('img-bookmark');
+									imgElement.src = (imgElement.src === bookmark)? selectedBookmark : bookmark;
 							}
 						</script>
 						
@@ -74,7 +74,7 @@
 						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 						color: white; overflow-y: auto;">
 						<div style="padding-left:30px; padding-right:30px; padding-top:15px">
-							<a href="javascript:GoatSign('${board.mid}')" style="text-decoration: none; color: white; padding-top:2px"
+							<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; padding-top:2px"
 							id="li-atSign">${board.mid}</a> ${board.bcontent}
 						</div>
 						
@@ -95,7 +95,21 @@
 			</div>
 		</c:forEach>
 		<script type="text/javascript">
-			function GoatSign(mid) {
+			function goProfile() {
+				$.ajax({
+					url : "profile",
+					method : "GET",
+					success : function(data) {
+						$("#profile").html(data);
+						$("#li-profile").attr("href", "#profile");
+						$("#li-profile").click();
+						$("#li-profile").attr("href", "javascript:goProfile()");
+					}
+				});
+			}
+		</script>
+		<script type="text/javascript">
+			function goAtSign(mid) {
 				$.ajax({
 					url : "atSign",
 					data:{mid:mid},
@@ -104,21 +118,7 @@
 						$("#atSign").html(data);
 						$("#li-atSign").attr("href", "#atSign");
 						$("#li-atSign").click();
-						$("#li-atSign").attr("href", "javascript:GoatSign()");
-					}
-				});
-			}
-		</script>
-		<script type="text/javascript">
-			function Goprofile() {
-				$.ajax({
-					url : "profile",
-					method : "GET",
-					success : function(data) {
-						$("#profile").html(data);
-						$("#li-profile").attr("href", "#profile");
-						$("#li-profile").click();
-						$("#li-profile").attr("href", "javascript:Goprofile()");
+						$("#li-atSign").attr("href", "javascript:goAtSign()");
 					}
 				});
 			}
