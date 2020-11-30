@@ -122,11 +122,7 @@
 						$("#atSign").html(data);
 						$("#li-atSign").attr("href", "#atSign");
 						$("#li-atSign").click();
-<<<<<<< HEAD
-						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')";
-=======
 						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')");
->>>>>>> branch 'master' of https://github.com/kva231/TeamProject
 					}
 				});
 			}
