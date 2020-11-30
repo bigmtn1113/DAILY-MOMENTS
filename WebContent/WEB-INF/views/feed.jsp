@@ -82,8 +82,8 @@
 					</div>
 					
 					<div style="height:20px">
-			             <textarea class="invisible-scrollbar" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
-			             <button class="bx bx-subdirectory-left" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
+						<textarea class="invisible-scrollbar" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
+						<button class="bx bx-subdirectory-left" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 		          	</div>
 				</div>
 			</div>

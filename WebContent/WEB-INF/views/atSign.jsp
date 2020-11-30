@@ -21,15 +21,15 @@
 				</c:if>
 			</c:forEach>
 			<c:if test="${isFollowingMember == true}">
-					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('false', '${mid}', '${member.mid}', '${followerCnt}')" style="background-color:#bbb">언팔로우</button>
+					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('false', '${mid}', '${member.mid}')" style="background-color:#bbb">언팔로우</button>
 			</c:if>
 			<c:if test="${isFollowingMember != true}">
-					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('true', '${mid}', '${member.mid}', '${followerCnt}')">팔로우</button>
+					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('true', '${mid}', '${member.mid}')">팔로우</button>
 			</c:if>
 			<script>
-				function follow(isFollowing, follower, following, followerCnt) {
-					followerCnt = Number(followerCnt);
-					
+				var followerCnt = ${followerCnt};
+				
+				function follow(isFollowing, follower, following) {
 					if (isFollowing === "true") {
 						++followerCnt;
 						
@@ -41,7 +41,7 @@
 								if (data.result == "success") {
 									$("#button-follow").html("언팔로우");
 									$("#button-follow").attr("style", "background-color:#bbb");
-									$("#button-follow").attr("onclick", "follow('false', '${mid}', '${member.mid}')");
+									$("#button-follow").attr("onclick", "follow('false', '${mid}', '${member.mid}', '${followerCnt}')");
 									
 									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i> <strong>팔로워:</strong> " + followerCnt);
 								}
@@ -58,7 +58,7 @@
 								if (data.result == "success") {
 									$("#button-follow").html("팔로우");
 									$("#button-follow").removeAttr("style");
-									$("#button-follow").attr("onclick", "follow('true', '${mid}', '${member.mid}')");
+									$("#button-follow").attr("onclick", "follow('true', '${mid}', '${member.mid}', '${followerCnt}')");
 									
 									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i> <strong>팔로워:</strong> " + followerCnt);
 								}
