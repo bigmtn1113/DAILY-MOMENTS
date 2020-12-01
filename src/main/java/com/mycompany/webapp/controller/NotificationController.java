@@ -39,8 +39,7 @@ public class NotificationController {
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardCommentsList", boardCommentsList);
-		
-		
+			
 		return "notification";
 	}	
 }
