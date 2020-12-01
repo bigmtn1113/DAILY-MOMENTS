@@ -19,4 +19,14 @@ public class BcommentDao {
 		List<Bcomment> boardComments = sst.selectList("mybatis.mapper.bcomment.selectBoardComments", bno);
 		return boardComments;
 	}
+	
+	public int insert(Bcomment bcomment){
+		int rows=sst.insert("mybatis.mapper.bcomment.insert",bcomment);
+		return rows;
+	}
+
+	public List<Bcomment> selectBoardCommentsWrite(int bno) {
+		List<Bcomment> boardCommentsWrite = sst.selectList("mybatis.mapper.bcomment.selectBoardCommentsWrite", bno);
+		return boardCommentsWrite;
+	}
 }
