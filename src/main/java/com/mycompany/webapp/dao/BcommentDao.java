@@ -12,8 +12,7 @@ import com.mycompany.webapp.dto.Bcomment;
 @Repository
 public class BcommentDao {
 	
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 
 	public List<Bcomment> selectBoardComments(int bno) {
 		List<Bcomment> boardComments = sst.selectList("mybatis.mapper.bcomment.selectBoardComments", bno);

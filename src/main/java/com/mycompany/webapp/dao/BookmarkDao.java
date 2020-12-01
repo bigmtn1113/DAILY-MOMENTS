@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BookmarkDao {
 	
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 }

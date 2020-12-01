@@ -30,7 +30,14 @@
 		<!-- Template Main CSS File -->
 		<link href="<%=request.getContextPath()%>/resources/assets/css/style.css" rel="stylesheet">
 		
+		<!-- Ajax -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<!-- Search button -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		<!-- SweetAlert2 -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	</head>
 
 	<body>
@@ -46,7 +53,110 @@
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
 						<c:if test="${mid != null}">
-							<li><input class="form-control search" type="text" placeholder="search.." /></li>
+							<form class="form-inline">
+								<input class="form-control form-control-sm ml-3 w-75" type="text" id="searchedContent" name="searchedContent" placeholder="Search" onkeyup="printSearchedContent()">
+							    <button type="button" style="background: #ddd; font-size: 18px; border-radius: 2px;" onclick="search()"><i class="fa fa-search"></i></button>
+							</form>
+							
+						<script>
+							function printSearchedContent() {
+								var searchedContent = document
+										.querySelector('#searchedContent').value;
+								console.log(searchedContent);
+							}
+
+							var mid = ${mid};
+							
+							function search() {
+								var searchedContent = document
+										.querySelector('#searchedContent').value;
+								
+								if (searchedContent.charAt(0) === '@') {
+									searchedId = searchedContent.substr(1);
+									
+									if (searchedId == mid) {
+										profile();
+									} else {
+										$.ajax({
+											url : "searchId",
+											post : "GET",
+											data : {
+												searchedId : searchedId
+											},
+											success : function(data) {
+												if (data.result == "success")
+													atSign(searchedId);
+												else if (data.result == "fail") {
+													Swal.fire({
+														icon: 'info',
+														title: 'Oops...',
+														text: 'Can\'t find Member',
+														footer: 'You should search for the Member that exists.'
+													})
+												}
+											}
+										});
+									}
+								} else if (searchedContent.charAt(0) === '#') {
+									searchedTag = searchedContent.substr(1);
+
+									$.ajax({
+										url : "searchTag",
+										post : "GET",
+										data : {
+											searchedTag : searchedTag
+										},
+										success : function(data) {
+											if (data.result == "success")
+												tag(searchedTag);
+											else if (data.result == "fail") {
+												Swal.fire({
+													icon: 'info',
+													title: 'Oops...',
+													text: 'Can\'t find Tag',
+													footer: 'You should search for the Tag that exists.'
+												})
+											}
+										}
+									});
+								} else {
+									Swal.fire({
+										icon: 'info',
+										title: 'Oops...',
+										text: 'member search: @, tag search: #',
+										footer: 'You should write @ or # in front of searched keyword.'
+									})
+								}
+							}
+
+							function atSign(searchedId) {
+								$.ajax({
+									url : "atSign",
+									method : "GET",
+									data : {
+										searchedId : searchedId
+									},
+									success : function(data) {
+										$("#atSign").html(data);
+										$("#li-atSign").click();
+									}
+								});
+							}
+
+							function tag(searchedId) {
+								$.ajax({
+									url : "tag",
+									method : "GET",
+									data : {
+										searchedTag : searchedTag
+									},
+									success : function(data) {
+										$("#tag").html(data);
+										$("#li-tag").click();
+									}
+								});
+							}
+						</script>
 						</c:if>
 						
 						<li class="active"><a href="#header">Home</a></li>
@@ -88,24 +198,10 @@
 						</c:if>
 	
 						<c:if test="${mid != null}">
-							<li><a id="li-atSign" href="javascript:atSign('${mid}')">At-Sign</a>
-								<script type="text/javascript">
-									function atSign(mid) {
-										$.ajax({
-											url : "atSign",
-											method : "GET",
-											data: {mid: mid},
-											success : function(data) {
-												$("#atSign").html(data);
-												$("#li-atSign").attr("href", "#atSign");
-												$("#li-atSign").click();
-												$("#li-atSign").attr("href", "javascript:atSign('${mid}')");
-											}
-										});
-									}
-								</script>
-							</li>
-		
+							<li style="display: none"><a id="li-atSign" href="#atSign">At-Sign</a>
+							
+							<li style="display: none"><a id="li-tag" href="#tag">Tag</a>
+							
 							<li><a id="li-feed" href="javascript:feed()">Feed</a>
 								<script type="text/javascript">
 									function feed() {
@@ -117,23 +213,6 @@
 												$("#li-feed").attr("href", "#feed");
 												$("#li-feed").click();
 												$("#li-feed").attr("href", "javascript:feed()");
-											}
-										});
-									}
-								</script>
-							</li>
-		
-							<li><a id="li-tag" href="javascript:tag()">Tag</a>
-								<script type="text/javascript">
-									function tag() {
-										$.ajax({
-											url : "tag",
-											method : "GET",
-											success : function(data) {
-												$("#tag").html(data);
-												$("#li-tag").attr("href", "#tag");
-												$("#li-tag").click();
-												$("#li-tag").attr("href", "javascript:tag()");
 											}
 										});
 									}

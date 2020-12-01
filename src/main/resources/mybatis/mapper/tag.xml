@@ -7,5 +7,12 @@
 		from tag
 		where tname = #{tname}
 	</select>
+	
+	<select id="selectTag" parameterType="String" resultType="String">
+		select tname
+		from tag
+		where tname = #{searchedTag}
+		group by tname
+	</select>
 
 </mapper>

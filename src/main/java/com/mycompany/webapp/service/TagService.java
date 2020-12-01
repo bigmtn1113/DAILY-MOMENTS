@@ -19,4 +19,9 @@ public class TagService {
 		int tagBoardCnt = tagDao.selectTagBoardCnt(tname);
 		return tagBoardCnt;
 	}
+
+	public String getTag(String searchedTag) {
+		String tag = tagDao.selectTag(searchedTag);
+		return tag;
+	}
 }
