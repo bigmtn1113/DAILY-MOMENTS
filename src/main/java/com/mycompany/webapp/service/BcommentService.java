@@ -22,4 +22,13 @@ public class BcommentService {
 		List<Bcomment> boardComments = bcommentDao.selectBoardComments(bno);
 		return boardComments;
 	}
+	
+	public void CommentsWrite(Bcomment bcomment) {
+		bcommentDao.insert(bcomment);
+	}
+
+	public List<Bcomment> getBoardCommentsWrite(int bno) {
+		List<Bcomment> getBoardCommentsWrite = bcommentDao.selectBoardCommentsWrite(bno);
+		return getBoardCommentsWrite;
+	}
 }
