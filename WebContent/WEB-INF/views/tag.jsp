@@ -1,212 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="portfolio">
-	<div class="container">
-		<div class="section-title">
-			<h2>Tag</h2>
-			<p># 검색 내용</p>
-			<i class="icofont-rounded-right"></i> <strong>게시물 :</strong> 게시물 숫자
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12 d-flex justify-content-center">
-				<ul id="portfolio-flters">
-
-				</ul>
+<div class="about-me container">
+	<div class="section-title">
+		<h2>Tag</h2>
+		<p>Tag</p>
+	</div>
+	
+	<div class="row">
+		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">	
+			<h3>#운동</h3>
+			<div class="row">
+				<div class="col-lg-6">
+					<ul><li><i class="icofont-rounded-right"></i> <strong>게시물 수:</strong> ${tagBoardCnt}</li></ul>
+				</div>
 			</div>
 		</div>
-
-		<div class="row portfolio-container">
-
+	</div>
+</div>
+<div class="portfolio container">
+	<div class="row portfolio-container">
+	
+		<c:forEach var="tagBoardPhoto" items="${tagBoardPhotos}">
 			<div class="col-lg-4 col-md-6 portfolio-item filter-app">
 				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-1.jpg"
-						class="img-fluid" alt="">
+					<img src="<%=request.getContextPath()%>/resources/images/board/${tagBoardPhoto}"
+						class="img-fluid">
+					
 					<div class="portfolio-info">
 						<h4>App 1</h4>
 						<p>App</p>
 						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-1.jpg"
+							<a href="<%=request.getContextPath()%>/resources/images/board/${tagBoardPhoto}"
 								data-gall="portfolioGallery" class="venobox" title="App 1"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+								class="bx bx-plus"></i>
+							</a>
+							<a href="portfolioDetails"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
+								class="bx bx-link"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-web">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-2.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>Web 3</h4>
-						<p>Web</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-2.jpg"
-								data-gall="portfolioGallery" class="venobox" title="Web 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-app">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-3.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>App 2</h4>
-						<p>App</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-3.jpg"
-								data-gall="portfolioGallery" class="venobox" title="App 2"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-card">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-4.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>Card 2</h4>
-						<p>Card</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-4.jpg"
-								data-gall="portfolioGallery" class="venobox" title="Card 2"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-web">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-5.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>Web 2</h4>
-						<p>Web</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-5.jpg"
-								data-gall="portfolioGallery" class="venobox" title="Web 2"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-app">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-6.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>App 3</h4>
-						<p>App</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-6.jpg"
-								data-gall="portfolioGallery" class="venobox" title="App 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-card">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-7.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>Card 1</h4>
-						<p>Card</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-7.jpg"
-								data-gall="portfolioGallery" class="venobox" title="Card 1"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-card">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-8.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>Card 3</h4>
-						<p>Card</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-8.jpg"
-								data-gall="portfolioGallery" class="venobox" title="Card 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 portfolio-item filter-web">
-				<div class="portfolio-wrap">
-					<img
-						src="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-9.jpg"
-						class="img-fluid" alt="">
-					<div class="portfolio-info">
-						<h4>Web 3</h4>
-						<p>Web</p>
-						<div class="portfolio-links">
-							<a
-								href="<%=request.getContextPath()%>/resources/assets/img/portfolio/portfolio-9.jpg"
-								data-gall="portfolioGallery" class="venobox" title="Web 3"><i
-								class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 </div>
