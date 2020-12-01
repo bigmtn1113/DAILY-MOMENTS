@@ -34,10 +34,10 @@ public class SettingController {
 	
 	@PostMapping("/setting")
 	public String setting(Member member, HttpSession session) {
-		String saveFileName = new Date().getTime() + "_" + member.getAttachMphoto().getOriginalFilename();
+		String saveFileName = member.getMid() + "_" + member.getAttachMphoto().getOriginalFilename();
 
 		try {
-			member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + saveFileName));
+			member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/images/member/" + saveFileName));
 			member.setMphoto(saveFileName);
 			memberService.memberUpdate(member);
 			

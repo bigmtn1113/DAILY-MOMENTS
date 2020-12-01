@@ -40,7 +40,7 @@ public class WriteController {
 			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
 			try {
-				bphoto.transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/board/" + saveFileName));
+				bphoto.transferTo(new File("D:/MyWorkspace/images/board" + saveFileName));
 				
 				Board board = new Board();
 				board.setBcontent(bcontent);
