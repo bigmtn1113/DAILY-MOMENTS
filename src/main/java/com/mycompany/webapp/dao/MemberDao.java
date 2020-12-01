@@ -23,6 +23,11 @@ public class MemberDao {
 		return member;
 	}
 	
+	public String selectMid(String searchedId) {
+		String compareMid = sst.selectOne("mybatis.mapper.member.compareMid", searchedId);
+		return compareMid;
+	}
+	
 	public int updateMember(Member member) {
 		int rows = sst.update("mybatis.mapper.member.updateMember", member);
 		return rows;

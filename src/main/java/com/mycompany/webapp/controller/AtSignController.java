@@ -30,13 +30,13 @@ public class AtSignController {
 	@RequestMapping("/atSign")
 	public String atSign(String mid, Model model) {
 
-		String atSignMid = "test1";
-		Member member = memberService.getMember(atSignMid);
+		String searchedId = (String) model.getAttribute("searchedId");
+		Member member = memberService.getMember(searchedId);
 		List<String> followingMembers = followService.getFollowingMembers(mid);
-		int memberBcnt = boardService.getMemberBcnt(atSignMid);
-		int followerCnt = followService.getFollowerCnt(atSignMid);
-		int followingCnt = followService.getFollowingCnt(atSignMid);
-		List<String> memberBphotos = boardService.getMemberBphotos(atSignMid);
+		int memberBcnt = boardService.getMemberBcnt(searchedId);
+		int followerCnt = followService.getFollowerCnt(searchedId);
+		int followingCnt = followService.getFollowingCnt(searchedId);
+		List<String> memberBphotos = boardService.getMemberBphotos(searchedId);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("followingMembers", followingMembers);

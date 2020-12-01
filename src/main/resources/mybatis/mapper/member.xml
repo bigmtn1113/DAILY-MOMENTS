@@ -13,6 +13,12 @@
 		where mid=#{mid}
 	</select>
 	
+	<select id="compareMid" parameterType="String" resultType="String">
+		select mid 
+		from member 
+		where mid=#{searchedId}
+	</select>
+	
 	<update id="updateMember" parameterType="member">
 		update member set mname=#{mname}, mtel=#{mtel}, msex='1', mpassword=#{mpassword}, mintroduce=#{mintroduce}, mphoto=#{mphoto} 
 		where mid=#{mid}

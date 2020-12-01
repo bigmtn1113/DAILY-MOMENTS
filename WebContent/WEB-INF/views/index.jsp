@@ -46,7 +46,24 @@
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
 						<c:if test="${mid != null}">
-							<li><input class="form-control search" type="text" placeholder="search.." /></li>
+							<form>
+								<input class="form-control search" type="text" id="searchedId" name="searchedId" onkeyup="enterkey();" placeholder="search.." />
+								<input type="text" style="display: none;">
+							</form>
+							<script>
+								function enterkey() {
+							        if (window.event.keyCode == 13) {
+							        	var searchedId = $('#searchedId').val();
+							             $.ajax({
+							            	 url : "searchId",
+							            	 data : {searchedId:searchedId},
+							            	 success : function(data) {
+							            		 $("atSign").html(data);
+							            	 }
+							             });
+							        }
+								}
+							</script>
 						</c:if>
 						
 						<li class="active"><a href="#header">Home</a></li>
