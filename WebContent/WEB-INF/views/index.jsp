@@ -133,9 +133,7 @@
 								$.ajax({
 									url : "atSign",
 									method : "GET",
-									data : {
-										searchedId : searchedId
-									},
+									data : {searchedId : searchedId},
 									success : function(data) {
 										$("#atSign").html(data);
 										$("#li-atSign").click();
@@ -143,13 +141,11 @@
 								});
 							}
 
-							function tag(searchedId) {
+							function tag(searchedTag) {
 								$.ajax({
 									url : "tag",
 									method : "GET",
-									data : {
-										searchedTag : searchedTag
-									},
+									data : {searchedTag : searchedTag},
 									success : function(data) {
 										$("#tag").html(data);
 										$("#li-tag").click();

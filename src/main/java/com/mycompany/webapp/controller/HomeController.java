@@ -2,8 +2,6 @@ package com.mycompany.webapp.controller;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,8 +14,6 @@ import com.mycompany.webapp.service.MemberService;
 
 @Controller
 public class HomeController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 	@Resource private MemberService memberService;
 	
 	@RequestMapping("/")

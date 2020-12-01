@@ -18,6 +18,11 @@ public class BoardDao {
 		int rows = sst.insert("mybatis.mapper.board.insert", board);
 		return rows;
 	}
+	
+	public int selectBno(String saveFileName) {
+		int bno = sst.selectOne("mybatis.mapper.board.selectBno", saveFileName);
+		return bno;
+	}
 
 	public int selectMemberBcnt(String mid) {
 		int memberBcnt = sst.selectOne("mybatis.mapper.board.selectMemberBcnt", mid);
