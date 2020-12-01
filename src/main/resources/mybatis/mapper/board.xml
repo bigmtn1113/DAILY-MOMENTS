@@ -21,6 +21,7 @@
 		select bphoto
 		from board
 		where mid=#{mid}
+		order by bdate desc
 	</select>
 
 	<select id="selectBoards" parameterType="String" resultType="board">
@@ -39,6 +40,15 @@
 		    from board
 		    where mid = #{mid}) b join member m
 		on b.mid = m.mid)
+		order by bdate desc
+	</select>
+	
+	<select id="selectTagBoardPhotos" parameterType="String" resultType="String">
+		select bphoto
+		from (select bno
+		    from tag
+		    where tname = #{tname}) t join board b
+		on t.bno = b.bno
 		order by bdate desc
 	</select>
 

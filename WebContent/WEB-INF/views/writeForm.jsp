@@ -10,10 +10,9 @@
 	<form class="php-email-form mt-4">
 		<input type="hidden" name="mid" id="mid" value="${mid}"/>
 
-		<div class="form-group" id="imageChange" style="display:none; text-align: center">
-			<img id="id_viewimg" src="<%=request.getContextPath()%>/resources/assets/img/need/movie.png" style=" max-width:100%; height:auto" name="preview" border="0"/>
+		<div class="form-group" id="imageChange" style="text-align: center">
+			<img id="id_viewimg" src="<%=request.getContextPath()%>/resources/assets/img/need/default_attachment.png" style=" max-width:100%; height:auto" name="preview" border="0"/>
 		</div>
-		
 		
 		<div class="form-group">
 			<textarea class="form-control" name="bcontent" id="bcontent" rows="5"
@@ -26,7 +25,6 @@
 				<label for="bphoto" style="float: right; margin-left:8px"><img src="<%=request.getContextPath()%>/resources/assets/img/need/camera.png"/></label>
 				<script>
 					var loadFile = function(event) {
-						document.getElementById("imageChange").style.removeProperty("display");
 						var output = document.getElementById('id_viewimg');
 						output.src = URL.createObjectURL(event.target.files[0]);
 					};

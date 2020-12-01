@@ -15,30 +15,20 @@
 			
 				<c:set var="index" value="${status.index}"/>
 				<div style="background-color: #1B1B1B;">	
-					<c:if test="${board.mid == mid}">																																																	
-						<a href="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}">
-							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${memberPhotos.get(index)}"/>
-						</a>
-						<a href="javascript:goProfile()"
-						   style="text-decoration: none; color: white; font-size: 30px;"
-						   id="li-profile">${mid}</a>
-						<span style="float: right; margin-top: 15px; margin-right: 15px">
-							<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
-						</span>
-					</c:if>
+					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
+						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
+					</a>
 					
+					<c:if test="${board.mid == mid}">
+						<a href="javascript:goProfile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
+					</c:if>
 					<c:if test="${board.mid != mid}">
-						<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
-							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
-						</a>
-						<a href="javascript:goAtSign('${board.mid}')"
-						   style="text-decoration: none; color: white; font-size: 30px;"
-						   id="li-atSign">${board.mid}</a>	
-						<span style="float: right; margin-top: 15px; margin-right: 15px">
-							<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
-						</span>
+						<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
 					</c:if>
 					
+					<span style="float: right; margin-top: 15px; margin-right: 15px">
+						<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
+					</span>
 				</div>
 	
 				<div>
@@ -71,7 +61,7 @@
 						
 						<div style="padding-left:30px; padding-right:30px;" id="commentlist_${board.bno}">
 							<c:forEach var="boardComment" items="${boardCommentsList.get(index)}">
-								<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/> 
+								<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
 							</c:forEach>
 						</div>
 					</div>
@@ -79,13 +69,12 @@
 			             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
 			             <button id="${board.bno}" class="bx bx-subdirectory-left" onclick="commentWrite('${board.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 		          	</div>
-		          	
 				</div>
 			</div>
 		</c:forEach>
 		<script type="text/javascript">
 			function goProfile() {
-				$.ajax({    
+				$.ajax({
 					url : "profile",
 					method : "GET",
 					success : function(data) {
