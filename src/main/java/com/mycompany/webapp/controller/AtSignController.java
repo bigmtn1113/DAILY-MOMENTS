@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -28,9 +29,9 @@ public class AtSignController {
 	@Resource private FollowService followService;
 	
 	@RequestMapping("/atSign")
-	public String atSign(String mid, Model model) {
-
-		String searchedId = (String) model.getAttribute("searchedId");
+	public String atSign(String searchedId, HttpSession session, Model model) {
+		String mid = (String) session.getAttribute("mid");
+		
 		Member member = memberService.getMember(searchedId);
 		List<String> followingMembers = followService.getFollowingMembers(mid);
 		int memberBcnt = boardService.getMemberBcnt(searchedId);

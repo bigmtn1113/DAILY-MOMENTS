@@ -12,8 +12,7 @@ import com.mycompany.webapp.dto.Board;
 @Repository
 public class BoardDao {
 	
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 
 	public int insert(Board board) {
 		int rows = sst.insert("mybatis.mapper.board.insert", board);

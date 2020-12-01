@@ -1,30 +1,55 @@
 package com.mycompany.webapp.controller;
 
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mycompany.webapp.dto.Member;
-import com.mycompany.webapp.service.SearchService;
+import com.mycompany.webapp.service.MemberService;
+import com.mycompany.webapp.service.TagService;
 
 @Controller
 public class SearchController {
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 	
-	@Resource 
-	private SearchService searchService;
+	@Resource MemberService memberService;
+	@Resource TagService tagService;
 	
-	@GetMapping("/searchId")
-	public String searchId(String searchedId, Model model) {
-		model.addAttribute("searchedId", searchedId);
-			
-		return "atSign";
+	@RequestMapping("/searchId")
+	public void searchId(String searchedId, HttpServletResponse response) throws Exception {
+		String mid = memberService.getMid(searchedId);
+		
+		JSONObject jsonObject = new JSONObject();
+		if (mid != null) jsonObject.put("result", "success");
+		else jsonObject.put("result", "fail");
+		String json = jsonObject.toString();
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
 	}
-
+	
+	@RequestMapping("/searchTag")
+	public void searchTag(String searchedTag, HttpServletResponse response) throws Exception {
+		String tag = tagService.getTag(searchedTag);
+		
+		JSONObject jsonObject = new JSONObject();
+		if (tag != null) jsonObject.put("result", "success");
+		else jsonObject.put("result", "fail");
+		String json = jsonObject.toString();
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
 }

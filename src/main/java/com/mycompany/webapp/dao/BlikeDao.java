@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BlikeDao {
 
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 
 	public Integer selectLikeCnt(int bno) {
 		Integer likeCnt = sst.selectOne("mybatis.mapper.blike.selectLikeCnt", bno);

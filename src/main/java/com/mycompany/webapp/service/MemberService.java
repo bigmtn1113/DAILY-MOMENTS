@@ -20,12 +20,17 @@ public class MemberService {
 		memberDao.insert(member);
 	}
 	
-	public Member getMember(String mid) {
-		Member member = memberDao.selectMember(mid);
+	public Member getMember(String searchedId) {
+		Member member = memberDao.selectMember(searchedId);
 		return member;
 	}
 	
 	public void memberUpdate(Member member) {
 		memberDao.updateMember(member);
+	}
+
+	public String getMid(String searchedId) {
+		String mid = memberDao.selectMid(searchedId);
+		return mid;
 	}
 }

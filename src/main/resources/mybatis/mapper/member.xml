@@ -10,7 +10,7 @@
 	<select id="selectMember" parameterType="String" resultType="member">
 		select mid, mname, mtel, msex, mintroduce, mphoto
 		from member
-		where mid=#{mid}
+		where mid = #{searchedId}
 	</select>
 	
 	<select id="compareMid" parameterType="String" resultType="String">
@@ -20,8 +20,14 @@
 	</select>
 	
 	<update id="updateMember" parameterType="member">
-		update member set mname=#{mname}, mtel=#{mtel}, msex='1', mpassword=#{mpassword}, mintroduce=#{mintroduce}, mphoto=#{mphoto} 
-		where mid=#{mid}
+		update member set mname = #{mname}, mtel = #{mtel}, msex = '1', mpassword = #{mpassword}, mintroduce = #{mintroduce}, mphoto = #{mphoto} 
+		where mid = #{mid}
 	</update>
+	
+	<select id="selectMid" parameterType="String" resultType="String">
+		select mid
+		from member
+		where mid = #{searchedId}
+	</select>
 	
 </mapper>
