@@ -156,9 +156,24 @@
 									}
 								</script>
 							</li>
-		
-							<li><a href="#">Notification</a></li>
-		
+							
+							<li><a id="li-notification" href="javascript:notification()">Notification</a>
+								<script type="text/javascript">
+									function notification(){
+										$.ajax({
+											url : "notification",
+											method : "GET",
+											success : function(data){
+												$("#notification").html(data);
+												$("#li-notification").attr("href","#notification");
+												$("#li-notification").click();
+												$("#li-notification").attr("href", "javascript:notification()");
+											}
+										})
+									}
+								</script>
+							</li>
+							
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
 								<div class="dropdown-menu" style="opacity: 0.5;">
 		
@@ -216,6 +231,7 @@
 						</c:if>
 					</ul>
 				</nav>
+				
 			</div>
 		</header>
 	
@@ -225,6 +241,7 @@
 		<section id="feed"></section>
 		<section id="tag"></section>
 		<section id="writeForm"></section>
+		<section id="notification"></section>
 		<section id="profile"></section>
 		<section id="setting"></section>
 		<section id="qna"></section>
