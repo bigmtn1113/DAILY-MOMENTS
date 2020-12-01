@@ -36,4 +36,9 @@ public class BoardService {
 		List<Board> boards = boardDao.selectBoards(mid);
 		return boards;
 	}
+
+	public List<String> getTagBoardPhotos(String tname) {
+		List<String> tagBoardPhotos = boardDao.selectTagBoardPhotos(tname);
+		return tagBoardPhotos;
+	}
 }
