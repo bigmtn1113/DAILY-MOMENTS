@@ -50,30 +50,29 @@
 		
 		<div class="row portfolio-container">
 		
-			<c:if test="${memberBcnt + memberBMcnt > 0}">
-				<c:forEach var="bcnt" begin="0" end="${memberBcnt + memberBMcnt - 1}">
-					<div class="col-lg-4 col-md-6 portfolio-item filter-board">
-						<div class="portfolio-wrap">
-							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
-								class="img-fluid" alt="">
-							<div class="portfolio-info">
-								<h4>App 1</h4>
-								<p>App</p>
-								<div class="portfolio-links">
-									<a
-										href="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
-										data-gall="portfolioGallery" class="venobox" title="App 1"><i
-										class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-										data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-										class="venobox" title="Portfolio Details"><i
-										class="bx bx-link"></i></a>
-								</div>
+			<c:forEach var="profilePhoto" items="${profilePhotos}">
+				<div class="col-lg-4 col-md-6 portfolio-item filter-board">
+					<div class="portfolio-wrap">
+						<img
+							src="<%=request.getContextPath()%>/resources/images/board/${profilePhoto}"
+							class="img-fluid" alt="">
+						<div class="portfolio-info">
+							<h4>App 1</h4>
+							<p>App</p>
+							<div class="portfolio-links">
+								<a
+									href="<%=request.getContextPath()%>/resources/images/board/${profilePhoto}"
+									data-gall="portfolioGallery" class="venobox" title="App 1"><i
+									class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
+									data-gall="portfolioDetailsGallery" data-vbtype="iframe"
+									class="venobox" title="Portfolio Details"><i
+									class="bx bx-link"></i></a>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-			</c:if>
+				</div>
+			</c:forEach>
+			
 		</div>
 		<script type="text/javascript">	
 			var portfolioIsotope = null;
