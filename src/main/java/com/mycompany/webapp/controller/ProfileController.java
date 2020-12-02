@@ -26,15 +26,17 @@ public class ProfileController {
 		
 		Member member = memberService.getMember(mid);
 		int memberBcnt = boardService.getMemberBcnt(mid);
+		int memberBMcnt = boardService.getMemberBMcnt(mid);
 		int followerCnt = followService.getFollowerCnt(mid);
 		int followingCnt = followService.getFollowingCnt(mid);
-		List<String> memberBphotos = boardService.getMemberBphotos(mid);
+		List<String> profilePhotos = boardService.getProfilePhotos(mid);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("memberBcnt", memberBcnt);
+		model.addAttribute("memberBMcnt", memberBMcnt);
 		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("followingCnt", followingCnt);
-		model.addAttribute("memberBphotos", memberBphotos);
+		model.addAttribute("profilePhotos", profilePhotos);
 		
 		return "profile";
 	}	

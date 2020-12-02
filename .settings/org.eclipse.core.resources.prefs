@@ -6,6 +6,7 @@ encoding//src/main/java/com/mycompany/webapp/controller/NotificationController.j
 encoding//src/main/java/com/mycompany/webapp/controller/PortFolioDetailsController.java=UTF-8
 encoding//src/main/java/com/mycompany/webapp/controller/ProfileController.java=UTF-8
 encoding//src/main/java/com/mycompany/webapp/controller/QnaController.java=UTF-8
+encoding//src/main/java/com/mycompany/webapp/controller/SearchController.java=UTF-8
 encoding//src/main/java/com/mycompany/webapp/controller/SettingController.java=UTF-8
 encoding//src/main/java/com/mycompany/webapp/controller/TagController.java=UTF-8
 encoding//src/main/java/com/mycompany/webapp/controller/WriteController.java=UTF-8

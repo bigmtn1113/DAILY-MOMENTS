@@ -25,4 +25,24 @@ public class BlikeDao {
 		return likeMid;
 	}
 
+
+	public int insertLikeClick(Blike blike) {
+		int rows=sst.insert("mybatis.mapper.blike.insert",blike);
+		return rows;
+	}
+
+	public int deleteLikeClick(Blike blike) {
+		int rows=sst.insert("mybatis.mapper.blike.delete",blike);
+		return rows;
+	}
+
+	public List<Blike> selectBlikes(String mid) {
+		List<Blike> blikes = sst.selectList("mybatis.mapper.blike.selectLikes", mid);
+		return blikes;
+	}
+
+	public int countLikeClick(int bno) {
+		int rows=sst.selectOne("mybatis.mapper.blike.countLikeClick",bno);
+		return rows;
+	}
 }

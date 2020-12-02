@@ -18,11 +18,28 @@ public class BlikeService {
 		return likeCnt;
 	}
 
+	public int likeClick(Blike blike) {
+		int rows=blikeDao.insertLikeClick(blike);
+		return rows;
+	}
+
+	public int dislikeClick(Blike blike) {
+		int rows=blikeDao.deleteLikeClick(blike);
+		return rows;
+	}
+
+	public List<Blike> getBlikes(String mid) {
+		List<Blike> boards = blikeDao.selectBlikes(mid);
+		return boards;
+	}
+
+	public int countLikes(int bno) {
+		int rows=blikeDao.countLikeClick(bno);
+		return rows;
+	}
+
 	public List<String> getLikemid(Integer boardbno) {
 		List<String> likeMid = blikeDao.selectLikeMid(boardbno);
 		return likeMid;
 	}
-
-	
-
 }

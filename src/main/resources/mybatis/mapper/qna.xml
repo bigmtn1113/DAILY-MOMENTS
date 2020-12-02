@@ -33,14 +33,14 @@
 		values(#{bno}, #{btitle}, #{bcontent}, sysdate, #{mid})
 	
 	</insert>
-
-
-
-
-
-
-
-
+	
+	<select id="selectByBno" parameterType="int" resultType="qna">
+		select bno, btitle, mphoto, bcontent, bdate, qb.mid
+		from qnaboard qb, member m
+		where qb.mid = m.mid and qb.bno=#{bno}
+	</select>
+	
+	
 
 
 
@@ -55,11 +55,11 @@
 
 
 	<delete id="deleteByBno" parameterType="int">
-		delete from board where bno = #{bno}	
+		delete from qnaboard where bno = #{bno}	
 	</delete>
 
-	<update id="update" parameterType="board">
-		update board set btitle = #{btitle}, bcontent = #{bcontent} where bno = #{bno}
+	<update id="update" parameterType="qna">
+		update qnaboard set btitle = #{btitle}, bcontent = #{bcontent} where bno = #{bno}
 	</update>
 	
 </mapper>
