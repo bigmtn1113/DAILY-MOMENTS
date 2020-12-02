@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,16 +26,10 @@ import com.mycompany.webapp.service.BookmarkService;
 
 @Controller
 public class FeedController {
-	private static final Logger logger = LoggerFactory.getLogger(FeedController.class);
-
-	@Resource
-	private BoardService boardService;
-	@Resource
-	private BlikeService blikeService;
-	@Resource
-	private BookmarkService bookmarkService;
-	@Resource
-	private BcommentService bcommentService;
+	@Resource private BookmarkService bookmarkService;
+	@Resource private BoardService boardService;
+	@Resource private BlikeService blikeService;
+	@Resource private BcommentService bcommentService;
 
 	@RequestMapping("/feed")
 	public String feed(HttpSession session, Model model) {

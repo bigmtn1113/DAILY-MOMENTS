@@ -11,6 +11,12 @@
 		values(#{bno}, #{bphoto}, #{bcontent}, sysdate, #{mid})
 	</insert>
 	
+	<select id="selectBno" parameterType="String" resultType="int">
+		select bno
+		from board
+		where bphoto = #{saveFileName}
+	</select>
+	
 	<select id="selectMemberBcnt" parameterType="String" resultType="int">
 		select count(*)
 		from board

@@ -12,8 +12,7 @@ import com.mycompany.webapp.dto.Bookmark;
 @Repository
 public class BookmarkDao {
 	
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 
 	public int insertBookmarkClick(Bookmark bookmark) {
 		int rows=sst.insert("mybatis.mapper.bookmark.insert",bookmark);

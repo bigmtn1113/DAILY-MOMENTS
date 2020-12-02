@@ -5,8 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +16,6 @@ import com.mycompany.webapp.service.MemberService;
 
 @Controller
 public class ProfileController {
-	private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
-	
 	@Resource private MemberService memberService;
 	@Resource private BoardService boardService;
 	@Resource private FollowService followService;
