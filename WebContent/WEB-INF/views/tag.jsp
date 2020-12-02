@@ -12,7 +12,7 @@
 			<h3>#${searchedTag}</h3>
 			<div class="row">
 				<div class="col-lg-6">
-					<ul><li><i class="icofont-rounded-right"></i> <strong>게시물 수:</strong> ${tagBoardCnt}</li></ul>
+					<ul><li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> ${tagBoardCnt}</li></ul>
 				</div>
 			</div>
 		</div>

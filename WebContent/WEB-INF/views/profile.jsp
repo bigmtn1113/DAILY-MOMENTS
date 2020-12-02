@@ -18,8 +18,8 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<ul>
-						<li></li>
 						<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> ${memberBcnt}</li>
+						<li><i class="icofont-rounded-right"></i> <strong>북마크:</strong> ${memberBMcnt}</li>
 						<li><i class="icofont-rounded-right"></i> <strong>팔로워:</strong> ${followerCnt}</li>
 						<li><i class="icofont-rounded-right"></i> <strong>팔로잉:</strong> ${followingCnt}</li>
 					</ul>
@@ -41,45 +41,28 @@
 		<div class="row">
 			<div class="col-lg-12 d-flex justify-content-center">
 				<ul id="portfolio-flters">
-					<li data-filter=".filter-board"	class="filter-active">게시물</li>
-					<li data-filter=".filter-video">동영상</li>
-					<li data-filter=".filter-bookmark">북마크</li>
+					<li id="filter-board" data-filter=".filter-board"	class="filter-active">게시물</li>
+					<li id="filter-video" data-filter=".filter-video">동영상</li>
+					<li id="filter-bookmark" data-filter=".filter-bookmark">북마크</li>
 				</ul>
 			</div>
 		</div>
-		<script src="js/isotope.pkgd.min.js"></script>
-		<script type="text/javascript">
-		$(function(){
-			var portfolioIsotope = $('.portfolio-container').isotope({
-			      itemSelector: '.portfolio-item',
-			      layoutMode: 'fitRows'
-			    });
-			
-			$('#portfolio-flters li').on('click', function() {
-		      $("#portfolio-flters li").removeClass('filter-active');
-		      $(this).addClass('filter-active');
-		      
-		      portfolioIsotope.isotope({
-		    	  filter: $(this).data('filter')
-		      });
-			});
-		});
-		</script>
+		
 		<div class="row portfolio-container">
 		
-			<c:if test="${memberBcnt > 0}">
-				<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
+			<c:if test="${memberBcnt + memberBMcnt > 0}">
+				<c:forEach var="bcnt" begin="0" end="${memberBcnt + memberBMcnt - 1}">
 					<div class="col-lg-4 col-md-6 portfolio-item filter-board">
 						<div class="portfolio-wrap">
 							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
+								src="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
 								class="img-fluid" alt="">
 							<div class="portfolio-info">
 								<h4>App 1</h4>
 								<p>App</p>
 								<div class="portfolio-links">
 									<a
-										href="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
+										href="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
 										data-gall="portfolioGallery" class="venobox" title="App 1"><i
 										class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
 										data-gall="portfolioDetailsGallery" data-vbtype="iframe"
@@ -92,6 +75,29 @@
 				</c:forEach>
 			</c:if>
 		</div>
-		
+		<script type="text/javascript">	
+			var portfolioIsotope = null;
+		$(function(){
+			portfolioIsotope = $('.portfolio-container').isotope({
+			      itemSelector: '.portfolio-item',
+			      layoutMode: 'fitRows'
+			    });
+			
+				$('#portfolio-flters li').on('click', function() {
+					console.log("this:", this);
+					$("#portfolio-flters li").removeClass('filter-active');
+					$(this).addClass('filter-active');
+		      
+					portfolioIsotope.isotope({
+						filter: $(this).data('filter')
+					});
+				});
+
+				setTimeout(function() {
+					$("#filter-board").click();
+				}, 100);
+
+			});
+		</script>
 	</div>
 </div>
