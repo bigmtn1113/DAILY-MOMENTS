@@ -41,30 +41,13 @@
 		<div class="row">
 			<div class="col-lg-12 d-flex justify-content-center">
 				<ul id="portfolio-flters">
-					<li data-filter=".filter-board"	class="filter-active">게시물</li>
-					<li data-filter=".filter-video">동영상</li>
-					<li data-filter=".filter-bookmark">북마크</li>
+					<li id="filter-board" data-filter=".filter-board"	class="filter-active">게시물</li>
+					<li id="filter-video" data-filter=".filter-video">동영상</li>
+					<li id="filter-bookmark" data-filter=".filter-bookmark">북마크</li>
 				</ul>
 			</div>
 		</div>
-		<script src="js/isotope.pkgd.min.js"></script>
-		<script type="text/javascript">
-		$(function(){
-			var portfolioIsotope = $('.portfolio-container').isotope({
-			      itemSelector: '.portfolio-item',
-			      layoutMode: 'fitRows'
-			    });
-			
-			$('#portfolio-flters li').on('click', function() {
-		      $("#portfolio-flters li").removeClass('filter-active');
-		      $(this).addClass('filter-active');
-		      
-		      portfolioIsotope.isotope({
-		    	  filter: $(this).data('filter')
-		      });
-			});
-		});
-		</script>
+		
 		<div class="row portfolio-container">
 		
 			<c:if test="${memberBcnt > 0}">
@@ -92,6 +75,29 @@
 				</c:forEach>
 			</c:if>
 		</div>
-		
+		<script type="text/javascript">	
+			var portfolioIsotope = null;
+		$(function(){
+			portfolioIsotope = $('.portfolio-container').isotope({
+			      itemSelector: '.portfolio-item',
+			      layoutMode: 'fitRows'
+			    });
+			
+				$('#portfolio-flters li').on('click', function() {
+					console.log("this:", this);
+					$("#portfolio-flters li").removeClass('filter-active');
+					$(this).addClass('filter-active');
+		      
+					portfolioIsotope.isotope({
+						filter: $(this).data('filter')
+					});
+				});
+
+				setTimeout(function() {
+					$("#filter-board").click();
+				}, 100);
+
+			});
+		</script>
 	</div>
 </div>
