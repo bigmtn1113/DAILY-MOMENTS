@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.FollowDao;
@@ -13,10 +11,7 @@ import com.mycompany.webapp.dto.Follow;
 
 @Service
 public class FollowService {
-	private static final Logger logger=LoggerFactory.getLogger(FollowService.class);
-	
-	@Resource
-	private FollowDao followDao;
+	@Resource private FollowDao followDao;
 	
 	public List<String> getFollowingMembers(String mid) {
 		List<String> followingMembers = followDao.selectFollowingMembers(mid);

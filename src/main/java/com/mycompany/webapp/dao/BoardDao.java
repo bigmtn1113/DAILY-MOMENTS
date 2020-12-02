@@ -12,12 +12,16 @@ import com.mycompany.webapp.dto.Board;
 @Repository
 public class BoardDao {
 	
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 
 	public int insert(Board board) {
 		int rows = sst.insert("mybatis.mapper.board.insert", board);
 		return rows;
+	}
+	
+	public int selectBno(String saveFileName) {
+		int bno = sst.selectOne("mybatis.mapper.board.selectBno", saveFileName);
+		return bno;
 	}
 
 	public int selectMemberBcnt(String mid) {

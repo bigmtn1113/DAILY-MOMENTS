@@ -12,8 +12,7 @@ import com.mycompany.webapp.dto.Follow;
 @Repository
 public class FollowDao {
 	
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 
 	public List<String> selectFollowingMembers(String mid) {
 		List<String> followingMembers = sst.selectList("mybatis.mapper.follow.selectFollowingMembers", mid);

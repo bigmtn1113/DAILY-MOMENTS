@@ -43,11 +43,10 @@
 	
 	<script type="text/javascript">
 		function write() {
-			var formdata=new FormData();
-			formdata.append("mid",$("#mid").val());
-			formdata.append("bcontent",$("#bcontent").val());
-			formdata.append("bphoto",$("#bphoto")[0].files[0], $("#bphoto")[0].files[0].name);
-			console.log(formdata.get("mid"));
+			var formdata = new FormData();
+			formdata.append("mid", $("#mid").val());
+			formdata.append("bcontent", $("#bcontent").val());
+			formdata.append("bphoto", $("#bphoto")[0].files[0], $("#bphoto")[0].files[0].name);
 			
 			$.ajax({
 				url: "write",

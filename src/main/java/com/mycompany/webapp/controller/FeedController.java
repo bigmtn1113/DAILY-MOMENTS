@@ -1,40 +1,29 @@
 package com.mycompany.webapp.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Board;
-import com.mycompany.webapp.dto.Qna;
 import com.mycompany.webapp.service.BcommentService;
 import com.mycompany.webapp.service.BlikeService;
 import com.mycompany.webapp.service.BoardService;
 
 @Controller
 public class FeedController {
-	private static final Logger logger = LoggerFactory.getLogger(FeedController.class);
-
-	@Resource
-	private BoardService boardService;
-	@Resource
-	private BlikeService blikeService;
-	@Resource
-	private BcommentService bcommentService;
+	@Resource private BoardService boardService;
+	@Resource private BlikeService blikeService;
+	@Resource private BcommentService bcommentService;
 
 	@RequestMapping("/feed")
 	public String feed(HttpSession session, Model model) {
