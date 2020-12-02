@@ -8,10 +8,11 @@
 		<h2>Feed</h2>
 		<p>Feed</p>
 	</div>
-
+	
 	<div class="row portfolio-container">
 		<c:forEach var="board" items="${boards}" varStatus="status">
-			<div class="col-sm-12 portfolio-item filter-app">
+			<div class="col-sm-12 portfolio-item filter-app"
+				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
 				
 				<c:set var="index" value="${status.index}"/>
 				<c:set var="isLikeboard" value="false"/>
@@ -78,8 +79,8 @@
 					    class="invisible-scrollbar" 
 						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 						color: white; overflow-y: auto;">
-						<div style="padding-left:30px; padding-right:30px; padding-top:15px">
-							 ${board.bcontent}
+						<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
+							 <div style="white-space:pre;">${board.bcontent}</div>
 						</div>
 						
 						<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
