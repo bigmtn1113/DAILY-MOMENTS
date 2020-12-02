@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.bookmark">
 
+	<insert id="insert" parameterType="bookmark">
+		insert into bookmark(mid, bno)
+		values(#{mid}, #{bno})
+	</insert>
+	
+	<delete id="delete" parameterType="bookmark">
+		delete from bookmark
+		where mid = #{mid} and bno = #{bno}
+	</delete>
+	
+	<select id="selectBookmarks" parameterType="String" resultType="bookmark">
+		select *
+		from bookmark
+		where mid=#{mid}
+	</select>
 </mapper>

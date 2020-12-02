@@ -12,8 +12,20 @@
 	<div class="row portfolio-container">
 		<c:forEach var="board" items="${boards}" varStatus="status">
 			<div class="col-sm-12 portfolio-item filter-app">
-			
+				
 				<c:set var="index" value="${status.index}"/>
+				<c:set var="isLikeboard" value="false"/>
+				<c:set var="isBookmarkboard" value="false"/>
+				<c:forEach var="blike" items="${blikes}">
+					<c:if test="${blike.bno == board.bno}">
+						<c:set var="isLikeboard" value="true"/>
+					</c:if>
+				</c:forEach>
+				<c:forEach var="bookmark" items="${bookmarks}">
+					<c:if test="${bookmark.bno == board.bno}">
+						<c:set var="isBookmarkboard" value="true"/>
+					</c:if>
+				</c:forEach>
 				<div style="background-color: #1B1B1B;">	
 					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
@@ -40,11 +52,25 @@
 
 					<div style="height: 40px; margin-bottom:10px">
 
-						<button type="button" style="float:left; border:none; outline:none; background:none;"><img onclick ="changeHeartImg();" id="img-heart" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png"></button>
+						<button type="button" style="float:left; border:none; outline:none; background:none;">
+							<c:if test="${isLikeboard == true}">
+								<img onclick ="ClickHeart('${board.bno}','${mid}');" id="img-heart_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png">
+							</c:if>
+							<c:if test="${isLikeboard == false}">
+								<img onclick ="ClickHeart('${board.bno}','${mid}');" id="img-heart_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png">
+							</c:if>
+						</button>
 						
-	              		<button type="button" style="float:right; border:none; outline:none; background:none;"><img onclick ="changeBookmarkImg();" id="img-bookmark" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png"></button>
+	              		<button type="button" style="float:right; border:none; outline:none; background:none;">
+	              			<c:if test="${isBookmarkboard == true}">
+	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
+	              			</c:if>
+	              			<c:if test="${isBookmarkboard == false}">
+	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
+	              			</c:if>
+	              		</button>
 						
-						<div style="text-align:left; padding-top:10px">좋아요 ${likeCnts.get(index)}개</div>
+						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
 					</div>
 
 		          	<div
@@ -109,27 +135,74 @@
 					data:{ccomment:comment, bno:bno, mid:mid},
 					method : "POST",
 					success : function(data) {
-						$("#commentlist_"+bno).html(data)
+						$("#commentlist_"+bno).html(data);
 						$("#content_"+bno).val("");
 						$("#midcontentcomment_"+bno).scrollTop($("#midcontentcomment_"+bno)[0].scrollHeight);
 					}
 				});
 			}
 		</script>
-		<script>
-			function changeHeartImg() {
+		<script type="text/javascript">
+			function ClickHeart(bno, mid) {
 				var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
 				var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
-				var imgElement = document.getElementById('img-heart');
-				imgElement.src = (imgElement.src === heart) ? selectedHeart : heart;
+				
+				if(document.getElementById('img-heart_'+bno).src==heart){ // 빈 하트일 때
+					$.ajax({
+						url : "LikeClick",
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
+								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+							}
+						}
+					});
+				}
+				else{ // 선택된 하트일 때
+					$.ajax({
+						url : "DisLikeClick",
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
+								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+							}
+						}
+					});
+				}
 			}
 		</script>
 		<script>
-			function changeBookmarkImg() {
-				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png",
-					selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
-				var imgElement = document.getElementById('img-bookmark');
-					imgElement.src = (imgElement.src === bookmark)? selectedBookmark : bookmark;
+			function ClickBookmark(bno, mid) {
+				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png";
+				var selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
+				if(document.getElementById('img-bookmark_'+bno).src==bookmark){ // 빈 북마크일 때
+					$.ajax({
+						url : "BookmarkClick",
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-bookmark_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png");
+							}
+						}
+					});
+				}
+				else{ //선택된 북마크일 때
+					$.ajax({
+						url : "DisBookmarkClick", 
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-bookmark_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png");
+							}
+						}
+					});
+				}
 			}
 		</script>
 	</div>
