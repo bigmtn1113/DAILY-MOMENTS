@@ -47,12 +47,21 @@
 				</ul>
 			</div>
 		</div>
+		<script src="js/isotope.pkgd.min.js"></script>
 		<script type="text/javascript">
 		$(function(){
-			$('#portfolio-flters li').on('click', function() {
+			var portfolioIsotope = $('.portfolio-container').isotope({
+			      itemSelector: '.portfolio-item',
+			      layoutMode: 'fitRows'
+			    });
 			
+			$('#portfolio-flters li').on('click', function() {
 		      $("#portfolio-flters li").removeClass('filter-active');
 		      $(this).addClass('filter-active');
+		      
+		      portfolioIsotope.isotope({
+		    	  filter: $(this).data('filter')
+		      });
 			});
 		});
 		</script>
@@ -83,13 +92,6 @@
 				</c:forEach>
 			</c:if>
 		</div>
-		<script type="text/javascript">
-			$(function(){
-				$("#portfolio-container").isotope({
-					itemSelector: '.portfolio-flters'
-				});
-				$('')
-			});
-		</script>
+		
 	</div>
 </div>
