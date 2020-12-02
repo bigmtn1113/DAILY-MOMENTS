@@ -1,8 +1,11 @@
 package com.mycompany.webapp.dto;
 
+import java.util.Date;
+
 public class Bookmark {
 	private int bno;
 	private String mid;
+	private Date bmdate;
 	
 	public int getBno() {
 		return bno;
@@ -15,5 +18,11 @@ public class Bookmark {
 	}
 	public void setMid(String mid) {
 		this.mid = mid;
+	}
+	public Date getBmdate() {
+		return bmdate;
+	}
+	public void setBmdate(Date bmdate) {
+		this.bmdate = bmdate;
 	}
 }

@@ -28,10 +28,20 @@ public class BoardDao {
 		int memberBcnt = sst.selectOne("mybatis.mapper.board.selectMemberBcnt", mid);
 		return memberBcnt;
 	}
+	
+	public int selectMemberBMcnt(String mid) {
+		int memberBMcnt = sst.selectOne("mybatis.mapper.board.selectMemberBMcnt", mid);
+		return memberBMcnt;
+	}
 
 	public List<String> selectMemberBphotos(String mid) {
 		List<String> memberBphotos = sst.selectList("mybatis.mapper.board.selectMemberBphotos", mid);
 		return memberBphotos;
+	}
+	
+	public List<String> selectProfilePhotos(String mid) {
+		List<String> profilePhotos = sst.selectList("mybatis.mapper.board.selectProfilePhotos", mid);
+		return profilePhotos;
 	}
 
 	public List<Board> selectBoards(String mid) {

@@ -26,10 +26,20 @@ public class BoardService {
 		int memberBcnt = boardDao.selectMemberBcnt(mid);
 		return memberBcnt;
 	}
+	
+	public int getMemberBMcnt(String mid) {
+		int memberBMcnt = boardDao.selectMemberBMcnt(mid);
+		return memberBMcnt;
+	}
 
 	public List<String> getMemberBphotos(String mid) {
 		List<String> memberBphotos = boardDao.selectMemberBphotos(mid);
 		return memberBphotos;
+	}
+	
+	public List<String> getProfilePhotos(String mid) {
+		List<String> profilePhotos = boardDao.selectProfilePhotos(mid);
+		return profilePhotos;
 	}
 
 	public List<Board> getBoards(String mid) {
