@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <div id="qna" class="about-me container">
 	
@@ -19,27 +21,26 @@
 		
 			<div class="form-group">
 				<input type="text" name="btitle" class="form-control" id="btitle" placeholder="Title"/>
-				<span id="btitleError" ></span>
+				<span style="color: orange" id="btitleError" ></span>
 			</div>
 			
 			<div class="form-group">
 				<textarea name="bcontent" class="form-control" id="bcontent" placeholder="Content"></textarea>
-				<span id="bcontentError"></span>
+				<span style="color: orange" id="bcontentError"></span>
 			</div>
 	
-			<!-- 2번 기능 : 글쓰기 버튼 누르면 글쓰는 양식(qnaBoardWriteForm.jsp) 불러오기 -->
-			<div class="writeATag" style="text-align: center;">
-				<a class="btn btn-info btn-center" href="javascript:boardWrite()">글쓰기</a>
+			<div style="text-align: center;">
+				<a class="btn btn-center" style="background: #18d26e; color: white" href="javascript:boardWrite()">글쓰기</a>
 			</div>
 			
 			<script type="text/javascript">
 				function boardWrite() {
-					var btitle = $("#btitle").val().trim();  //var는 int string 그런 거 그냥 다 받음. 만능 타입.
-					if(btitle == "") { $("#btitleError").text("필수"); }
+					var btitle = $("#btitle").val().trim();  //var는 int, string 등 타입 그냥 다 받음. 만능 타입. / #btitle 은 btitle 찾아라! 는 뜻. 여기선 위로 가서 찾겠지. form태그 밑 div그룹 내 id가 btitle이니까 거기로 간다.
+					if(btitle == "") { $("#btitleError").text("Title란을 공백으로 작성하실 수 없습니다."); }
 					else { $("#btitleError").text(""); }
 					
 					var bcontent = $("#bcontent").val().trim();
-					if(bcontent == "") { $("#bcontentError").text("필수"); }
+					if(bcontent == "") { $("#bcontentError").text("Content란을 공백으로 작성하실 수 없습니다."); }
 					else { $("#bcontentError").text(""); }
 					
 					if(btitle == "" || bcontent == "") {
@@ -67,60 +68,99 @@
 		</div>	
 					
 			<div>	
-				<form id="qnaList" class="php-email-form mt-4">			
+				<form id="qnaList" class="php-email-form mt-4">	<!-- qnaList 불러올 때 이 밑에 있는거 대체해서 이 자리에 넣는 거임. 이 아래 양식에 넣는 게 아니라, 대체하는 것! -->		
 					<table style="color:#636568; width:100%; border-collapse: separate; border-spacing: 5px;">
-						<tr style="height: 30px; background-color: white">
-							<th  style="width:50px; background-color: #262626;">번호</th>
-							<th  style="width:200px; background-color: #262626;">제목</th>
-							<th  style="width:100px; background-color: #262626;">글쓴이</th>
-							<th  style="width:100px; background-color: #262626;">날짜</th>
+						<tr style="height:30px; background-color: white;" align="center" >
+							<th style="width:30px; background-color: #262626;">번호</th>
+							<th style="width:200px; background-color: #262626;">제목</th>
+							<th style="width:100px; background-color: #262626;">글쓴이</th>
+							<th style="width:100px; background-color: #262626;">날짜</th>
 						</tr>
 						
-						<c:forEach var="board" items="${list}">
-								<tr>
-								<td>${board.bno}</td>
-								<td><a href="javascript:boardDetail(${board.bno})">${board.btitle}</a></td>
-								<td>${board.mid}</td>
+						<c:forEach var="board" items="${list}"> <!-- var= 는 변수 임의로 넣으면 되고, list 부분은 컨트롤러에서 받는 것. 어떻게 구분하냐? qna.jsp 올 때 클릭했지? 그 때 이 페이지 불러오면서 컨트롤러에서 list 정의했음. 그거 쓴다. -->
+							<tr align="center">
+								<td style="background-color: #262626;">${board.bno}</td>
+								<td style="background-color: #262626;"><a href="javascript:qnaDetail(${board.bno})">${board.btitle}</a></td>
+								<td style="background-color: #262626;">${board.mid}</td>
 								<%-- <td><img class="rounded-circle" width="50px" height="50px" src="photodownload?fileName=${board.mphoto}"/></td> --%>
-								<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/></td>
+								<td style="background-color: #262626;"><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/></td>
 							</tr>
 						</c:forEach>
 									
 				
-					<div class="pageNo">
-						<tr style="text-align: center;">
+					<!-- <div class="pageNo">
+						<tr style="text-align: center;"> -->
 							<td colspan="4" style="text-align: center;">
-								<a class="btn btn-info btn-sm" href="javascript:boardList(1)">처음</a>
+								<a class="btn btn-outline-warning btn-sm" href="javascript:qnaList(1)">처음</a>
 								
 								<c:if test="${pager.groupNo > 1}">
-									<a class="btn btn-outline-info btn-sm" href="javascript:boardList(${pager.startPageNo-1})">이전</a> <!-- 페이지 에서 '이전' 누르면 그 그룹 바로 전 페이지그룹으로 간다 ex)12345탭 페이지 -> 678910탭 페이지 ... 이렇게 됨 -->
+									<a class="btn btn-outline-info btn-sm" href="javascript:qnaList(${pager.startPageNo-1})">이전</a> <!-- 페이지 에서 '이전' 누르면 그 그룹 바로 전 페이지그룹으로 간다 ex)12345탭 페이지 -> 678910탭 페이지 ... 이렇게 됨 -->
 								</c:if>
 								
 								<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 									<c:if test="${pager.pageNo == i}">
-										<a class="btn btn-danger btn-sm" href="javascript:boardList(${i})">${i}</a>
+										<a class="btn btn-danger btn-sm" href="javascript:qnaList(${i})">${i}</a>
 									</c:if>
 									
 									<c:if test="${pager.pageNo != i}">
-										<a class="btn btn-outline-success btn-sm" href="javascript:boardList(${i})">${i}</a>
+										<a class="btn btn-outline-success btn-sm" href="javascript:qnaList(${i})">${i}</a>
 									</c:if>
 								</c:forEach>
 								
 								<c:if test="${pager.groupNo < pager.totalGroupNo}">
-									<a class="btn btn-outline-info btn-sm" href="javascript:boardList(${pager.endPageNo+1})">다음</a>
+									<a class="btn btn-outline-info btn-sm" href="javascript:qnaList(${pager.endPageNo+1})">다음</a>
 								</c:if>
 								
-								<a class="btn btn-outline-primary btn-sm" href="javascript:boardList(${pager.totalPageNo})">맨끝</a>
+								<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(${pager.totalPageNo})">맨끝</a>
 							</td>
-						</tr>
+						<!-- </tr> -->
 						
-						<div id="board_result" style="margin-top:30px"></div>
+						<!-- <div id="board_result" style="margin-top:30px"></div> -->
 						
-					</div>
+					<!-- </div> -->
 					
 					</table>
 				
 				</form>
+				
+				
+				
+				
+				
+				<script type="text/javascript">
+					function qnaList(pageNo) {
+						if(!pageNo) {
+							pageNo = 1;
+						}
+						$.ajax({
+							url:"qnaList",
+							data: {pageNo:pageNo},
+							success:function(data){
+								$("#qnaList").html(data);
+							}
+						});
+					}
+				</script>
+				
+				
+				
+				
+				
+				<script type="text/javascript">
+					function qnaDetail(bno) {
+						$.ajax({
+							url:"qnaDetail",
+							data: {bno:bno},
+							success:function(data) {
+								$("#qnaList").html(data);
+							}
+						});
+					}
+				</script>				
+					
+					
+				
+				
 				
 				
 				<script type="text/javascript">
