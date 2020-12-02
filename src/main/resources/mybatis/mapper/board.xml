@@ -11,16 +11,43 @@
 		values(#{bno}, #{bphoto}, #{bcontent}, sysdate, #{mid})
 	</insert>
 	
+	<select id="selectBno" parameterType="String" resultType="int">
+		select bno
+		from board
+		where bphoto = #{saveFileName}
+	</select>
+	
 	<select id="selectMemberBcnt" parameterType="String" resultType="int">
 		select count(*)
 		from board
-		where mid=#{mid}
+		where mid = #{mid}
+	</select>
+	
+	<select id="selectMemberBMcnt" parameterType="String" resultType="int">
+		select count(*)
+		from bookmark
+		where mid = #{mid}
 	</select>
 	
 	<select id="selectMemberBphotos" parameterType="String" resultType="String">
 		select bphoto
 		from board
 		where mid=#{mid}
+		order by bdate desc
+	</select>
+	
+	<select id="selectProfilePhotos" parameterType="String" resultType="String">
+		(select bphoto, bdate
+		from board
+		where mid = #{mid}
+		
+		union
+		
+		select bphoto, bmdate
+		from (select bno, bmdate
+		    from bookmark
+		    where mid = #{mid}) bm join board b
+		on bm.bno = b.bno)
 		order by bdate desc
 	</select>
 

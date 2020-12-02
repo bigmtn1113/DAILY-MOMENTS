@@ -3,9 +3,25 @@
 <mapper namespace="mybatis.mapper.bcomment">
 
 	<select id="selectBoardComments" parameterType="int" resultType="bcomment">
-		select ccontent, cdate, mid
+		select *
 		from bcomment
 		where bno=#{bno}
 	</select>
-
+	
+	<select id="selectBoardCommentsWrite" parameterType="int" resultType="bcomment">
+		select *
+		from bcomment
+		where bno=#{bno}
+		order by cdate ASC
+	</select>
+	
+	<insert id="insert" parameterType="bcomment">
+		
+		<selectKey order="BEFORE" resultType="int" keyProperty="cno">  <!-- before면 아래 sql문 보다 selectKey 부분을 먼저 실행하겠다. after면 반대. -->
+			select seq_bcomment_cno.nextval from dual
+		</selectKey>
+		
+		insert into bcomment(cno, mid, bno, ccontent, cdate)
+		values(#{cno}, #{mid}, #{bno}, #{ccontent}, sysdate)
+	</insert>
 </mapper>

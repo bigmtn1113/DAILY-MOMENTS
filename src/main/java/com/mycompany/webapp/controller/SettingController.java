@@ -1,13 +1,12 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +17,6 @@ import com.mycompany.webapp.service.MemberService;
 
 @Controller
 public class SettingController {
-	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
-	
 	@Resource private MemberService memberService;
 	
 	@GetMapping("/setting")
@@ -34,10 +31,13 @@ public class SettingController {
 	
 	@PostMapping("/setting")
 	public String setting(Member member, HttpSession session) {
-		String saveFileName = new Date().getTime() + "_" + member.getAttachMphoto().getOriginalFilename();
-
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(member.getMpassword());
+		String saveFileName = member.getMid() + "_" + member.getAttachMphoto().getOriginalFilename();
+		
+		member.setMpassword(encodedPassword);
 		try {
-			member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + saveFileName));
+			member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/images/member/" + saveFileName));
 			member.setMphoto(saveFileName);
 			memberService.memberUpdate(member);
 			

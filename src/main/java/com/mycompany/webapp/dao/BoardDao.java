@@ -12,22 +12,36 @@ import com.mycompany.webapp.dto.Board;
 @Repository
 public class BoardDao {
 	
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 
 	public int insert(Board board) {
 		int rows = sst.insert("mybatis.mapper.board.insert", board);
 		return rows;
+	}
+	
+	public int selectBno(String saveFileName) {
+		int bno = sst.selectOne("mybatis.mapper.board.selectBno", saveFileName);
+		return bno;
 	}
 
 	public int selectMemberBcnt(String mid) {
 		int memberBcnt = sst.selectOne("mybatis.mapper.board.selectMemberBcnt", mid);
 		return memberBcnt;
 	}
+	
+	public int selectMemberBMcnt(String mid) {
+		int memberBMcnt = sst.selectOne("mybatis.mapper.board.selectMemberBMcnt", mid);
+		return memberBMcnt;
+	}
 
 	public List<String> selectMemberBphotos(String mid) {
 		List<String> memberBphotos = sst.selectList("mybatis.mapper.board.selectMemberBphotos", mid);
 		return memberBphotos;
+	}
+	
+	public List<String> selectProfilePhotos(String mid) {
+		List<String> profilePhotos = sst.selectList("mybatis.mapper.board.selectProfilePhotos", mid);
+		return profilePhotos;
 	}
 
 	public List<Board> selectBoards(String mid) {

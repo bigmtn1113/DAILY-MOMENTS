@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -28,12 +26,8 @@ import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Qna;
 import com.mycompany.webapp.service.QnaService;
 
-import oracle.net.ano.Service;
-
 @Controller
 public class QnaController {
-	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
-	
 	@Resource private QnaService qnaService;
 	
 	@GetMapping("/qna")
@@ -84,15 +78,12 @@ public class QnaController {
 	@GetMapping("/qnaDetail")
 	public String qnaDetail(int bno, Model model) {
 		Qna qnaBoard = qnaService.getQnaBoard(bno);
-		logger.info(qnaBoard.getMphoto());
 		model.addAttribute("qnaBoard", qnaBoard);
 		return "qnaDetail";
 	}
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("filename: " + fileName);
-		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
 		String saveFilePath = "D:/MyWorkspace/photo/member/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
@@ -160,25 +151,4 @@ public class QnaController {
 		out.flush();
 		out.close();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

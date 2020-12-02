@@ -13,8 +13,7 @@ import com.mycompany.webapp.dto.Qna;
 @Repository
 public class QnaDao {
 
-	@Resource
-	private SqlSessionTemplate sst;
+	@Resource private SqlSessionTemplate sst;
 	
 	public int countAll() {
 		int totalRows = sst.selectOne("mybatis.mapper.qna.countAll");
