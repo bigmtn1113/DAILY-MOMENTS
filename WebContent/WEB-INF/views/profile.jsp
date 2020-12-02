@@ -41,18 +41,26 @@
 		<div class="row">
 			<div class="col-lg-12 d-flex justify-content-center">
 				<ul id="portfolio-flters">
-					<li data-filter=".filter-app">게시물</li>
-					<li data-filter=".filter-card">동영상</li>
-					<li data-filter=".filter-web">북마크</li>
+					<li data-filter=".filter-board"	class="filter-active">게시물</li>
+					<li data-filter=".filter-video">동영상</li>
+					<li data-filter=".filter-bookmark">북마크</li>
 				</ul>
 			</div>
 		</div>
-
+		<script type="text/javascript">
+		$(function(){
+			$('#portfolio-flters li').on('click', function() {
+			
+		      $("#portfolio-flters li").removeClass('filter-active');
+		      $(this).addClass('filter-active');
+			});
+		});
+		</script>
 		<div class="row portfolio-container">
 		
 			<c:if test="${memberBcnt > 0}">
 				<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
-					<div class="col-lg-4 col-md-6 portfolio-item filter-app">
+					<div class="col-lg-4 col-md-6 portfolio-item filter-board">
 						<div class="portfolio-wrap">
 							<img
 								src="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
@@ -75,6 +83,13 @@
 				</c:forEach>
 			</c:if>
 		</div>
-
+		<script type="text/javascript">
+			$(function(){
+				$("#portfolio-container").isotope({
+					itemSelector: '.portfolio-flters'
+				});
+				$('')
+			});
+		</script>
 	</div>
 </div>
