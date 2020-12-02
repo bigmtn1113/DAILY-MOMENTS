@@ -7,5 +7,26 @@
 		from blike
 		where bno=#{bno}
 	</select>
-
+	
+	<insert id="insert" parameterType="blike">
+		insert into blike(bno, mid)
+		values(#{bno}, #{mid})
+	</insert>
+	
+	<delete id="delete" parameterType="blike">
+		delete from blike
+		where bno = #{bno} and mid = #{mid}
+	</delete>
+	
+	<select id="selectLikes" parameterType="String" resultType="blike">
+		select *
+		from blike
+		where mid=#{mid}
+	</select>
+	
+	<select id="countLikeClick" parameterType="int" resultType="Integer">
+		select count(*)
+		from blike
+		where bno=#{bno}
+	</select>
 </mapper>

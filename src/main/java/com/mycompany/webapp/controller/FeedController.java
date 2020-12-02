@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -19,8 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.Bcomment;
+import com.mycompany.webapp.dto.Blike;
 import com.mycompany.webapp.dto.Board;
-import com.mycompany.webapp.dto.Qna;
 import com.mycompany.webapp.service.BcommentService;
 import com.mycompany.webapp.service.BlikeService;
 import com.mycompany.webapp.service.BoardService;
@@ -43,7 +42,7 @@ public class FeedController {
 		List<Board> boards = boardService.getBoards(mid);
 		List<Integer> likeCnts = new ArrayList<>();
 		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
-
+		List<Blike> blikes = blikeService.getBlikes(mid);
 		for (Board board : boards) {
 			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
 			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
@@ -52,7 +51,8 @@ public class FeedController {
 		model.addAttribute("boards", boards);
 		model.addAttribute("likeCnts", likeCnts);
 		model.addAttribute("boardCommentsList", boardCommentsList);
-
+		model.addAttribute("blikes",blikes);
+		
 		return "feed";
 	}
 
@@ -69,5 +69,50 @@ public class FeedController {
 		
 		model.addAttribute("boardCommentsListWrite", boardCommentsListWrite);
 		return "commentHTML";
+	}
+	
+	@RequestMapping("/LikeClick")
+	public void LikeClick(int bno, String mid, HttpSession session, HttpServletResponse response,Model model) throws IOException, ServletException {
+		
+		Blike blike=new Blike();
+		blike.setBno(bno);
+		blike.setMid(mid);
+		blikeService.likeClick(blike);
+		
+		int likeCntsClick=blikeService.countLikes(bno);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		jsonObject.put("likeCntsClick",likeCntsClick);
+		String json = jsonObject.toString();
+		
+		response.setContentType("application/json;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("/DisLikeClick")
+	public void DisLikeClick(int bno, String mid, HttpSession session, HttpServletResponse response, Model model) throws IOException, ServletException {
+		
+		Blike blike=new Blike();
+		blike.setBno(bno);
+		blike.setMid(mid);
+		blikeService.dislikeClick(blike);
+		
+		int likeCntsClick=blikeService.countLikes(bno);
+		model.addAttribute("likeCntsClick", likeCntsClick);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		jsonObject.put("likeCntsClick",likeCntsClick);
+		String json = jsonObject.toString();
+		
+		response.setContentType("application/json;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 }
