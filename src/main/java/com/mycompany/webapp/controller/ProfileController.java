@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
 import com.mycompany.webapp.service.BoardService;
 import com.mycompany.webapp.service.FollowService;
@@ -29,14 +30,14 @@ public class ProfileController {
 		int memberBMcnt = boardService.getMemberBMcnt(mid);
 		int followerCnt = followService.getFollowerCnt(mid);
 		int followingCnt = followService.getFollowingCnt(mid);
-		List<String> profilePhotos = boardService.getProfilePhotos(mid);
+		List<Board> mBAndMBMs = boardService.getMBAndMBMs(mid);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("memberBcnt", memberBcnt);
 		model.addAttribute("memberBMcnt", memberBMcnt);
 		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("followingCnt", followingCnt);
-		model.addAttribute("profilePhotos", profilePhotos);
+		model.addAttribute("mBAndMBMs", mBAndMBMs);
 		
 		return "profile";
 	}	

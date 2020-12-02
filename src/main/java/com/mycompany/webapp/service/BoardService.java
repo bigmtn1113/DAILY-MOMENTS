@@ -37,9 +37,9 @@ public class BoardService {
 		return memberBphotos;
 	}
 	
-	public List<String> getProfilePhotos(String mid) {
-		List<String> profilePhotos = boardDao.selectProfilePhotos(mid);
-		return profilePhotos;
+	public List<Board> getMBAndMBMs(String mid) {
+		List<Board> mbAndMBMs = boardDao.selectMBAndMBMs(mid);
+		return mbAndMBMs;
 	}
 
 	public List<Board> getBoards(String mid) {

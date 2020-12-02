@@ -36,15 +36,15 @@
 		order by bdate desc
 	</select>
 	
-	<select id="selectProfilePhotos" parameterType="String" resultType="String">
-		(select bphoto, bdate
+	<select id="selectMBAndMBMs" parameterType="String" resultType="board">
+		(select bphoto, bdate, mid
 		from board
 		where mid = #{mid}
 		
 		union all
 		
-		select bphoto, bmdate
-		from (select bno, bmdate
+		select bphoto, bmdate, b.mid
+		from (select mid, bno, bmdate
 		    from bookmark
 		    where mid = #{mid}) bm join board b
 		on bm.bno = b.bno)

@@ -11,7 +11,7 @@
 	
 	<div class="row portfolio-container">
 		<c:forEach var="board" items="${boards}" varStatus="status">
-			<div class="col-sm-12 portfolio-item filter-app"
+			<div class="col-sm-12 portfolio-item"
 				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
 				
 				<c:set var="index" value="${status.index}"/>
@@ -65,14 +65,16 @@
 							</c:if>
 						</button>
 						
-	              		<button type="button" style="float:right; border:none; outline:none; background:none;">
-	              			<c:if test="${isBookmarkboard == true}">
-	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
-	              			</c:if>
-	              			<c:if test="${isBookmarkboard == false}">
-	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
-	              			</c:if>
-	              		</button>
+						<c:if test="${board.mid != mid}">
+		              		<button type="button" style="float:right; border:none; outline:none; background:none;">
+		              			<c:if test="${isBookmarkboard == true}">
+		              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
+		              			</c:if>
+		              			<c:if test="${isBookmarkboard == false}">
+		              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
+		              			</c:if>
+		              		</button>
+	              		</c:if>
 						
 						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
 					</div>
