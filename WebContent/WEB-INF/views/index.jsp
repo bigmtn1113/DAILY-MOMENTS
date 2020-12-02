@@ -38,6 +38,9 @@
 		
 		<!-- SweetAlert2 -->
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		
+		<!-- isop -->
+		<script src="<%=request.getContextPath()%>/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 	</head>
 
 	<body>
