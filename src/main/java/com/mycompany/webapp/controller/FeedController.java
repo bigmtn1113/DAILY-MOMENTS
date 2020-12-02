@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mycompany.webapp.dto.Bcomment;
 import com.mycompany.webapp.dto.Blike;
 import com.mycompany.webapp.dto.Board;
+import com.mycompany.webapp.dto.Bookmark;
 import com.mycompany.webapp.service.BcommentService;
 import com.mycompany.webapp.service.BlikeService;
 import com.mycompany.webapp.service.BoardService;
+import com.mycompany.webapp.service.BookmarkService;
 
 @Controller
 public class FeedController {
@@ -32,6 +34,8 @@ public class FeedController {
 	private BoardService boardService;
 	@Resource
 	private BlikeService blikeService;
+	@Resource
+	private BookmarkService bookmarkService;
 	@Resource
 	private BcommentService bcommentService;
 
@@ -43,6 +47,8 @@ public class FeedController {
 		List<Integer> likeCnts = new ArrayList<>();
 		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
 		List<Blike> blikes = blikeService.getBlikes(mid);
+		List<Bookmark> bookmarks = bookmarkService.getBookmarks(mid);
+		
 		for (Board board : boards) {
 			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
 			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
@@ -52,6 +58,7 @@ public class FeedController {
 		model.addAttribute("likeCnts", likeCnts);
 		model.addAttribute("boardCommentsList", boardCommentsList);
 		model.addAttribute("blikes",blikes);
+		model.addAttribute("bookmarks",bookmarks);
 		
 		return "feed";
 	}
@@ -107,6 +114,42 @@ public class FeedController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		jsonObject.put("likeCntsClick",likeCntsClick);
+		String json = jsonObject.toString();
+		
+		response.setContentType("application/json;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("/BookmarkClick")
+	public void BookmarKClick(int bno, String mid, HttpServletResponse response) throws IOException, ServletException {
+		Bookmark bookmark=new Bookmark();
+		bookmark.setBno(bno);
+		bookmark.setMid(mid);
+		bookmarkService.bookmarkClick(bookmark);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		
+		response.setContentType("application/json;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("/DisBookmarkClick")
+	public void DisBookmarkClick(int bno, String mid, HttpServletResponse response) throws IOException, ServletException {
+		Bookmark bookmark=new Bookmark();
+		bookmark.setBno(bno);
+		bookmark.setMid(mid);
+		bookmarkService.disbookmarkClick(bookmark);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
 		
 		response.setContentType("application/json;charset=utf-8");
