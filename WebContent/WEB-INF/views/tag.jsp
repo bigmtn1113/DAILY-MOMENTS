@@ -9,7 +9,7 @@
 	
 	<div class="row">
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">	
-			<h3>#운동</h3>
+			<h3>#${searchedTag}</h3>
 			<div class="row">
 				<div class="col-lg-6">
 					<ul><li><i class="icofont-rounded-right"></i> <strong>게시물 수:</strong> ${tagBoardCnt}</li></ul>

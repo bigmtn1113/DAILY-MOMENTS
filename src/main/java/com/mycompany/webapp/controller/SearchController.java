@@ -6,8 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,8 +14,6 @@ import com.mycompany.webapp.service.TagService;
 
 @Controller
 public class SearchController {
-	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
-	
 	@Resource MemberService memberService;
 	@Resource TagService tagService;
 	

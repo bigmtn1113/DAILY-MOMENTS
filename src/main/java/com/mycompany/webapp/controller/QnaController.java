@@ -6,8 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +17,6 @@ import com.mycompany.webapp.service.QnaService;
 
 @Controller
 public class QnaController {
-	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
-	
 	@Resource private QnaService qnaService;
 	
 	@GetMapping("/qna")
