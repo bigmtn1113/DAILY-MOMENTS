@@ -7,5 +7,12 @@
 		from blike
 		where bno=#{bno}
 	</select>
+	
+	<select id="selectLike" parameterType="int" resultType="String">
+		select mid
+		from blike
+		where bno=#{bno} 
+	</select>
+	
 
 </mapper>

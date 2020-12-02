@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.Bcomment;
+import com.mycompany.webapp.dto.Blike;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.service.BcommentService;
 import com.mycompany.webapp.service.BlikeService;
@@ -32,13 +33,16 @@ public class NotificationController {
 
 		List<Board> boards = boardService.getBoards(mid);
 		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
+		List<Blike> likes = new ArrayList<>();
 		
 		for (Board board : boards) {
 			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
+			likes.add(blikeService.getLikes(board.getBno()));
 		}
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardCommentsList", boardCommentsList);
+		model.addAttribute("likes", likes);
 			
 		return "notification";
 	}	
