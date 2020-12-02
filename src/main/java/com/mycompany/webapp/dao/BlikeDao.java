@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,8 +19,10 @@ public class BlikeDao {
 		return likeCnt;
 	}
 
-	public Blike getLikes(int bno) {
-		Blike blike = sst.selectOne("mybatis.mapper.blike.selectLike", bno);
-		return blike;
+
+	public List<String> selectLikeMid(Integer boardbno) {
+		List<String> likeMid = sst.selectList("mybatis.mapper.blike.selectLikeMid", boardbno);
+		return likeMid;
 	}
+
 }

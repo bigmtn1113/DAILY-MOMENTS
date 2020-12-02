@@ -1,5 +1,7 @@
 package com.mycompany.webapp.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -16,9 +18,11 @@ public class BlikeService {
 		return likeCnt;
 	}
 
-	public Blike getLikes(int bno) {
-		Blike blike = blikeDao.getLikes(bno);
-		return blike;
+	public List<String> getLikemid(Integer boardbno) {
+		List<String> likeMid = blikeDao.selectLikeMid(boardbno);
+		return likeMid;
 	}
+
 	
+
 }

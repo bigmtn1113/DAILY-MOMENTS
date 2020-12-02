@@ -30,20 +30,19 @@ public class NotificationController {
 	@RequestMapping("/notification")
 	public String notification(HttpSession session, Model model) {
 		String mid = (String) session.getAttribute("mid");
-
-		List<Board> boards = boardService.getBoards(mid);
-		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
-		List<Blike> likes = new ArrayList<>();
+		List<Integer> boardBno = boardService.getBoardbno(mid);
+		List<List<String>> likeMids=new ArrayList<>();
 		
-		for (Board board : boards) {
-			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
-			likes.add(blikeService.getLikes(board.getBno()));
+		
+		for(Integer boardbno:boardBno) {
+			List<String> temp = blikeService.getLikemid(boardbno);
+			
+			if (!temp.isEmpty())
+				likeMids.add(temp);
 		}
 		
-		model.addAttribute("boards", boards);
-		model.addAttribute("boardCommentsList", boardCommentsList);
-		model.addAttribute("likes", likes);
-			
+		model.addAttribute("likeMids", likeMids);
+
 		return "notification";
 	}	
 }

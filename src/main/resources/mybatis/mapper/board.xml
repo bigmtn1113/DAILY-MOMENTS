@@ -57,5 +57,11 @@
 		on t.bno = b.bno
 		order by bdate desc
 	</select>
+	
+	<select id="selectBoardbno" parameterType="String" resultType="int">
+		select bno
+		from board
+		where mid=#{mid}
+	</select>
 
 </mapper>
