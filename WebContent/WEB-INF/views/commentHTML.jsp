@@ -4,5 +4,7 @@
 
 
 <c:forEach var="boardComment" items="${boardCommentsListWrite}">
-	<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+	<div style="padding-bottom:5px;">
+		<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+	</div>
 </c:forEach>
