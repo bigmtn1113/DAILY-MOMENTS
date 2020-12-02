@@ -4,7 +4,7 @@
 
 <div class="portfolio container">
 	
-	<div class="section-title">
+	<div class="section-title" style="margin-bottom:40px;">
 		<h2>Feed</h2>
 		<p>Feed</p>
 	</div>
@@ -26,7 +26,7 @@
 						<c:set var="isBookmarkboard" value="true"/>
 					</c:if>
 				</c:forEach>
-				<div style="background-color: #1B1B1B;">	
+				<div style="background-color: #1B1B1B; margin-top:30px;">	
 					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 					</a>
@@ -79,19 +79,20 @@
 						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 						color: white; overflow-y: auto;">
 						<div style="padding-left:30px; padding-right:30px; padding-top:15px">
-							<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; padding-top:2px"
-							id="li-atSign">${board.mid}</a> ${board.bcontent}
+							 ${board.bcontent}
 						</div>
 						
 						<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
 						
-						<div style="padding-left:30px; padding-right:30px;" id="commentlist_${board.bno}">
+						<div style="padding-left:30px; padding-right:30px; padding-bottom:15px;" id="commentlist_${board.bno}">
 							<c:forEach var="boardComment" items="${boardCommentsList.get(index)}">
-								<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+								<div style="padding-bottom:5px;">
+									<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+								</div>
 							</c:forEach>
 						</div>
 					</div>
-					<div style="height:20px">
+					<div style="height:20px; margin-bottom:70px;">
 			             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
 			             <button id="${board.bno}" class="bx bx-subdirectory-left" onclick="commentWrite('${board.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 		          	</div>

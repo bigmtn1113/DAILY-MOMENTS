@@ -377,7 +377,11 @@ section .container {
 # Portfolio
 --------------------------------------------------------------*/
 .portfolio .portfolio-item {
-  margin-bottom: 30px;
+  margin-bottom: 80px;
+  border-radius:10px;
+  width:auto;
+  height:auto;
+  border:2px solid white;
 }
 
 .portfolio #portfolio-flters {
