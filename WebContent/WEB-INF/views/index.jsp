@@ -61,101 +61,101 @@
 							    <button type="button" style="background: #ddd; font-size: 18px; border-radius: 2px;" onclick="search()"><i class="fa fa-search"></i></button>
 							</form>
 							
-						<script>
-							function printSearchedContent() {
-								var searchedContent = document
-										.querySelector('#searchedContent').value;
-								console.log(searchedContent);
-							}
-
-							var mid = ${mid};
-							
-							function search() {
-								var searchedContent = document
-										.querySelector('#searchedContent').value;
+							<script>
+								function printSearchedContent() {
+									var searchedContent = document
+											.querySelector('#searchedContent').value;
+									console.log(searchedContent);
+								}
+	
+								var mid = '${mid}';
 								
-								if (searchedContent.charAt(0) === '@') {
-									searchedId = searchedContent.substr(1);
+								function search() {
+									var searchedContent = document
+											.querySelector('#searchedContent').value;
 									
-									if (searchedId == mid) {
-										profile();
-									} else {
+									if (searchedContent.charAt(0) === '@') {
+										searchedId = searchedContent.substr(1);
+										
+										if (searchedId == mid) {
+											profile();
+										} else {
+											$.ajax({
+												url : "searchId",
+												post : "GET",
+												data : {
+													searchedId : searchedId
+												},
+												success : function(data) {
+													if (data.result == "success")
+														atSign(searchedId);
+													else if (data.result == "fail") {
+														Swal.fire({
+															icon: 'info',
+															title: 'Oops...',
+															text: 'Can\'t find Member',
+															footer: 'You should search for the Member that exists.'
+														})
+													}
+												}
+											});
+										}
+									} else if (searchedContent.charAt(0) === '#') {
+										searchedTag = searchedContent.substr(1);
+	
 										$.ajax({
-											url : "searchId",
+											url : "searchTag",
 											post : "GET",
 											data : {
-												searchedId : searchedId
+												searchedTag : searchedTag
 											},
 											success : function(data) {
 												if (data.result == "success")
-													atSign(searchedId);
+													tag(searchedTag);
 												else if (data.result == "fail") {
 													Swal.fire({
 														icon: 'info',
 														title: 'Oops...',
-														text: 'Can\'t find Member',
-														footer: 'You should search for the Member that exists.'
+														text: 'Can\'t find Tag',
+														footer: 'You should search for the Tag that exists.'
 													})
 												}
 											}
 										});
+									} else {
+										Swal.fire({
+											icon: 'info',
+											title: 'Oops...',
+											text: 'member search: @, tag search: #',
+											footer: 'You should write @ or # in front of searched keyword.'
+										})
 									}
-								} else if (searchedContent.charAt(0) === '#') {
-									searchedTag = searchedContent.substr(1);
-
+								}
+	
+								function atSign(searchedId) {
 									$.ajax({
-										url : "searchTag",
-										post : "GET",
-										data : {
-											searchedTag : searchedTag
-										},
+										url : "atSign",
+										method : "GET",
+										data : {searchedId : searchedId},
 										success : function(data) {
-											if (data.result == "success")
-												tag(searchedTag);
-											else if (data.result == "fail") {
-												Swal.fire({
-													icon: 'info',
-													title: 'Oops...',
-													text: 'Can\'t find Tag',
-													footer: 'You should search for the Tag that exists.'
-												})
-											}
+											$("#atSign").html(data);
+											$("#li-atSign").click();
 										}
 									});
-								} else {
-									Swal.fire({
-										icon: 'info',
-										title: 'Oops...',
-										text: 'member search: @, tag search: #',
-										footer: 'You should write @ or # in front of searched keyword.'
-									})
 								}
-							}
-
-							function atSign(searchedId) {
-								$.ajax({
-									url : "atSign",
-									method : "GET",
-									data : {searchedId : searchedId},
-									success : function(data) {
-										$("#atSign").html(data);
-										$("#li-atSign").click();
-									}
-								});
-							}
-
-							function tag(searchedTag) {
-								$.ajax({
-									url : "tag",
-									method : "GET",
-									data : {searchedTag : searchedTag},
-									success : function(data) {
-										$("#tag").html(data);
-										$("#li-tag").click();
-									}
-								});
-							}
-						</script>
+	
+								function tag(searchedTag) {
+									$.ajax({
+										url : "tag",
+										method : "GET",
+										data : {searchedTag : searchedTag},
+										success : function(data) {
+											$("#tag").html(data);
+											$("#li-tag").click();
+										}
+									});
+								}
+							</script>
 						</c:if>
 						
 						<li class="active"><a href="#header">Home</a></li>

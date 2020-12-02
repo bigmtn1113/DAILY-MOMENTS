@@ -16,16 +16,19 @@
 				<c:set var="index" value="${status.index}"/>
 				<c:set var="isLikeboard" value="false"/>
 				<c:set var="isBookmarkboard" value="false"/>
+				
 				<c:forEach var="blike" items="${blikes}">
 					<c:if test="${blike.bno == board.bno}">
 						<c:set var="isLikeboard" value="true"/>
 					</c:if>
 				</c:forEach>
+				
 				<c:forEach var="bookmark" items="${bookmarks}">
 					<c:if test="${bookmark.bno == board.bno}">
 						<c:set var="isBookmarkboard" value="true"/>
 					</c:if>
 				</c:forEach>
+				
 				<div style="background-color: #1B1B1B;">	
 					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
