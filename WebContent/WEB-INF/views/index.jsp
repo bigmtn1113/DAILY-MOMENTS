@@ -200,7 +200,7 @@
 							
 							<form id="searchForm" class="form-inline" onsubmit="return false">
 								<input class="form-control form-control-sm col-8 ml-3" type="text" id="searchedContent" name="searchedContent" placeholder="Search" onkeypress="if(event.keyCode == 13){search();}">
-							    <button type="button" style="width: 30px; background: #ddd; font-size: 18px; border-radius: 5px" onclick="search()"><i class="fa fa-search"></i></button>
+							    <button type="button" style="width: 33px; background: #ddd; font-size: 18px; border-radius: 5px" onclick="search()"><i class="fa fa-search"></i></button>
 							</form>
 							<script>
 								var mid = '${mid}';
