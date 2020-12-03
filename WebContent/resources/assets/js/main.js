@@ -33,7 +33,6 @@
 
         if (!$('#header').hasClass('header-top')) {
           $('#header').addClass('header-top');
-		  $('.search').removeClass('search');
           setTimeout(function() {
             $("section").removeClass('section-show');
             $(hash).addClass('section-show');

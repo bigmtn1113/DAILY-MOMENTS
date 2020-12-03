@@ -39,9 +39,9 @@ public class BoardDao {
 		return memberBphotos;
 	}
 	
-	public List<String> selectProfilePhotos(String mid) {
-		List<String> profilePhotos = sst.selectList("mybatis.mapper.board.selectProfilePhotos", mid);
-		return profilePhotos;
+	public List<Board> selectMBAndMBMs(String mid) {
+		List<Board> mBAndMBMs = sst.selectList("mybatis.mapper.board.selectMBAndMBMs", mid);
+		return mBAndMBMs;
 	}
 
 	public List<Board> selectBoards(String mid) {

@@ -56,23 +56,17 @@
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
 						<c:if test="${mid != null}">
-							<form class="form-inline">
-								<input class="form-control form-control-sm ml-3 w-75" type="text" id="searchedContent" name="searchedContent" placeholder="Search" onkeyup="printSearchedContent()">
+							<form class="form-inline" onsubmit="return false">
+								<input class="form-control form-control-sm ml-3 w-75" type="text" id="searchedContent" name="searchedContent" placeholder="Search" onkeypress="if(event.keyCode == 13){search();}">
 							    <button type="button" style="background: #ddd; font-size: 18px; border-radius: 2px;" onclick="search()"><i class="fa fa-search"></i></button>
 							</form>
 							
 							<script>
-								function printSearchedContent() {
-									var searchedContent = document
-											.querySelector('#searchedContent').value;
-									console.log(searchedContent);
-								}
-	
 								var mid = '${mid}';
 								
 								function search() {
-									var searchedContent = document
-											.querySelector('#searchedContent').value;
+									var searchedContent = document.querySelector('#searchedContent').value;
+									$('#searchedContent').val("");
 									
 									if (searchedContent.charAt(0) === '@') {
 										searchedId = searchedContent.substr(1);
@@ -83,9 +77,7 @@
 											$.ajax({
 												url : "searchId",
 												post : "GET",
-												data : {
-													searchedId : searchedId
-												},
+												data : {searchedId : searchedId},
 												success : function(data) {
 													if (data.result == "success")
 														atSign(searchedId);
@@ -106,9 +98,7 @@
 										$.ajax({
 											url : "searchTag",
 											post : "GET",
-											data : {
-												searchedTag : searchedTag
-											},
+											data : {searchedTag : searchedTag},
 											success : function(data) {
 												if (data.result == "success")
 													tag(searchedTag);
