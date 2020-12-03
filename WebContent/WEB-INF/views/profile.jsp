@@ -59,7 +59,7 @@
 				</c:if>
 						<div class="portfolio-wrap">
 							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
+								src="<%=request.getContextPath()%>/resources/images/board/${mBAndMBM.bphoto}"
 								class="img-fluid" alt="">
 							<div class="portfolio-info">
 								<h4>App 1</h4>
