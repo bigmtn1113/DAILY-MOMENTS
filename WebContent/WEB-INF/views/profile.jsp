@@ -61,13 +61,17 @@
 								<h4>App 1</h4>
 								<p>App</p>
 								<div class="portfolio-links">
-									<a
-										href="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
-										data-gall="portfolioGallery" class="venobox" title="App 1"><i
-										class="bx bx-plus"></i></a> <a href="portfolio-details.jsp"
-										data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-										class="venobox" title="Portfolio Details"><i
-										class="bx bx-link"></i></a>
+									<a href="portfolioDetails"
+										data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox">
+										<i class="bx bx-link"></i>
+									</a>
+									<script>
+										$(function(){
+											$('.venobox').venobox({
+												
+											});
+										});
+									</script>
 								</div>
 							</div>
 						</div>
