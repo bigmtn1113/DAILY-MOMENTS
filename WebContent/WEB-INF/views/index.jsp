@@ -257,8 +257,8 @@
 										Swal.fire({
 											icon: 'info',
 											title: 'Oops...',
-											text: 'member search: @, tag search: #',
-											footer: 'You should write @ or # in front of searched keyword.'
+											text: 'The searched keyword is not valid',
+											footer: 'You must write @ or # in front of the keyword you search for.'
 										})
 									}
 								}
