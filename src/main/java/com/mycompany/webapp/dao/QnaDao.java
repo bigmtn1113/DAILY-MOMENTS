@@ -31,5 +31,20 @@ public class QnaDao {
 		
 			
 	}
+
+	public Qna selectByBno(int bno) {
+		Qna qnaBoard = sst.selectOne("mybatis.mapper.qna.selectByBno", bno);
+		return qnaBoard;
+	}
+
+	public int deleteByBno(int bno) {
+		int rows = sst.delete("mybatis.mapper.qna.deleteByBno", bno);
+		return rows;
+	}
+
+	public int updateQnaDetail(Qna qna) {
+		int rows = sst.update("mybatis.mapper.qna.update", qna);
+		return rows;
+	}
 	
 }

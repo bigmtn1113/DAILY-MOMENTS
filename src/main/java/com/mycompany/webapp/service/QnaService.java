@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.QnaDao;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Qna;
@@ -27,4 +28,18 @@ public class QnaService {
 	public void qnaWrite(Qna qna) {
 		qnaDao.insert(qna);
 	}
+
+	public Qna getQnaBoard(int bno) {
+		Qna qnaBoard = qnaDao.selectByBno(bno);
+		return qnaBoard;
+	}
+
+	public void qnaDetailDelete(int bno) {
+		int rows = qnaDao.deleteByBno(bno);
+	}
+
+	public void qnaDetailUpdate(Qna qna) {
+		int rows = qnaDao.updateQnaDetail(qna);
+	}
+
 }

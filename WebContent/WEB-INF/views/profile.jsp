@@ -41,7 +41,7 @@
 		<div class="row">
 			<div class="col-lg-12 d-flex justify-content-center">
 				<ul id="portfolio-flters">
-					<li id="filter-board" data-filter=".filter-board"	class="filter-active">게시물</li>
+					<li id="filter-board" data-filter=".filter-board" class="filter-active">게시물</li>
 					<li id="filter-video" data-filter=".filter-video">동영상</li>
 					<li id="filter-bookmark" data-filter=".filter-bookmark">북마크</li>
 				</ul>
@@ -50,9 +50,13 @@
 		
 		<div class="row portfolio-container">
 		
-			<c:if test="${memberBcnt + memberBMcnt > 0}">
-				<c:forEach var="bcnt" begin="0" end="${memberBcnt + memberBMcnt - 1}">
+			<c:forEach var="mBAndMBM" items="${mBAndMBMs}">
+				<c:if test="${mBAndMBM.mid == mid}">
 					<div class="col-lg-4 col-md-6 portfolio-item filter-board">
+				</c:if>
+				<c:if test="${mBAndMBM.mid != mid}">
+					<div class="col-lg-4 col-md-6 portfolio-item filter-bookmark">
+				</c:if>
 						<div class="portfolio-wrap">
 							<img
 								src="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
@@ -76,19 +80,19 @@
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-			</c:if>
+			</c:forEach>
+			
 		</div>
 		<script type="text/javascript">	
 			var portfolioIsotope = null;
-		$(function(){
-			portfolioIsotope = $('.portfolio-container').isotope({
-			      itemSelector: '.portfolio-item',
-			      layoutMode: 'fitRows'
-			    });
 			
+			$(function(){
+				portfolioIsotope = $('.portfolio-container').isotope({
+					itemSelector: '.portfolio-item',
+					layoutMode: 'fitRows'
+				});
+				
 				$('#portfolio-flters li').on('click', function() {
-					console.log("this:", this);
 					$("#portfolio-flters li").removeClass('filter-active');
 					$(this).addClass('filter-active');
 		      

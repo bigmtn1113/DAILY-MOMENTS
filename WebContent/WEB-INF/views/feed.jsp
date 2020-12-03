@@ -4,14 +4,15 @@
 
 <div class="portfolio container">
 	
-	<div class="section-title">
+	<div class="section-title" style="margin-bottom:40px;">
 		<h2>Feed</h2>
 		<p>Feed</p>
 	</div>
-
+	
 	<div class="row portfolio-container">
 		<c:forEach var="board" items="${boards}" varStatus="status">
-			<div class="col-sm-12 portfolio-item filter-app">
+			<div class="col-sm-12 portfolio-item"
+				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
 				
 				<c:set var="index" value="${status.index}"/>
 				<c:set var="isLikeboard" value="false"/>
@@ -29,7 +30,7 @@
 					</c:if>
 				</c:forEach>
 				
-				<div style="background-color: #1B1B1B;">	
+				<div style="background-color: #1B1B1B; margin-top:30px;">	
 					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 					</a>
@@ -64,14 +65,16 @@
 							</c:if>
 						</button>
 						
-	              		<button type="button" style="float:right; border:none; outline:none; background:none;">
-	              			<c:if test="${isBookmarkboard == true}">
-	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
-	              			</c:if>
-	              			<c:if test="${isBookmarkboard == false}">
-	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
-	              			</c:if>
-	              		</button>
+						<c:if test="${board.mid != mid}">
+		              		<button type="button" style="float:right; border:none; outline:none; background:none;">
+		              			<c:if test="${isBookmarkboard == true}">
+		              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
+		              			</c:if>
+		              			<c:if test="${isBookmarkboard == false}">
+		              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
+		              			</c:if>
+		              		</button>
+	              		</c:if>
 						
 						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
 					</div>
@@ -81,20 +84,21 @@
 					    class="invisible-scrollbar" 
 						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 						color: white; overflow-y: auto;">
-						<div style="padding-left:30px; padding-right:30px; padding-top:15px">
-							<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; padding-top:2px"
-							id="li-atSign">${board.mid}</a> ${board.bcontent}
+						<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
+							 <div style="white-space:pre;">${board.bcontent}</div>
 						</div>
 						
 						<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
 						
-						<div style="padding-left:30px; padding-right:30px;" id="commentlist_${board.bno}">
+						<div style="padding-left:30px; padding-right:30px; padding-bottom:15px;" id="commentlist_${board.bno}">
 							<c:forEach var="boardComment" items="${boardCommentsList.get(index)}">
-								<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+								<div style="padding-bottom:5px;">
+									<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+								</div>
 							</c:forEach>
 						</div>
 					</div>
-					<div style="height:20px">
+					<div style="height:20px; margin-bottom:70px;">
 			             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
 			             <button id="${board.bno}" class="bx bx-subdirectory-left" onclick="commentWrite('${board.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 		          	</div>

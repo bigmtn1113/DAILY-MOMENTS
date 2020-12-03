@@ -101,49 +101,49 @@
 		</div>
 
 		<div class="row portfolio-container">
-			<c:if test="${memberBcnt != 0}">
-				<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
-					<div class="col-lg-4 col-md-6 portfolio-item filter-app">
-						<div class="portfolio-wrap">
-							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
-								class="img-fluid">
-							
-							<div class="portfolio-info">
-								<h4>App 1</h4>
-								<p>App</p>
-								<div class="portfolio-links">
-									<a
-										href="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
-										data-gall="portfolioGallery" class="venobox" title="App 1"><i
-										class="bx bx-plus"></i>
-									</a>
-									<a
-									    id="li-portfolioDetails" href="javascript:portfolioDetails()"
-										data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-										class="venobox" title="Portfolio Details"><i
-										class="bx bx-link"></i>
-									</a>
-									<script type="text/javascript">
-										function portfolioDetails() {
-											$.ajax({
-												url : "portfolioDetails",
-												method : "GET",
-												success : function(data) {
-													$("#atSign").html(data);
-													$("#li-portfolioDetails").attr("href", "#atSign");
-													$("#li-portfolioDetails").click();
-													$("#li-portfolioDetails").attr("href", "javascript:portfolioDetails()");
-												}
-											});
-										}
-									</script>
-								</div>
+		
+			<c:forEach var="memberBphoto" items="${memberBphotos}">
+				<div class="col-lg-4 col-md-6 portfolio-item filter-app">
+					<div class="portfolio-wrap">
+						<img
+							src="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}"
+							class="img-fluid">
+						
+						<div class="portfolio-info">
+							<h4>App 1</h4>
+							<p>App</p>
+							<div class="portfolio-links">
+								<a
+									href="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}"
+									data-gall="portfolioGallery" class="venobox" title="App 1"><i
+									class="bx bx-plus"></i>
+								</a>
+								<a
+								    id="li-portfolioDetails" href="javascript:portfolioDetails()"
+									data-gall="portfolioDetailsGallery" data-vbtype="iframe"
+									class="venobox" title="Portfolio Details"><i
+									class="bx bx-link"></i>
+								</a>
+								<script type="text/javascript">
+									function portfolioDetails() {
+										$.ajax({
+											url : "portfolioDetails",
+											method : "GET",
+											success : function(data) {
+												$("#atSign").html(data);
+												$("#li-portfolioDetails").attr("href", "#atSign");
+												$("#li-portfolioDetails").click();
+												$("#li-portfolioDetails").attr("href", "javascript:portfolioDetails()");
+											}
+										});
+									}
+								</script>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-			</c:if>
+				</div>
+			</c:forEach>
+			
 		</div>
 	</div>
 </div>
