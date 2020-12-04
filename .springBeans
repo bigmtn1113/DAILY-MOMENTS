@@ -14,6 +14,7 @@
 		<config>src/main/resources/spring/root/multipart_resolver.xml</config>
 		<config>src/main/resources/spring/root/datasource.xml</config>
 		<config>src/main/resources/spring/root/security.xml</config>
+		<config>src/main/resources/mybatis/mapper/notice.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

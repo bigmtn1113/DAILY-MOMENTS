@@ -162,18 +162,7 @@
 				
 				
 				
-				
-				<script type="text/javascript">
-					function boardDetail(bno) {
-						$.ajax({
-							url:"boardDetail",
-							data: {bno:bno},
-							success:function(data) {
-								$("#board_result").html(data);
-							}
-						});
-					}
-				</script>
+		
 			
 			</div>
 

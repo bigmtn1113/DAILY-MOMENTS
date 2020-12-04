@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.notice">
+
+
+	<select id="countAll" resultType="int">
+			select count(*) from noticeboard
+	</select>
+	
+	<select id="selectByPage" parameterType="pager" resultType="notice">
+		select rnum, bno, btitle, bphoto, mphoto, bcontent, bdate, mid
+		from(
+		    select rownum as rnum, bno, btitle, bphoto, mphoto, bcontent, bdate, mid
+		    from (
+		    	select bno, btitle, bphoto, m.mphoto, bcontent, bdate, m.mid 
+		    	from noticeboard nb, member m 
+		    	where nb.mid = m.mid  
+		    	order by bno desc
+		    )
+		    where rownum &lt;=#{endRowNo}   <!-- &lt; : less than ~보다 적은  -->
+		)
+		where rnum &gt;=#{startRowNo}
+	</select>
+	
+	<insert id="insert" parameterType="notice">
+		<selectKey order="BEFORE" resultType="int" keyProperty="bno">  <!-- before면 아래 sql문 보다 selectKey 부분을 먼저 실행하겠다. after면 반대. -->
+			select seq_noticeboard_bno.nextval from dual
+		</selectKey>
+		
+		insert into noticeboard (bno, btitle, bcontent, bdate, mid)
+		values(seq_noticeboard_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{mid})
+		
+	</insert>
+
+	<select id="selectByBno" parameterType="int" resultType="notice">
+		select bno, btitle, bcontent, m.mphoto, bphoto, bdate, m.mid
+		from noticeboard nb, member m
+		where nb.mid = m.mid and nb.bno=#{bno}
+	</select>
+
+<delete id="deleteByBno" parameterType="int">
+	delete from noticeboard where bno = #{bno}
+</delete>
+
+<update id="updateNoticeDetail" parameterType="notice">
+	update noticeboard set btitle = #{btitle}, bcontent = #{bcontent} where bno = #{bno}
+</update>
+
+</mapper>
+

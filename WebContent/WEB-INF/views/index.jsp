@@ -277,6 +277,22 @@
 											});
 										}
 									</script>
+									
+									<a id="li-notice" class="dropdown-item" style="color: #0000ff;" href="javascript:notice()">Notice</a>
+									<script type="text/javascript">
+										function notice() {
+											$.ajax({
+												url : "notice",
+												method : "GET",
+												success : function(data) {
+													$("#notice").html(data);
+													$("#li-notice").attr("href", "#notice");
+													$("#li-notice").click();
+													$("#li-notice").attr("href", "javascript:notice()");
+												}
+											});
+										}
+									</script>
 		
 									<a class="dropdown-item" style="color: #0000ff;" href="logout">Logout</a>
 								</div>
@@ -296,6 +312,7 @@
 		<section id="profile"></section>
 		<section id="setting"></section>
 		<section id="qna"></section>
+		<section id="notice"></section>
 	
 		<!-- Vendor JS Files -->
 		<script src="<%=request.getContextPath()%>/resources/assets/vendor/jquery/jquery.min.js"></script>
