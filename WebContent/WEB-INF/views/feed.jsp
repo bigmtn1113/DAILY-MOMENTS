@@ -42,6 +42,16 @@
 						<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
 					</c:if>
 					
+					<c:if test="${board.mid == mid}">
+						<button class="btn" style="float: right; margin-top: 8px; margin-right: 8px; background: #18d26e; color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    :
+						</button>
+						<div class="dropdown-menu">
+						    <a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
+						    <a class="dropdown-item" href="#">삭제</a>
+						</div>
+					</c:if>
+					
 					<span style="float: right; margin-top: 15px; margin-right: 15px">
 						<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
 					</span>
@@ -105,6 +115,7 @@
 				</div>
 			</div>
 		</c:forEach>
+		
 		<script type="text/javascript">
 			function goProfile() {
 				$.ajax({
@@ -130,6 +141,21 @@
 						$("#li-atSign").attr("href", "#atSign");
 						$("#li-atSign").click();
 						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')");
+					}
+				});
+			}
+		</script>
+		<script>
+			function updateBoard(bno, bphoto, bcontent) {
+				$.ajax({
+					url: "updateBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto, bcontent: bcontent},
+					success: function(data) {
+						$("#writeForm").html(data);
+						$("#li-writeForm").attr("href", "#writeForm");
+						$("#li-writeForm").click();
+						$("#li-writeForm").attr("href", "javascript:writeForm()");
 					}
 				});
 			}

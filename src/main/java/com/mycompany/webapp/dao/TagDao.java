@@ -17,6 +17,11 @@ public class TagDao {
 		return rows;
 	}
 	
+	public int delete(Tag tag) {
+		int rows = sst.delete("mybatis.mapper.tag.delete", tag);
+		return rows;
+	}
+	
 	public String selectTag(String searchedTag) {
 		String tag = sst.selectOne("mybatis.mapper.tag.selectTag", searchedTag);
 		return tag;

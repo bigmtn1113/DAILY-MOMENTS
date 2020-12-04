@@ -17,6 +17,14 @@ public class BoardService {
 		boardDao.insert(board);
 	}
 	
+	public void updateOnlyBcontent(Board board) {
+		boardDao.updateOnlyBcontent(board);
+	}
+	
+	public void update(Board board) {
+		boardDao.update(board);
+	}
+	
 	public int getBno(String saveFileName) {
 		int bno = boardDao.selectBno(saveFileName);
 		return bno;

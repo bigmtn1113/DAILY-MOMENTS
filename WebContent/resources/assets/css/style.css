@@ -590,7 +590,7 @@ section .container {
   padding: 12px 15px;
 }
 
-.input-form .php-email-form button[type="submit"], .input-form .php-email-form #li-write {
+.input-form .php-email-form button[type="submit"], .input-form .php-email-form .li-writeFormBtn {
   background: #18d26e;
   border: 0;
   padding: 10px 30px;
@@ -599,7 +599,7 @@ section .container {
   border-radius: 4px;
 }
 
-.input-form .php-email-form button[type="submit"]:hover, .input-form .php-email-form #li-write:hover {
+.input-form .php-email-form button[type="submit"]:hover, .input-form .php-email-form .li-writeFormBtn:hover {
   background: #15bb62;
 }
 

@@ -11,6 +11,18 @@
 		values(#{bno}, #{bphoto}, #{bcontent}, sysdate, #{mid})
 	</insert>
 	
+	<update id="updateOnlyBcontent" parameterType="board">
+		update board
+		set bcontent = #{bcontent}
+		where bno = #{bno}
+	</update>
+	
+	<update id="update" parameterType="board">
+		update board
+		set bphoto = #{bphoto}, bcontent = #{bcontent}
+		where bno = #{bno}
+	</update>
+	
 	<select id="selectBno" parameterType="String" resultType="int">
 		select bno
 		from board

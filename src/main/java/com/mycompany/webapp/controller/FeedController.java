@@ -44,6 +44,8 @@ public class FeedController {
 		for (Board board : boards) {
 			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
 			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
+			
+			board.setBcontent(board.getBcontent().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>"));
 		}
 
 		model.addAttribute("boards", boards);
