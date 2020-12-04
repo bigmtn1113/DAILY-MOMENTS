@@ -31,10 +31,16 @@
 				</c:forEach>
 				
 				<div style="background-color: #1B1B1B; margin-top:30px;">	
-					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
+					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}" data-gall="portfolioDetailsGallery" class="venobox vbox-item">
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 					</a>
-					
+					<script>
+						$(function(){
+							$('.venobox').venobox({	
+								
+							});
+						});
+					</script>
 					<c:if test="${board.mid == mid}">
 						<a href="javascript:goProfile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
 					</c:if>
