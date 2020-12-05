@@ -87,7 +87,7 @@
 		}
 		
 		function update() {
-			var bno = ${board.bno};
+			var bno = '${board.bno}';
 			
 			var formdata = new FormData();
 			formdata.append("bcontent", $("#bcontent").val());

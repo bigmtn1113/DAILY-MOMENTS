@@ -12,7 +12,7 @@
 	<div class="row portfolio-container">
 		<c:forEach var="board" items="${boards}" varStatus="status">
 			<div class="col-sm-12 portfolio-item"
-				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
+				 style="border-radius:10px; width:100%; height:auto; border:2px solid white; margin-bottom:80px;">
 				
 				<c:set var="index" value="${status.index}"/>
 				<c:set var="isLikeboard" value="false"/>
@@ -47,8 +47,8 @@
 						    :
 						</button>
 						<div class="dropdown-menu">
-						    <a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
-						    <a class="dropdown-item" href="#">삭제</a>
+							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
+							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}')">삭제</a>
 						</div>
 					</c:if>
 					
@@ -129,8 +129,7 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function goAtSign(mid) {
 				$.ajax({
 					url : "atSign",
@@ -144,8 +143,7 @@
 					}
 				});
 			}
-		</script>
-		<script>
+			
 			function updateBoard(bno, bphoto, bcontent) {
 				$.ajax({
 					url: "updateBoard",
@@ -159,8 +157,28 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
+			function deleteBoard(bno) {
+				console.log(bno);
+				$.ajax({
+					url: "deleteBoard",
+					method: "GET",
+					data: {bno: bno},
+					success: function(data) {
+						$.ajax({
+							url: "feed",
+							method: "GET",
+							success: function(data) {
+								$("#feed").html(data);
+								$("#li-feed").attr("href", "#feed");
+								$("#li-feed").click();
+								$("#li-feed").attr("href", "javascript:feed()");
+							}
+						});
+					}
+				});
+			}
+			
 			function commentWrite(bno, mid) {
 				var comment = $("#content_" + bno).val();
 				$.ajax({
@@ -174,8 +192,7 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function ClickHeart(bno, mid) {
 				var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
 				var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
@@ -207,8 +224,7 @@
 					});
 				}
 			}
-		</script>
-		<script>
+			
 			function ClickBookmark(bno, mid) {
 				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png";
 				var selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";

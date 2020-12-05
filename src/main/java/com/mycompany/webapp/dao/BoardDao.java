@@ -63,4 +63,9 @@ public class BoardDao {
 		List<String> tagBoardPhotos = sst.selectList("mybatis.mapper.board.selectTagBoardPhotos", tname);
 		return tagBoardPhotos;
 	}
+
+	public int delete(int bno) {
+		int rows = sst.delete("mybatis.mapper.board.delete", bno);
+		return rows;
+	}
 }

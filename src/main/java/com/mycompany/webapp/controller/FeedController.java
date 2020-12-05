@@ -152,4 +152,10 @@ public class FeedController {
 		out.flush();
 		out.close();
 	}
+	
+	@RequestMapping("/deleteBoard")
+	public String deleteBoard(int bno) {
+		boardService.deleteBoard(bno);
+		return "feed";
+	}
 }

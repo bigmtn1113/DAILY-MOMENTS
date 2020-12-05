@@ -59,4 +59,8 @@ public class BoardService {
 		List<String> tagBoardPhotos = boardDao.selectTagBoardPhotos(tname);
 		return tagBoardPhotos;
 	}
+
+	public void deleteBoard(int bno) {
+		boardDao.delete(bno);
+	}
 }

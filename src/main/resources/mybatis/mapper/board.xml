@@ -91,4 +91,9 @@
 		order by bdate desc
 	</select>
 
+	<delete id="delete" parameterType="int">
+		delete board
+		where bno = #{bno}
+	</delete>
+
 </mapper>
