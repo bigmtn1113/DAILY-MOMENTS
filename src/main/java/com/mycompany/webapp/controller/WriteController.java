@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,5 +73,100 @@ public class WriteController {
 		}
 		
 		return "feed";
-	}	
+	}
+	
+	@PostMapping("/updateBoard")
+	public String updateBoard(Board board, HttpSession session) {
+		session.setAttribute("existingBoard", board);
+		return "writeForm";
+	}
+	
+	@PostMapping("/update")
+	public String update(MultipartHttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		/*existingBoard 삭제*/
+		Board existingBoard = (Board) session.getAttribute("existingBoard");
+		MultipartFile bphoto = request.getFile("bphoto");
+		
+		//파일 삭제
+		if (bphoto != null) {
+			File file = new File("D:/MyWorkspace/images/board/" + existingBoard.getBphoto());
+			if (file.exists()) file.delete();
+		}
+		
+		//content에서 tag들 추출
+		String temp = existingBoard.getBcontent();
+		List<String> tagNames = new ArrayList<>();
+		while (temp.contains("#")) {
+			int wordFirstIndex = temp.indexOf('#');
+			int wordLastIndex = temp.indexOf(' ', wordFirstIndex);
+			
+			if (wordLastIndex > 0) tagNames.add(temp.substring(wordFirstIndex + 1, wordLastIndex));
+			else tagNames.add(temp.substring(wordFirstIndex + 1));
+			
+			temp = temp.replaceFirst("#", "");
+		}
+		
+		//tag 삭제
+		Tag tag = new Tag();
+		for (String tagName : tagNames) {
+			tag.setTname(tagName);
+			tag.setBno(existingBoard.getBno());
+			tagService.delete(tag);
+		}
+		
+		//------------------------------------------------------------------------------------------
+		/*update*/
+		String bcontent = (String) request.getParameter("bcontent");
+		
+		//content에서 tag들 추출
+		temp = bcontent;
+		tagNames = new ArrayList<>();
+		while (temp.contains("#")) {
+			int wordFirstIndex = temp.indexOf('#');
+			int wordLastIndex = temp.indexOf(' ', wordFirstIndex);
+			
+			if (wordLastIndex > 0) tagNames.add(temp.substring(wordFirstIndex + 1, wordLastIndex));
+			else tagNames.add(temp.substring(wordFirstIndex + 1));
+			
+			temp = temp.replaceFirst("#", "");
+		}
+		
+		if (bphoto == null) {
+			Board board = new Board();
+			board.setBno(existingBoard.getBno());
+			board.setBcontent(bcontent);
+			boardService.updateOnlyBcontent(board);
+			
+			//tagNames 변경
+			tag = new Tag();
+			for (String tagName : tagNames) {
+				tag.setTname(tagName);
+				tag.setBno(existingBoard.getBno());
+				tagService.insert(tag);
+			}
+		} else if(!bphoto.isEmpty()) {
+			// 중복 방지를 위해 파일 앞에 시간 붙이기
+			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
+			try {
+				bphoto.transferTo(new File("D:/MyWorkspace/images/board/" + saveFileName));
+				
+				Board board = new Board();
+				board.setBno(existingBoard.getBno());
+				board.setBcontent(bcontent);
+				board.setBphoto(saveFileName);
+				boardService.update(board);
+				
+				//tagNames 변경
+				tag = new Tag();
+				for (String tagName : tagNames) {
+					tag.setTname(tagName);
+					tag.setBno(existingBoard.getBno());
+					tagService.insert(tag);
+				}
+			} catch (Exception e) {}
+		}
+		
+		session.removeAttribute("existingBoard");
+		return "feed";
+	}
 }

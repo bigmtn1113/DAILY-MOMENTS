@@ -17,6 +17,14 @@ public class BoardService {
 		boardDao.insert(board);
 	}
 	
+	public void updateOnlyBcontent(Board board) {
+		boardDao.updateOnlyBcontent(board);
+	}
+	
+	public void update(Board board) {
+		boardDao.update(board);
+	}
+	
 	public int getBno(String saveFileName) {
 		int bno = boardDao.selectBno(saveFileName);
 		return bno;
@@ -55,5 +63,9 @@ public class BoardService {
 	public Board getBphoto(String bphotoName) {
 		Board board = boardDao.selectBphotoName(bphotoName);
 		return board;
+	}
+
+	public void deleteBoard(int bno) {
+		boardDao.delete(bno);
 	}
 }

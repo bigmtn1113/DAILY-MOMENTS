@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.Bcomment;
@@ -44,6 +46,8 @@ public class FeedController {
 		for (Board board : boards) {
 			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
 			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
+			
+			board.setBcontent(board.getBcontent().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>"));
 		}
 
 		model.addAttribute("boards", boards);
@@ -149,5 +153,17 @@ public class FeedController {
 		out.println(json);
 		out.flush();
 		out.close();
+	}
+	
+	@PostMapping("/deleteBoard")
+	public String deleteBoard(int bno, String bphoto) {
+		boardService.deleteBoard(bno);
+		
+		if (bphoto != null) {
+			File file = new File("D:/MyWorkspace/images/board/" + bphoto);
+			if (file.exists()) file.delete();
+		}
+		
+		return "feed";
 	}
 }

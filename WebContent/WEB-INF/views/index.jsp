@@ -50,7 +50,7 @@
 					<a href="">FaceGram</a>
 				</h1>
 				<h2>
-					I'm a passionate <span>graphic designer</span> from New York
+					We're passionate <span>Web Programmer</span> from KOSA
 				</h2>
 	
 				<nav class="nav-menu d-none d-lg-block">
@@ -84,17 +84,17 @@
 								</script>
 							</li>
 							
-							<li><a id="li-join" href="javascript:join()">Join</a>
+							<li><a id="li-joinForm" href="javascript:joinForm()">Join</a>
 								<script type="text/javascript">
-									function join() {
+									function joinForm() {
 										$.ajax({
-											url : "join",
+											url : "joinForm",
 											method : "GET",
 											success : function(data) {
-												$("#join").html(data);
-												$("#li-join").attr("href", "#join");
-												$("#li-join").click();
-												$("#li-join").attr("href", "javascript:join()");
+												$("#joinForm").html(data);
+												$("#li-joinForm").attr("href", "#joinForm");
+												$("#li-joinForm").click();
+												$("#li-joinForm").attr("href", "javascript:joinForm()");
 											}
 										});
 									}
@@ -140,8 +140,6 @@
 									}
 								</script>
 							</li>
-		
-							<li><a href="#">Notification</a></li>
 		
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
 								<div class="dropdown-menu" style="opacity: 0.5;">
@@ -200,7 +198,7 @@
 							
 							<form id="searchForm" class="form-inline" onsubmit="return false">
 								<input class="form-control form-control-sm col-8 ml-3" type="text" id="searchedContent" name="searchedContent" placeholder="Search" onkeypress="if(event.keyCode == 13){search();}">
-							    <button type="button" style="width: 30px; background: #ddd; font-size: 18px; border-radius: 5px" onclick="search()"><i class="fa fa-search"></i></button>
+							    <button type="button" style="width: 33px; background: #ddd; font-size: 18px; border-radius: 5px" onclick="search()"><i class="fa fa-search"></i></button>
 							</form>
 							<script>
 								var mid = '${mid}';
@@ -228,7 +226,8 @@
 															title: 'Oops...',
 															text: 'Can\'t find Member',
 															footer: 'You should search for the Member that exists.'
-														})
+														});
+														$('.swal2-container').css("z-index", "10000");
 													}
 												}
 											});
@@ -249,7 +248,8 @@
 														title: 'Oops...',
 														text: 'Can\'t find Tag',
 														footer: 'You should search for the Tag that exists.'
-													})
+													});
+													$('.swal2-container').css("z-index", "10000");
 												}
 											}
 										});
@@ -259,7 +259,8 @@
 											title: 'Oops...',
 											text: 'The searched keyword is not valid',
 											footer: 'You must write @ or # in front of the keyword you search for.'
-										})
+										});
+										$('.swal2-container').css("z-index", "10000");
 									}
 								}
 	
@@ -294,7 +295,7 @@
 		</header>
 	
 		<section id="loginForm"></section>
-		<section id="join"></section>
+		<section id="joinForm"></section>
 		<section id="atSign"></section>
 		<section id="feed"></section>
 		<section id="tag"></section>

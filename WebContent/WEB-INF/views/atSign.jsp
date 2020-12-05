@@ -5,13 +5,13 @@
 
 	<div class="section-title">
 		<h2>Profile</h2>
-		<p>Introduce myself</p>
+		<p>Introduce</p>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-4" data-aos="fade-right">
 			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
-				class="img-fluid" style="width:340px; height:340px;">
+				class="img-fluid" style="width:330px; height:330px;">
 		</div>
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
 			<h3 style="display: inline; margin-right: 10px">ID : ${member.mid}</h3>
@@ -71,9 +71,9 @@
 				<div class="col-lg-6">
 					<ul>
 						<li></li>
-						<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> ${memberBcnt}</li>
-						<li id="li-followerCnt"><i class="icofont-rounded-right"></i> <strong>팔로워:</strong> ${followerCnt}</li>
-						<li><i class="icofont-rounded-right"></i> <strong>팔로잉:</strong> ${followingCnt}</li>
+						<li><i class="icofont-rounded-right"></i> <strong>Board:</strong> ${memberBcnt}</li>
+						<li id="li-followerCnt"><i class="icofont-rounded-right"></i> <strong>Follower:</strong> ${followerCnt}</li>
+						<li><i class="icofont-rounded-right"></i> <strong>Following:</strong> ${followingCnt}</li>
 					</ul>
 				</div>
 			</div>
@@ -86,18 +86,8 @@
 <div class="portfolio" id="protfolio">
 	<div class="container">
 		<div class="section-title">
-			<h2>Portfolio</h2>
-			<p>My Board</p>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12 d-flex justify-content-center">
-				<ul id="portfolio-flters">
-					<li data-filter=".filter-app">게시물</li>
-					<li data-filter=".filter-card">동영상</li>
-					<li data-filter=".filter-web">북마크</li>
-				</ul>
-			</div>
+			<h2>Board</h2>
+			<p>Board</p>
 		</div>
 
 		<div class="row portfolio-container">

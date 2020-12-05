@@ -19,6 +19,16 @@ public class BoardDao {
 		return rows;
 	}
 	
+	public int updateOnlyBcontent(Board board) {
+		int rows = sst.update("mybatis.mapper.board.updateOnlyBcontent", board);
+		return rows;
+	}
+	
+	public int update(Board board) {
+		int rows = sst.update("mybatis.mapper.board.update", board);
+		return rows;
+	}
+	
 	public int selectBno(String saveFileName) {
 		int bno = sst.selectOne("mybatis.mapper.board.selectBno", saveFileName);
 		return bno;
@@ -57,5 +67,10 @@ public class BoardDao {
 	public Board selectBphotoName(String bphotoName) {
 		Board board = sst.selectOne("mybatis.mapper.board.selectBphotoName", bphotoName);
 		return board;
+	}
+
+	public int delete(int bno) {
+		int rows = sst.delete("mybatis.mapper.board.delete", bno);
+		return rows;
 	}
 }

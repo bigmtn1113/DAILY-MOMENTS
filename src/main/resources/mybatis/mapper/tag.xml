@@ -6,6 +6,11 @@
 		insert into tag (tname, bno)
 		values (#{tname}, #{bno})
 	</insert>
+	
+	<update id="delete" parameterType="tag">
+		delete from tag
+		where bno = #{bno}
+	</update>
 
 	<select id="selectTag" parameterType="String" resultType="String">
 		select tname

@@ -12,7 +12,7 @@
 	<div class="row portfolio-container">
 		<c:forEach var="board" items="${boards}" varStatus="status">
 			<div class="col-sm-12 portfolio-item"
-				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
+				 style="border-radius:10px; width:100%; height:auto; border:2px solid white; margin-bottom:80px;">
 				
 				<c:set var="index" value="${status.index}"/>
 				<c:set var="isLikeboard" value="false"/>
@@ -46,6 +46,16 @@
 					</c:if>
 					<c:if test="${board.mid != mid}">
 						<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
+					</c:if>
+					
+					<c:if test="${board.mid == mid}">
+						<button class="btn" style="float: right; margin-top: 8px; margin-right: 8px; background: #18d26e; color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    :
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
+							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">삭제</a>
+						</div>
 					</c:if>
 					
 					<span style="float: right; margin-top: 15px; margin-right: 15px">
@@ -82,7 +92,7 @@
 		              		</button>
 	              		</c:if>
 						
-						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
+						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">Like ${likeCnts.get(index)}</div>
 					</div>
 
 		          	<div
@@ -111,6 +121,7 @@
 				</div>
 			</div>
 		</c:forEach>
+		
 		<script type="text/javascript">
 			function goProfile() {
 				$.ajax({
@@ -124,8 +135,7 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function goAtSign(mid) {
 				$.ajax({
 					url : "atSign",
@@ -139,8 +149,41 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
+			function updateBoard(bno, bphoto, bcontent) {
+				$.ajax({
+					url: "updateBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto, bcontent: bcontent},
+					success: function(data) {
+						$("#writeForm").html(data);
+						$("#li-writeForm").attr("href", "#writeForm");
+						$("#li-writeForm").click();
+						$("#li-writeForm").attr("href", "javascript:writeForm()");
+					}
+				});
+			}
+			
+			function deleteBoard(bno, bphoto) {
+				$.ajax({
+					url: "deleteBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto},
+					success: function(data) {
+						$.ajax({
+							url: "feed",
+							method: "GET",
+							success: function(data) {
+								$("#feed").html(data);
+								$("#li-feed").attr("href", "#feed");
+								$("#li-feed").click();
+								$("#li-feed").attr("href", "javascript:feed()");
+							}
+						});
+					}
+				});
+			}
+			
 			function commentWrite(bno, mid) {
 				var comment = $("#content_" + bno).val();
 				$.ajax({
@@ -154,8 +197,7 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function ClickHeart(bno, mid) {
 				var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
 				var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
@@ -168,7 +210,7 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
@@ -181,14 +223,13 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
 				}
 			}
-		</script>
-		<script>
+			
 			function ClickBookmark(bno, mid) {
 				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png";
 				var selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
