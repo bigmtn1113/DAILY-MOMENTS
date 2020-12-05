@@ -36,8 +36,8 @@
 					};
 				</script>
 			
-			<input style="display:none" type="file" id="bmovie" accept="video/*"/>
-				<label for="bmovie" style="float: right;"><img src="<%=request.getContextPath()%>/resources/assets/img/need/movie.png"/></label>
+			<%-- <input style="display:none" type="file" id="bmovie" accept="video/*"/>
+				<label for="bmovie" style="float: right;"><img src="<%=request.getContextPath()%>/resources/assets/img/need/movie.png"/></label> --%>
 		</div>
 		
 		<div style="clear: both"></div>
@@ -60,6 +60,18 @@
 		$('#bcontent').val(str);
 	
 		function write() {
+			if (!$("#bphoto")[0].files[0]) {
+				Swal.fire({
+					icon: 'info',
+					title: 'Oops...',
+					text: 'You can\'t write',
+					footer: 'You must upload image file'
+				});
+				$('.swal2-container').css("z-index", "10000");
+				
+				return;
+			}
+			
 			var formdata = new FormData();
 			formdata.append("mid", $("#mid").val());
 			formdata.append("bcontent", $("#bcontent").val());

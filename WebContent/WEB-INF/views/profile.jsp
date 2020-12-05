@@ -34,7 +34,7 @@
 <div class="portfolio" id="protfolio">
 	<div class="container">
 		<div class="section-title">
-			<h2>Portfolio</h2>
+			<h2>Board</h2>
 			<p>My Board</p>
 		</div>
 
@@ -42,7 +42,7 @@
 			<div class="col-lg-12 d-flex justify-content-center">
 				<ul id="portfolio-flters">
 					<li id="filter-board" data-filter=".filter-board" class="filter-active">게시물</li>
-					<li id="filter-video" data-filter=".filter-video">동영상</li>
+					<!-- <li id="filter-video" data-filter=".filter-video">동영상</li> -->
 					<li id="filter-bookmark" data-filter=".filter-bookmark">북마크</li>
 				</ul>
 			</div>

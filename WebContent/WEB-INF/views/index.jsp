@@ -50,7 +50,7 @@
 					<a href="">FaceGram</a>
 				</h1>
 				<h2>
-					I'm a passionate <span>graphic designer</span> from New York
+					We're passionate <span>Web Programmer</span> from KOSA
 				</h2>
 	
 				<nav class="nav-menu d-none d-lg-block">
@@ -141,8 +141,6 @@
 								</script>
 							</li>
 		
-							<li><a href="#">Notification</a></li>
-		
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
 								<div class="dropdown-menu" style="opacity: 0.5;">
 		
@@ -228,7 +226,8 @@
 															title: 'Oops...',
 															text: 'Can\'t find Member',
 															footer: 'You should search for the Member that exists.'
-														})
+														});
+														$('.swal2-container').css("z-index", "10000");
 													}
 												}
 											});
@@ -249,7 +248,8 @@
 														title: 'Oops...',
 														text: 'Can\'t find Tag',
 														footer: 'You should search for the Tag that exists.'
-													})
+													});
+													$('.swal2-container').css("z-index", "10000");
 												}
 											}
 										});
@@ -259,7 +259,8 @@
 											title: 'Oops...',
 											text: 'The searched keyword is not valid',
 											footer: 'You must write @ or # in front of the keyword you search for.'
-										})
+										});
+										$('.swal2-container').css("z-index", "10000");
 									}
 								}
 	

@@ -5,7 +5,7 @@
 
 	<div class="section-title">
 		<h2>Profile</h2>
-		<p>Introduce myself</p>
+		<p>Introduce</p>
 	</div>
 
 	<div class="row">
@@ -86,16 +86,15 @@
 <div class="portfolio" id="protfolio">
 	<div class="container">
 		<div class="section-title">
-			<h2>Portfolio</h2>
-			<p>My Board</p>
+			<h2>Board</h2>
+			<p>Board</p>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-12 d-flex justify-content-center">
 				<ul id="portfolio-flters">
 					<li data-filter=".filter-app">게시물</li>
-					<li data-filter=".filter-card">동영상</li>
-					<li data-filter=".filter-web">북마크</li>
+					<!-- <li data-filter=".filter-card">동영상</li> -->
 				</ul>
 			</div>
 		</div>
