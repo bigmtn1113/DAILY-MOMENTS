@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.Bcomment;
@@ -153,9 +155,15 @@ public class FeedController {
 		out.close();
 	}
 	
-	@RequestMapping("/deleteBoard")
-	public String deleteBoard(int bno) {
+	@PostMapping("/deleteBoard")
+	public String deleteBoard(int bno, String bphoto) {
 		boardService.deleteBoard(bno);
+		
+		if (bphoto != null) {
+			File file = new File("D:/MyWorkspace/images/board/" + bphoto);
+			if (file.exists()) file.delete();
+		}
+		
 		return "feed";
 	}
 }

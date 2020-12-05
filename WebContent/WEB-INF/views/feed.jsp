@@ -48,7 +48,7 @@
 						</button>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
-							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}')">삭제</a>
+							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">삭제</a>
 						</div>
 					</c:if>
 					
@@ -158,12 +158,11 @@
 				});
 			}
 			
-			function deleteBoard(bno) {
-				console.log(bno);
+			function deleteBoard(bno, bphoto) {
 				$.ajax({
 					url: "deleteBoard",
-					method: "GET",
-					data: {bno: bno},
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto},
 					success: function(data) {
 						$.ajax({
 							url: "feed",
