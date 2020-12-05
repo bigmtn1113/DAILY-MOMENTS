@@ -31,4 +31,9 @@ public class MemberDao {
 		String mid = sst.selectOne("mybatis.mapper.member.selectMid", searchedId);
 		return mid;
 	}
+
+	public String selectMphoto(String mid) {
+		String mphoto = sst.selectOne("mybatis.mapper.member.selectMphoto", mid);
+		return mphoto;
+	}
 }

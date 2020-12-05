@@ -51,4 +51,9 @@ public class BoardService {
 		List<String> tagBoardPhotos = boardDao.selectTagBoardPhotos(tname);
 		return tagBoardPhotos;
 	}
+
+	public Board getBphoto(String bphotoName) {
+		Board board = boardDao.selectBphotoName(bphotoName);
+		return board;
+	}
 }

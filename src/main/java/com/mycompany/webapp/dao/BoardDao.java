@@ -53,4 +53,9 @@ public class BoardDao {
 		List<String> tagBoardPhotos = sst.selectList("mybatis.mapper.board.selectTagBoardPhotos", tname);
 		return tagBoardPhotos;
 	}
+
+	public Board selectBphotoName(String bphotoName) {
+		Board board = sst.selectOne("mybatis.mapper.board.selectBphotoName", bphotoName);
+		return board;
+	}
 }

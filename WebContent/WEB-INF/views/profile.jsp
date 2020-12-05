@@ -62,10 +62,8 @@
 								src="<%=request.getContextPath()%>/resources/images/board/${mBAndMBM.bphoto}"
 								class="img-fluid" alt="">
 							<div class="portfolio-info">
-								<h4>App 1</h4>
-								<p>App</p>
 								<div class="portfolio-links">
-									<a href="portfolioDetails"
+									<a href="portfolioDetails?bphoto=${mBAndMBM.bphoto}"
 										data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox">
 										<i class="bx bx-link"></i>
 									</a>

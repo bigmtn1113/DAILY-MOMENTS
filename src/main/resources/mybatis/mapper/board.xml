@@ -78,5 +78,11 @@
 		on t.bno = b.bno
 		order by bdate desc
 	</select>
+	
+	<select id="selectBphotoName" resultType="board">
+		select bno, bphoto, bcontent, mid
+		from board
+		where bphoto = #{bphotoName}
+	</select>
 
 </mapper>
