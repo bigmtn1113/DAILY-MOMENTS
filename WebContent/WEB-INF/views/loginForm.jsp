@@ -44,8 +44,7 @@
 		}
 	</script>
 	
-	
 	<div id="errorDiv" class="alert alert-danger" style="margin-top:10px; width:auto; display:none;" role="alert">
-		아이디 또는 비밀번호가 잘못되었습니다.
+		Invalid ID or Password
 	</div>
 </div>
