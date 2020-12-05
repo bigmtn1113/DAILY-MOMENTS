@@ -86,7 +86,7 @@
 		              		</button>
 	              		</c:if>
 						
-						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
+						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">Like ${likeCnts.get(index)}</div>
 					</div>
 
 		          	<div
@@ -204,7 +204,7 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
@@ -217,7 +217,7 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
