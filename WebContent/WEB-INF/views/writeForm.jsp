@@ -22,8 +22,9 @@
 			</div>
 		</c:if>
 		<div class="form-group">
+			<label style="margin-bottom: 10px">Content</label>
 			<textarea class="form-control" name="bcontent" id="bcontent" rows="5"
-				placeholder="내용을 작성하세요."><c:out value="${board.bcontent}"/></textarea>
+				placeholder="Write content"><c:out value="${board.bcontent}"/></textarea>
 		</div>
 
 		<div class="form-group">
@@ -44,12 +45,12 @@
 
 		<c:if test="${board.bno == null}">
 			<div style="margin-top: 15px">
-				<a class="btn btn-primary btn-lg btn-block li-writeFormBtn" href="javascript:write()">Write</a>
+				<a class="btn btn-lg btn-block okBtn" href="javascript:write()">Write</a>
 			</div>
 		</c:if>
 		<c:if test="${board.bno != null}">
 			<div style="margin-top: 15px">
-				<a class="btn btn-primary btn-lg btn-block li-writeFormBtn" href="javascript:update()">Update</a>
+				<a class="btn btn-lg btn-block okBtn" href="javascript:update()">Update</a>
 			</div>
 		</c:if>
 	</form>

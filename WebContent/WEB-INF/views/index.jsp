@@ -84,17 +84,17 @@
 								</script>
 							</li>
 							
-							<li><a id="li-join" href="javascript:join()">Join</a>
+							<li><a id="li-joinForm" href="javascript:joinForm()">Join</a>
 								<script type="text/javascript">
-									function join() {
+									function joinForm() {
 										$.ajax({
-											url : "join",
+											url : "joinForm",
 											method : "GET",
 											success : function(data) {
-												$("#join").html(data);
-												$("#li-join").attr("href", "#join");
-												$("#li-join").click();
-												$("#li-join").attr("href", "javascript:join()");
+												$("#joinForm").html(data);
+												$("#li-joinForm").attr("href", "#joinForm");
+												$("#li-joinForm").click();
+												$("#li-joinForm").attr("href", "javascript:joinForm()");
 											}
 										});
 									}
@@ -295,7 +295,7 @@
 		</header>
 	
 		<section id="loginForm"></section>
-		<section id="join"></section>
+		<section id="joinForm"></section>
 		<section id="atSign"></section>
 		<section id="feed"></section>
 		<section id="tag"></section>

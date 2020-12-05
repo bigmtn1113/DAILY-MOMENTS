@@ -28,10 +28,10 @@ public class HomeController {
 		return "loginForm";
 	}
 	
-	@GetMapping("/join")
+	@GetMapping("/joinForm")
 	public String join() {
 		
-		return "join";
+		return "joinForm";
 	}
 	
 	@PostMapping("/join")
