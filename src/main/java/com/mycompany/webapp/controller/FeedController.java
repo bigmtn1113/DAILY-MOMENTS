@@ -45,7 +45,7 @@ public class FeedController {
 		
 		for (Board board : boards) {
 			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
-			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
+			boardCommentsList.add(bcommentService.getBcomments(board.getBno()));
 			
 			board.setBcontent(board.getBcontent().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>"));
 		}
@@ -77,9 +77,7 @@ public class FeedController {
 	@RequestMapping("/LikeClick")
 	public void LikeClick(int bno, String mid, HttpSession session, HttpServletResponse response,Model model) throws IOException, ServletException {
 		
-		Blike blike=new Blike();
-		blike.setBno(bno);
-		blike.setMid(mid);
+		Blike blike=new Blike(bno, mid);
 		blikeService.likeClick(blike);
 		
 		int likeCntsClick=blikeService.countLikes(bno);
@@ -99,9 +97,7 @@ public class FeedController {
 	@RequestMapping("/DisLikeClick")
 	public void DisLikeClick(int bno, String mid, HttpSession session, HttpServletResponse response, Model model) throws IOException, ServletException {
 		
-		Blike blike=new Blike();
-		blike.setBno(bno);
-		blike.setMid(mid);
+		Blike blike=new Blike(bno, mid);
 		blikeService.dislikeClick(blike);
 		
 		int likeCntsClick=blikeService.countLikes(bno);
@@ -121,9 +117,7 @@ public class FeedController {
 	
 	@RequestMapping("/BookmarkClick")
 	public void BookmarKClick(int bno, String mid, HttpServletResponse response) throws IOException, ServletException {
-		Bookmark bookmark=new Bookmark();
-		bookmark.setBno(bno);
-		bookmark.setMid(mid);
+		Bookmark bookmark=new Bookmark(bno, mid);
 		bookmarkService.bookmarkClick(bookmark);
 		
 		JSONObject jsonObject = new JSONObject();
@@ -139,7 +133,7 @@ public class FeedController {
 	
 	@RequestMapping("/DisBookmarkClick")
 	public void DisBookmarkClick(int bno, String mid, HttpServletResponse response) throws IOException, ServletException {
-		Bookmark bookmark=new Bookmark();
+		Bookmark bookmark=new Bookmark(bno, mid);
 		bookmark.setBno(bno);
 		bookmark.setMid(mid);
 		bookmarkService.disbookmarkClick(bookmark);

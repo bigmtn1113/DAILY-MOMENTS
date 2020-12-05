@@ -63,15 +63,13 @@
 								class="img-fluid" alt="">
 							<div class="portfolio-info">
 								<div class="portfolio-links">
-									<a href="portfolioDetails?bphoto=${mBAndMBM.bphoto}"
+									<a href="portfolioDetails?mid=${mid}&bphoto=${mBAndMBM.bphoto}"
 										data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox">
 										<i class="bx bx-link"></i>
 									</a>
 									<script>
 										$(function(){
-											$('.venobox').venobox({
-												
-											});
+											$('.venobox').venobox({});
 										});
 									</script>
 								</div>

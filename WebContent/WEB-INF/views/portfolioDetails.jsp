@@ -37,37 +37,32 @@
 				<div class="row">
 					<div class="col-lg-8">
 					
-					<c:set var="index" value="${status.index}"/>
-					<c:set var="isLikeboard" value="false"/>
-					<c:set var="isBookmarkboard" value="false"/>
-					
-					<c:forEach var="blike" items="${blikes}">
-						<c:if test="${blike.bno == board.bno}">
-							<c:set var="isLikeboard" value="true"/>
-						</c:if>
-					</c:forEach>
-					
-					<c:forEach var="bookmark" items="${bookmarks}">
-						<c:if test="${bookmark.bno == board.bno}">
-							<c:set var="isBookmarkboard" value="true"/>
-						</c:if>
-					</c:forEach>
-					
 						<div style="background-color: #1B1B1B;">	
-							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${mphoto}"/>
+							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 							
 							<c:if test="${board.mid == mid}">
-								<a href="javascript:goProfile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
+								<a href="javascript:profile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
 							</c:if>
 							<c:if test="${board.mid != mid}">
-								<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
+								<a href="javascript:atSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
+							</c:if>
+							
+							<c:if test="${board.mid == mid}">
+								<button class="btn" style="float: right; margin-top: 8px; margin-right: 8px; background: #18d26e; color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    :
+								</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
+									<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">삭제</a>
+								</div>
 							</c:if>
 							
 							<span style="float: right; margin-top: 15px; margin-right: 15px">
 								<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
 							</span>
 						</div>
-						<div class="container" style="text-align: center">
+						
+						<div class="container mt-3" style="text-align: center">
 							<img
 								src="<%=request.getContextPath()%>/resources/images/board/${board.bphoto}"
 								class="img-fluid">
@@ -87,9 +82,9 @@
 							<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
 							
 							<div style="padding-left:30px; padding-right:30px; padding-bottom:15px;" id="commentlist_${board.bno}">
-								<c:forEach var="boardComment" items="${boardCommentsList.get(index)}">
+								<c:forEach var="bcomment" items="${bcomments}">
 									<div style="padding-bottom:5px;">
-										<a href="#"><c:out value="${boardComment.mid}"/></a> : <c:out value="${boardComment.ccontent}"/><br/>
+										<a href="#"><c:out value="${bcomment.mid}"/></a> : <c:out value="${bcomment.ccontent}"/><br/>
 									</div>
 								</c:forEach>
 							</div>
@@ -98,36 +93,147 @@
 						<div style="height: 40px; margin-bottom:10px">
 
 							<button type="button" style="float:left; border:none; outline:none; background:none;">
-								<c:if test="${isLikeboard == true}">
+								<c:if test="${likeClick == 1}">
 									<img onclick ="ClickHeart('${board.bno}','${mid}');" id="img-heart_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png">
 								</c:if>
-								<c:if test="${isLikeboard == false}">
+								<c:if test="${likeClick == 0}">
 									<img onclick ="ClickHeart('${board.bno}','${mid}');" id="img-heart_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/heart.png">
 								</c:if>
 							</button>
 							
 							<c:if test="${board.mid != mid}">
 			              		<button type="button" style="float:right; border:none; outline:none; background:none;">
-			              			<c:if test="${isBookmarkboard == true}">
+			              			<c:if test="${bookmarkClick == 1}">
 			              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
 			              			</c:if>
-			              			<c:if test="${isBookmarkboard == false}">
+			              			<c:if test="${bookmarkClick == 0}">
 			              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
 			              			</c:if>
 			              		</button>
 		              		</c:if>
 							
-							<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
+							<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">Like ${likeCnt}</div>
 						</div>
 
 						<div style="height:20px; margin-bottom:70px;">
-				             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
-				             <button id="${board.bno}" class="bx bx-subdirectory-left" onclick="commentWrite('${board.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
+							<textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="Write Comment... "></textarea>
+							<button id="${board.bno}" class="bx bx-subdirectory-left" onclick="commentWrite('${board.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 			          	</div>
 					</div>
 				</div>
 			</div>
 		</main>
+		
+		<script type="text/javascript">
+			function updateBoard(bno, bphoto, bcontent) {
+				$.ajax({
+					url: "updateBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto, bcontent: bcontent},
+					success: function(data) {
+						$("#writeForm").html(data);
+						$("#li-writeForm").attr("href", "#writeForm");
+						$("#li-writeForm").click();
+						$("#li-writeForm").attr("href", "javascript:writeForm()");
+					}
+				});
+			}
+			
+			function deleteBoard(bno, bphoto) {
+				$.ajax({
+					url: "deleteBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto},
+					success: function(data) {
+						$.ajax({
+							url: "feed",
+							method: "GET",
+							success: function(data) {
+								$("#feed").html(data);
+								$("#li-feed").attr("href", "#feed");
+								$("#li-feed").click();
+								$("#li-feed").attr("href", "javascript:feed()");
+							}
+						});
+					}
+				});
+			}
+			
+			function commentWrite(bno, mid) {
+				var comment = $("#content_" + bno).val();
+				$.ajax({
+					url : "commentWrite",
+					data:{ccomment:comment, bno:bno, mid:mid},
+					method : "POST",
+					success : function(data) {
+						$("#commentlist_"+bno).html(data);
+						$("#content_"+bno).val("");
+						$("#midcontentcomment_"+bno).scrollTop($("#midcontentcomment_"+bno)[0].scrollHeight);
+					}
+				});
+			}
+			
+			function ClickHeart(bno, mid) {
+				var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
+				var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
+				
+				if(document.getElementById('img-heart_'+bno).src==heart){ // 빈 하트일 때
+					$.ajax({
+						url : "LikeClick",
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
+							}
+						}
+					});
+				}
+				else{ // 선택된 하트일 때
+					$.ajax({
+						url : "DisLikeClick",
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
+							}
+						}
+					});
+				}
+			}
+			
+			function ClickBookmark(bno, mid) {
+				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png";
+				var selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
+				if(document.getElementById('img-bookmark_'+bno).src==bookmark){ // 빈 북마크일 때
+					$.ajax({
+						url : "BookmarkClick",
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-bookmark_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png");
+							}
+						}
+					});
+				}
+				else{ //선택된 북마크일 때
+					$.ajax({
+						url : "DisBookmarkClick", 
+						data : {bno:bno, mid:mid},
+						method : "POST",
+						success : function(data){
+							if(data.result=="success"){
+								$("#img-bookmark_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png");
+							}
+						}
+					});
+				}
+			}
+		</script>
 	
 		<!-- Vendor JS Files -->
 		<script src="<%=request.getContextPath()%>/resources/assets/vendor/jquery/jquery.min.js"></script>
@@ -200,7 +306,7 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
@@ -213,7 +319,7 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick+);
 							}
 						}
 					});

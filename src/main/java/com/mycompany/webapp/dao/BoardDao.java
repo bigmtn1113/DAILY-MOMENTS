@@ -53,6 +53,11 @@ public class BoardDao {
 		List<Board> mBAndMBMs = sst.selectList("mybatis.mapper.board.selectMBAndMBMs", mid);
 		return mBAndMBMs;
 	}
+	
+	public Board selectBoard(String bphoto) {
+		Board board = sst.selectOne("mybatis.mapper.board.selectBoard", bphoto);
+		return board;
+	}
 
 	public List<Board> selectBoards(String mid) {
 		List<Board> boards = sst.selectList("mybatis.mapper.board.selectBoards", mid);

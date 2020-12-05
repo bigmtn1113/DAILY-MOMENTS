@@ -514,7 +514,7 @@ section .container {
 }
 
 .portfolio .portfolio-wrap:hover .portfolio-info {
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .portfolio .portfolio-wrap:hover .portfolio-info::before {

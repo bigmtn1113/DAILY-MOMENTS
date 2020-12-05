@@ -62,6 +62,14 @@
 		on bm.bno = b.bno)
 		order by bdate desc
 	</select>
+	
+	<select id="selectBoard" parameterType="String" resultType="board">
+		select b.bno, b.bphoto, b.bcontent, b.bdate, b.mid, m.mphoto
+		from(select bno, bphoto, bcontent, bdate, mid
+		    from board
+		    where bphoto = #{bphoto}) b join member m
+		on b.mid = m.mid
+	</select>
 
 	<select id="selectBoards" parameterType="String" resultType="board">
 		(select bno, bphoto, bcontent, bdate, m.mid, mphoto
@@ -89,12 +97,6 @@
 		    where tname = #{tname}) t join board b
 		on t.bno = b.bno
 		order by bdate desc
-	</select>
-	
-	<select id="selectBphotoName" resultType="board">
-		select bno, bphoto, bcontent, mid
-		from board
-		where bphoto = #{bphotoName}
 	</select>
 
 	<delete id="delete" parameterType="int">

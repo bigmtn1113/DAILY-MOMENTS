@@ -7,6 +7,11 @@ public class Blike {
 	private String mid;
 	private Date ldate;
 	
+	public Blike(int bno, String mid) {
+		this.bno = bno;
+		this.mid = mid;
+	}
+	
 	public int getBno() {
 		return bno;
 	}

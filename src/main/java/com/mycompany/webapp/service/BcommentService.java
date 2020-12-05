@@ -13,9 +13,9 @@ import com.mycompany.webapp.dto.Bcomment;
 public class BcommentService {
 	@Resource private BcommentDao bcommentDao;
 	
-	public List<Bcomment> getBoardComments(int bno) {
-		List<Bcomment> boardComments = bcommentDao.selectBoardComments(bno);
-		return boardComments;
+	public List<Bcomment> getBcomments(int bno) {
+		List<Bcomment> bcomments = bcommentDao.selectBcomments(bno);
+		return bcomments;
 	}
 	
 	public void CommentsWrite(Bcomment bcomment) {

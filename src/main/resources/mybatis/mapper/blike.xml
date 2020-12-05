@@ -29,4 +29,10 @@
 		from blike
 		where bno=#{bno}
 	</select>
+	
+	<select id="selectLikeClickCheck" parameterType="blike" resultType="int">
+		select count(*)
+		from blike
+		where bno = #{bno} and mid = #{mid}
+	</select>
 </mapper>

@@ -50,6 +50,11 @@ public class BoardService {
 		return mbAndMBMs;
 	}
 
+	public Board getBoard(String bphoto) {
+		Board board = boardDao.selectBoard(bphoto);
+		return board;
+	}
+	
 	public List<Board> getBoards(String mid) {
 		List<Board> boards = boardDao.selectBoards(mid);
 		return boards;
@@ -58,11 +63,6 @@ public class BoardService {
 	public List<String> getTagBoardPhotos(String tname) {
 		List<String> tagBoardPhotos = boardDao.selectTagBoardPhotos(tname);
 		return tagBoardPhotos;
-	}
-
-	public Board getBphoto(String bphotoName) {
-		Board board = boardDao.selectBphotoName(bphotoName);
-		return board;
 	}
 
 	public void deleteBoard(int bno) {

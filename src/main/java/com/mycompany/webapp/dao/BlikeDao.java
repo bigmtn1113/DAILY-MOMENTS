@@ -8,7 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.webapp.dto.Blike;
-import com.mycompany.webapp.dto.Board;
 
 @Repository
 public class BlikeDao {
@@ -38,5 +37,10 @@ public class BlikeDao {
 	public int countLikeClick(int bno) {
 		int rows=sst.selectOne("mybatis.mapper.blike.countLikeClick",bno);
 		return rows;
+	}
+
+	public int selectLikeClickCheck(Blike blike) {
+		int likeClick = sst.selectOne("mybatis.mapper.blike.selectLikeClickCheck", blike);
+		return likeClick;
 	}
 }

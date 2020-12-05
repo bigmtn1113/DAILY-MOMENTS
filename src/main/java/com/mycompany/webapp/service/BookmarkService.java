@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BookmarkDao;
-import com.mycompany.webapp.dto.Blike;
 import com.mycompany.webapp.dto.Bookmark;
 
 @Service
@@ -27,5 +26,10 @@ public class BookmarkService {
 	public List<Bookmark> getBookmarks(String mid) {
 		List<Bookmark> bookmarks = bookmarkDao.selectBookmarks(mid);
 		return bookmarks;
+	}
+
+	public int checkBookmarkClick(Bookmark bookmark) {
+		int bookmarkClick = bookmarkDao.selectBookmarkClickCheck(bookmark);
+		return bookmarkClick;
 	}
 }

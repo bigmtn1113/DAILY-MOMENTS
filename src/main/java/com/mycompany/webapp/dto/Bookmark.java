@@ -7,6 +7,11 @@ public class Bookmark {
 	private String mid;
 	private Date bmdate;
 	
+	public Bookmark(int bno, String mid) {
+		this.bno = bno;
+		this.mid = mid;
+	}
+	
 	public int getBno() {
 		return bno;
 	}
