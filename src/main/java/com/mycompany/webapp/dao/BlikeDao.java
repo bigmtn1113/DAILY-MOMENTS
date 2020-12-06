@@ -45,4 +45,9 @@ public class BlikeDao {
 		int rows=sst.selectOne("mybatis.mapper.blike.countLikeClick",bno);
 		return rows;
 	}
+
+	public int selectLikeClickCheck(Blike blike) {
+		int likeClick = sst.selectOne("mybatis.mapper.blike.selectLikeClickCheck", blike);
+		return likeClick;
+	}
 }

@@ -5,13 +5,13 @@
 
 	<div class="section-title">
 		<h2>Profile</h2>
-		<p>Introduce myself</p>
+		<p>Introduce</p>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-4" data-aos="fade-right">
 			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
-				class="img-fluid" style="width:340px; height:340px;">
+				class="img-fluid" style="width:330px; height:330px;">
 		</div>
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
 			<h3 style="display: inline; margin-right: 10px">ID : ${member.mid}</h3>
@@ -179,64 +179,54 @@
 <div class="portfolio" id="protfolio">
 	<div class="container">
 		<div class="section-title">
-			<h2>Portfolio</h2>
-			<p>My Board</p>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12 d-flex justify-content-center">
-				<ul id="portfolio-flters">
-					<li data-filter=".filter-app">게시물</li>
-					<li data-filter=".filter-card">동영상</li>
-					<li data-filter=".filter-web">북마크</li>
-				</ul>
-			</div>
+			<h2>Board</h2>
+			<p>Board</p>
 		</div>
 
 		<div class="row portfolio-container">
-			<c:if test="${memberBcnt != 0}">
-				<c:forEach var="bcnt" begin="0" end="${memberBcnt - 1}">
-					<div class="col-lg-4 col-md-6 portfolio-item filter-app">
-						<div class="portfolio-wrap">
-							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
-								class="img-fluid">
-							
-							<div class="portfolio-info">
-								<h4>App 1</h4>
-								<p>App</p>
-								<div class="portfolio-links">
-									<a
-										href="<%=request.getContextPath()%>/resources/images/board/${memberBphotos.get(bcnt)}"
-										data-gall="portfolioGallery" class="venobox" title="App 1"><i
-										class="bx bx-plus"></i>
-									</a>
-									<a
-									    id="li-portfolioDetails" href="javascript:portfolioDetails()"
-										data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-										class="venobox" title="Portfolio Details"><i
-										class="bx bx-link"></i>
-									</a>
-									<script type="text/javascript">
-										function portfolioDetails() {
-											$.ajax({
-												url : "portfolioDetails",
-												method : "GET",
-												success : function(data) {
-													$("#atSign").html(data);
-													$("#li-portfolioDetails").attr("href", "#atSign");
-													$("#li-portfolioDetails").click();
-													$("#li-portfolioDetails").attr("href", "javascript:portfolioDetails()");
-												}
-											});
-										}
-									</script>
-								</div>
+		
+			<c:forEach var="memberBphoto" items="${memberBphotos}">
+				<div class="col-lg-4 col-md-6 portfolio-item filter-app">
+					<div class="portfolio-wrap">
+						<img
+							src="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}"
+							class="img-fluid">
+						
+						<div class="portfolio-info">
+							<h4>App 1</h4>
+							<p>App</p>
+							<div class="portfolio-links">
+								<a
+									href="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}"
+									data-gall="portfolioGallery" class="venobox" title="App 1"><i
+									class="bx bx-plus"></i>
+								</a>
+								<a
+								    id="li-portfolioDetails" href="javascript:portfolioDetails()"
+									data-gall="portfolioDetailsGallery" data-vbtype="iframe"
+									class="venobox" title="Portfolio Details"><i
+									class="bx bx-link"></i>
+								</a>
+								<script type="text/javascript">
+									function portfolioDetails() {
+										$.ajax({
+											url : "portfolioDetails",
+											method : "GET",
+											success : function(data) {
+												$("#atSign").html(data);
+												$("#li-portfolioDetails").attr("href", "#atSign");
+												$("#li-portfolioDetails").click();
+												$("#li-portfolioDetails").attr("href", "javascript:portfolioDetails()");
+											}
+										});
+									}
+								</script>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-			</c:if>
+				</div>
+			</c:forEach>
+			
 		</div>
 	</div>
 </div>

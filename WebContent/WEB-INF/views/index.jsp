@@ -53,115 +53,21 @@
 					<a href="">FaceGram</a>
 				</h1>
 				<h2>
-					I'm a passionate <span>graphic designer</span> from New York
+					We're passionate <span>Web Programmer</span> from KOSA
 				</h2>
 	
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
-						<c:if test="${mid != null}">
-							<form class="form-inline">
-								<input class="form-control form-control-sm ml-3 w-75" type="text" id="searchedContent" name="searchedContent" placeholder="Search" onkeyup="printSearchedContent()">
-							    <button type="button" style="background: #ddd; font-size: 18px; border-radius: 2px;" onclick="search()"><i class="fa fa-search"></i></button>
-							</form>
-							
+						<li class="active"><a id="li-home" href="javascript:hideSearchBar()">Home</a>
 							<script>
-								function printSearchedContent() {
-									var searchedContent = document
-											.querySelector('#searchedContent').value;
-									console.log(searchedContent);
-								}
-	
-								var mid = '${mid}';
-								
-								function search() {
-									var searchedContent = document
-											.querySelector('#searchedContent').value;
-									
-									if (searchedContent.charAt(0) === '@') {
-										searchedId = searchedContent.substr(1);
-										
-										if (searchedId == mid) {
-											profile();
-										} else {
-											$.ajax({
-												url : "searchId",
-												post : "GET",
-												data : {
-													searchedId : searchedId
-												},
-												success : function(data) {
-													if (data.result == "success")
-														atSign(searchedId);
-													else if (data.result == "fail") {
-														Swal.fire({
-															icon: 'info',
-															title: 'Oops...',
-															text: 'Can\'t find Member',
-															footer: 'You should search for the Member that exists.'
-														})
-													}
-												}
-											});
-										}
-									} else if (searchedContent.charAt(0) === '#') {
-										searchedTag = searchedContent.substr(1);
-	
-										$.ajax({
-											url : "searchTag",
-											post : "GET",
-											data : {
-												searchedTag : searchedTag
-											},
-											success : function(data) {
-												if (data.result == "success")
-													tag(searchedTag);
-												else if (data.result == "fail") {
-													Swal.fire({
-														icon: 'info',
-														title: 'Oops...',
-														text: 'Can\'t find Tag',
-														footer: 'You should search for the Tag that exists.'
-													})
-												}
-											}
-										});
-									} else {
-										Swal.fire({
-											icon: 'info',
-											title: 'Oops...',
-											text: 'member search: @, tag search: #',
-											footer: 'You should write @ or # in front of searched keyword.'
-										})
-									}
-								}
-	
-								function atSign(searchedId) {
-									$.ajax({
-										url : "atSign",
-										method : "GET",
-										data : {searchedId : searchedId},
-										success : function(data) {
-											$("#atSign").html(data);
-											$("#li-atSign").click();
-										}
-									});
-								}
-	
-								function tag(searchedTag) {
-									$.ajax({
-										url : "tag",
-										method : "GET",
-										data : {searchedTag : searchedTag},
-										success : function(data) {
-											$("#tag").html(data);
-											$("#li-tag").click();
-										}
-									});
+								function hideSearchBar() {
+									$('#searchForm').addClass('hideSearchBar');
+									$('#li-home').attr("href", "#header");
+									$('#li-home').click();
+									$('#li-home').attr("href", "javascript:hideSearchBar()");
 								}
 							</script>
-						</c:if>
-						
-						<li class="active"><a href="#header">Home</a></li>
+						</li>
 						
 						<c:if test="${mid == null}">
 							<li><a id="li-loginForm" href="javascript:loginForm()">Login</a>
@@ -181,17 +87,17 @@
 								</script>
 							</li>
 							
-							<li><a id="li-join" href="javascript:join()">Join</a>
+							<li><a id="li-joinForm" href="javascript:joinForm()">Join</a>
 								<script type="text/javascript">
-									function join() {
+									function joinForm() {
 										$.ajax({
-											url : "join",
+											url : "joinForm",
 											method : "GET",
 											success : function(data) {
-												$("#join").html(data);
-												$("#li-join").attr("href", "#join");
-												$("#li-join").click();
-												$("#li-join").attr("href", "javascript:join()");
+												$("#joinForm").html(data);
+												$("#li-joinForm").attr("href", "#joinForm");
+												$("#li-joinForm").click();
+												$("#li-joinForm").attr("href", "javascript:joinForm()");
 											}
 										});
 									}
@@ -238,27 +144,10 @@
 								</script>
 							</li>
 							
-							<li><a id="li-notification" href="javascript:notification()">Notification</a>
-								<script type="text/javascript">
-									function notification(){
-										$.ajax({
-											url : "notification",
-											method : "GET",
-											success : function(data){
-												$("#notification").html(data);
-												$("#li-notification").attr("href","#notification");
-												$("#li-notification").click();
-												$("#li-notification").attr("href", "javascript:notification()");
-											}
-										})
-									}
-								</script>
-							</li>
-							
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
 								<div class="dropdown-menu" style="opacity: 0.5;">
 		
-									<a id="li-profile" class="dropdown-item" style="color: #0000ff;" href="javascript:profile()">Profile</a>
+									<a id="li-profile" class="dropdown-item" style="color: #18d26e;" href="javascript:profile()">Profile</a>
 									<script type="text/javascript">
 										function profile() {
 											$.ajax({
@@ -274,7 +163,7 @@
 										}
 									</script>
 		
-									<a id="li-setting" class="dropdown-item" style="color: #0000ff;" href="javascript:setting()">Setting</a>
+									<a id="li-setting" class="dropdown-item" style="color: #18d26e;" href="javascript:setting()">Setting</a>
 									<script type="text/javascript">
 										function setting() {
 											$.ajax({
@@ -290,7 +179,7 @@
 										}
 									</script>
 									
-									<a id="li-qna" class="dropdown-item" style="color: #0000ff;" href="javascript:qna()">Q&A</a>
+									<a id="li-qna" class="dropdown-item" style="color: #18d26e;" href="javascript:qna()">Q&A</a>
 									<script type="text/javascript">
 										function qna() {
 											$.ajax({
@@ -306,23 +195,114 @@
 										}
 									</script>
 		
-									<a class="dropdown-item" style="color: #0000ff;" href="logout">Logout</a>
+									<a class="dropdown-item" style="color: #18d26e;" href="logout">Logout</a>
 								</div>
 							</li>
+							
+							<form id="searchForm" class="form-inline" onsubmit="return false">
+								<input class="form-control form-control-sm col-8 ml-3" type="text" id="searchedContent" name="searchedContent" placeholder="Search" onkeypress="if(event.keyCode == 13){search();}">
+							    <button type="button" style="width: 33px; background: #ddd; font-size: 18px; border-radius: 5px" onclick="search()"><i class="fa fa-search"></i></button>
+							</form>
+							<script>
+								var mid = '${mid}';
+								
+								function search() {
+									var searchedContent = document.querySelector('#searchedContent').value;
+									$('#searchedContent').val("");
+									
+									if (searchedContent.charAt(0) === '@') {
+										searchedId = searchedContent.substr(1);
+										
+										if (searchedId == mid) {
+											profile();
+										} else {
+											$.ajax({
+												url : "searchId",
+												post : "GET",
+												data : {searchedId : searchedId},
+												success : function(data) {
+													if (data.result == "success")
+														atSign(searchedId);
+													else if (data.result == "fail") {
+														Swal.fire({
+															icon: 'info',
+															title: 'Oops...',
+															text: 'Can\'t find Member',
+															footer: 'You should search for the Member that exists.'
+														});
+														$('.swal2-container').css("z-index", "10000");
+													}
+												}
+											});
+										}
+									} else if (searchedContent.charAt(0) === '#') {
+										searchedTag = searchedContent.substr(1);
+	
+										$.ajax({
+											url : "searchTag",
+											post : "GET",
+											data : {searchedTag : searchedTag},
+											success : function(data) {
+												if (data.result == "success")
+													tag(searchedTag);
+												else if (data.result == "fail") {
+													Swal.fire({
+														icon: 'info',
+														title: 'Oops...',
+														text: 'Can\'t find Tag',
+														footer: 'You should search for the Tag that exists.'
+													});
+													$('.swal2-container').css("z-index", "10000");
+												}
+											}
+										});
+									} else {
+										Swal.fire({
+											icon: 'info',
+											title: 'Oops...',
+											text: 'The searched keyword is not valid',
+											footer: 'You must write @ or # in front of the keyword you search for.'
+										});
+										$('.swal2-container').css("z-index", "10000");
+									}
+								}
+	
+								function atSign(searchedId) {
+									$.ajax({
+										url : "atSign",
+										method : "GET",
+										data : {searchedId : searchedId},
+										success : function(data) {
+											$("#atSign").html(data);
+											$("#li-atSign").click();
+										}
+									});
+								}
+	
+								function tag(searchedTag) {
+									$.ajax({
+										url : "tag",
+										method : "GET",
+										data : {searchedTag : searchedTag},
+										success : function(data) {
+											$("#tag").html(data);
+											$("#li-tag").click();
+										}
+									});
+								}
+							</script>
 						</c:if>
 					</ul>
 				</nav>
-				
 			</div>
 		</header>
 
 		<section id="loginForm"></section>
-		<section id="join"></section>
+		<section id="joinForm"></section>
 		<section id="atSign"></section>
 		<section id="feed"></section>
 		<section id="tag"></section>
 		<section id="writeForm"></section>
-		<section id="notification"></section>
 		<section id="profile"></section>
 		<section id="setting"></section>
 		<section id="qna"></section>

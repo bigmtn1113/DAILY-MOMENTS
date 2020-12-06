@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Member;
 import com.mycompany.webapp.service.BoardService;
 import com.mycompany.webapp.service.FollowService;
@@ -34,7 +35,7 @@ public class ProfileController {
 		List<String> followingIDs = followService.getFollowingID(mid);
 		List<String> followerPhotos = new ArrayList<>();
 		List<String> followingPhotos = new ArrayList<>();
-		List<String> profilePhotos = boardService.getProfilePhotos(mid);
+		List<Board> mBAndMBMs = boardService.getMBAndMBMs(mid);
 		
 		for(String followerID : followerIDs) {
 			followerPhotos.add(followService.getFollowerPhotos(followerID));
@@ -54,7 +55,7 @@ public class ProfileController {
 		model.addAttribute("followingIDs", followingIDs);
 		model.addAttribute("followerPhotos", followerPhotos);
 		model.addAttribute("followingPhotos", followingPhotos);
-		model.addAttribute("profilePhotos", profilePhotos);
+		model.addAttribute("mBAndMBMs", mBAndMBMs);
 		
 		return "profile";
 	}	

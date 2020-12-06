@@ -17,6 +17,14 @@ public class BoardService {
 		boardDao.insert(board);
 	}
 	
+	public void updateOnlyBcontent(Board board) {
+		boardDao.updateOnlyBcontent(board);
+	}
+	
+	public void update(Board board) {
+		boardDao.update(board);
+	}
+	
 	public int getBno(String saveFileName) {
 		int bno = boardDao.selectBno(saveFileName);
 		return bno;
@@ -37,11 +45,16 @@ public class BoardService {
 		return memberBphotos;
 	}
 	
-	public List<String> getProfilePhotos(String mid) {
-		List<String> profilePhotos = boardDao.selectProfilePhotos(mid);
-		return profilePhotos;
+	public List<Board> getMBAndMBMs(String mid) {
+		List<Board> mbAndMBMs = boardDao.selectMBAndMBMs(mid);
+		return mbAndMBMs;
 	}
 
+	public Board getBoard(String bphoto) {
+		Board board = boardDao.selectBoard(bphoto);
+		return board;
+	}
+	
 	public List<Board> getBoards(String mid) {
 		List<Board> boards = boardDao.selectBoards(mid);
 		return boards;
@@ -52,8 +65,7 @@ public class BoardService {
 		return tagBoardPhotos;
 	}
 
-	public List<Integer> getBoardbno(String mid) {
-		List<Integer> boardBno = boardDao.selectBoardbno(mid);
-		return boardBno;
+	public void deleteBoard(int bno) {
+		boardDao.delete(bno);
 	}
 }

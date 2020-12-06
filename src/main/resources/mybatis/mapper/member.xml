@@ -30,10 +30,10 @@
 		where mid = #{searchedId}
 	</select>
 	
-	<select id="selectMemberProfile" parameterType="blike" resultType="String">
+	<select id="selectMphoto" resultType="String">
 		select mphoto
 		from member
-		where mid = #{mid}
-	</select> 
+		where mid=#{mid}
+	</select>
 	
 </mapper>

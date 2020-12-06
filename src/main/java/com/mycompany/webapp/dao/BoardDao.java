@@ -19,6 +19,16 @@ public class BoardDao {
 		return rows;
 	}
 	
+	public int updateOnlyBcontent(Board board) {
+		int rows = sst.update("mybatis.mapper.board.updateOnlyBcontent", board);
+		return rows;
+	}
+	
+	public int update(Board board) {
+		int rows = sst.update("mybatis.mapper.board.update", board);
+		return rows;
+	}
+	
 	public int selectBno(String saveFileName) {
 		int bno = sst.selectOne("mybatis.mapper.board.selectBno", saveFileName);
 		return bno;
@@ -39,9 +49,14 @@ public class BoardDao {
 		return memberBphotos;
 	}
 	
-	public List<String> selectProfilePhotos(String mid) {
-		List<String> profilePhotos = sst.selectList("mybatis.mapper.board.selectProfilePhotos", mid);
-		return profilePhotos;
+	public List<Board> selectMBAndMBMs(String mid) {
+		List<Board> mBAndMBMs = sst.selectList("mybatis.mapper.board.selectMBAndMBMs", mid);
+		return mBAndMBMs;
+	}
+	
+	public Board selectBoard(String bphoto) {
+		Board board = sst.selectOne("mybatis.mapper.board.selectBoard", bphoto);
+		return board;
 	}
 
 	public List<Board> selectBoards(String mid) {
@@ -54,9 +69,13 @@ public class BoardDao {
 		return tagBoardPhotos;
 	}
 
-	public List<Integer> selectBoardbno(String mid) {
-		List<Integer> boardBno = sst.selectList("mybatis.mapper.board.selectBoardbno", mid);
-		return boardBno;
+	public Board selectBphotoName(String bphotoName) {
+		Board board = sst.selectOne("mybatis.mapper.board.selectBphotoName", bphotoName);
+		return board;
 	}
 
+	public int delete(int bno) {
+		int rows = sst.delete("mybatis.mapper.board.delete", bno);
+		return rows;
+	}
 }

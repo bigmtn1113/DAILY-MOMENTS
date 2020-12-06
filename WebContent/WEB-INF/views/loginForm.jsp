@@ -11,16 +11,16 @@
 	<form method="post" role="form" class="php-email-form mt-4">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="form-group">
-			<input type="text" name="mid" class="form-control" id="mid" placeholder="Your ID" value="${mid}"/>
+			<label style="margin-bottom: 10px">ID</label><input type="text" name="mid" class="form-control" id="mid" placeholder="Your ID" value="${mid}"/>
 			<div class="validate"></div>
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" name="mpassword" id="mpassword" placeholder="Your Password" />
+			<label style="margin-bottom: 10px">Password</label><input type="password" class="form-control" name="mpassword" id="mpassword" placeholder="Your Password" />
 			<div class="validate"></div>
 		</div>
 
 		<div class="text-center">
-			<a class="btn btn-success" href="javascript:login()">Login</a>
+			<a class="btn btn-lg okBtn" href="javascript:login()">Login</a>
 		</div>
 	</form>
 	
@@ -44,8 +44,7 @@
 		}
 	</script>
 	
-	
 	<div id="errorDiv" class="alert alert-danger" style="margin-top:10px; width:auto; display:none;" role="alert">
-		아이디 또는 비밀번호가 잘못되었습니다.
+		Invalid ID or Password
 	</div>
 </div>

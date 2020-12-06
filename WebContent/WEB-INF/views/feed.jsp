@@ -11,8 +11,8 @@
 	
 	<div class="row portfolio-container" id="paging">
 		<c:forEach begin='0' end='9' var="board" items="${boards}" varStatus="status">
-			<div class="col-sm-12 portfolio-item filter-app"
-				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
+			<div class="col-sm-12 portfolio-item"
+				 style="border-radius:10px; width:100%; height:auto; border:2px solid white; margin-bottom:80px;">
 				
 				<c:set var="index" value="${status.index}"/>
 				<c:set var="isLikeboard" value="false"/>
@@ -31,15 +31,31 @@
 				</c:forEach>
 				
 				<div style="background-color: #1B1B1B; margin-top:30px;">	
-					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
+					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}" data-gall="portfolioDetailsGallery" class="venobox vbox-item">
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 					</a>
-					
+					<script>
+						$(function(){
+							$('.venobox').venobox({	
+								
+							});
+						});
+					</script>
 					<c:if test="${board.mid == mid}">
-						<a href="javascript:goProfile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
+						<a href="javascript:profile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
 					</c:if>
 					<c:if test="${board.mid != mid}">
-						<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
+						<a href="javascript:atSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
+					</c:if>
+					
+					<c:if test="${board.mid == mid}">
+						<button class="btn" style="float: right; margin-top: 8px; margin-right: 8px; background: #18d26e; color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    :
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
+							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">삭제</a>
+						</div>
 					</c:if>
 					
 					<span style="float: right; margin-top: 15px; margin-right: 15px">
@@ -65,76 +81,27 @@
 							</c:if>
 						</button>
 						
-	              		<button type="button" style="float:right; border:none; outline:none; background:none;">
-	              			<c:if test="${isBookmarkboard == true}">
-	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
-	              			</c:if>
-	              			<c:if test="${isBookmarkboard == false}">
-	              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
-	              			</c:if>
-	              		</button>
+						<c:if test="${board.mid != mid}">
+		              		<button type="button" style="float:right; border:none; outline:none; background:none;">
+		              			<c:if test="${isBookmarkboard == true}">
+		              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
+		              			</c:if>
+		              			<c:if test="${isBookmarkboard == false}">
+		              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
+		              			</c:if>
+		              		</button>
+	              		</c:if>
 						
-						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">
-						<a style="color:white; font-weight: bold;" href="#mylike" data-toggle="modal" id="mylikeClick" value="${board.bno}">좋아요 ${likeCnts.get(index)}개</a></div>
-					</div>	
-					
-									
-					<!-- like -->
-					<div class="modal fade" id="mylike" role="dialog">
-						<script>
-							$('#mylike').appendTo("body");
-						</script>
-						<div class="modal-dialog-centered">
-							<div style="height: 100%; width: 100%; color: #18d26e"
-								class="modal-dialog">
-					
-								<div style="background-color: #1B1B1B" class="modal-content">
-					
-									<div class="modal-header">
-					
-										<%-- <img class="rounded-circle" style="width: 80px; height: 80px;"
-											src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}" /> --%>
-										<h1
-											style="font-family: Georgia, serif; margin-right: 150px; margin-top: 12px; -ms-overflow-style: none; white-space: pre-line"
-											class="modal-title">Like</h1>
-									</div>
-					
-									<a style="padding: 10px; font-family: fantasy; margin-top: 5px">Your
-										ID</a>
-									<div style="color: blue; overflow-y: scroll; height: 450px"
-										class="invisible-scrollbar">
-										
-										<c:forEach var="followerID" items="${followerIDs}" varStatus="status">
-											<div style="padding: 8px">
-												<img class="rounded-circle"
-													style="width: 60px; height: 60px; padding: 10dp"
-													src="<%=request.getContextPath()%>/resources/images/member/${followerPhotos[status.index]}" />
-												 <a
-													style="font-family: gulim; margin-left: 15px; color: white; font-size: 25px"> ${followerID}</a>
-											</div>
-										</c:forEach>
-									</div>
-					
-									<a style="padding: 10px; font-family: fantasy; margin-bottm: 5px">Many
-										follower</a>
-									<div class="modal-footer">
-										<button type="button" class="btn"
-											style="background-color: #18d26e; color: white"
-											data-dismiss="modal">Close</button>
-									</div>
-					
-								</div>
-							</div>
-						</div>
-					</div>	
-									
+						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">Like ${likeCnts.get(index)}</div>
+					</div>
+
 		          	<div
 		          		id="midcontentcomment_${board.bno}"
 					    class="invisible-scrollbar" 
-						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
+						style="height: 250px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 						color: white; overflow-y: auto;">
 						<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
-							 <div style="white-space:pre;">${board.bcontent}</div>
+							 <div style="white-space:pre-line;">${board.bcontent}</div>
 						</div>
 						
 						<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
@@ -148,12 +115,13 @@
 						</div>
 					</div>
 					<div style="height:20px; margin-bottom:70px;">
-			             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
+			             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="Write Comment... "></textarea>
 			             <button id="${board.bno}" class="bx bx-subdirectory-left" onclick="commentWrite('${board.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 		          	</div>
 				</div>
 			</div>
 		</c:forEach>
+		
 		<script type="text/javascript">
 			function goProfile() {
 				$.ajax({
@@ -167,8 +135,7 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function goAtSign(mid) {
 				$.ajax({
 					url : "atSign",
@@ -182,8 +149,41 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
+			function updateBoard(bno, bphoto, bcontent) {
+				$.ajax({
+					url: "updateBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto, bcontent: bcontent},
+					success: function(data) {
+						$("#writeForm").html(data);
+						$("#li-writeForm").attr("href", "#writeForm");
+						$("#li-writeForm").click();
+						$("#li-writeForm").attr("href", "javascript:writeForm()");
+					}
+				});
+			}
+			
+			function deleteBoard(bno, bphoto) {
+				$.ajax({
+					url: "deleteBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto},
+					success: function(data) {
+						$.ajax({
+							url: "feed",
+							method: "GET",
+							success: function(data) {
+								$("#feed").html(data);
+								$("#li-feed").attr("href", "#feed");
+								$("#li-feed").click();
+								$("#li-feed").attr("href", "javascript:feed()");
+							}
+						});
+					}
+				});
+			}
+			
 			function commentWrite(bno, mid) {
 				var comment = $("#content_" + bno).val();
 				$.ajax({
@@ -197,8 +197,7 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function ClickHeart(bno, mid) {
 				var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
 				var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
@@ -211,7 +210,7 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
@@ -224,14 +223,13 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
 				}
 			}
-		</script>
-		<script>
+			
 			function ClickBookmark(bno, mid) {
 				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png";
 				var selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
@@ -260,63 +258,6 @@
 					});
 				}
 			}
-		</script>
-		<script >
-			function LikePeople(likeBno){
-				console.log(likeBno);
-				$.ajax({
-					url : "feed",
-					method : "GET",
-					data:{likeBno:likeBno},
-					success : function(data) {
-						if(data.result=="success"){
-							;
-						}
-							
-					}
-				});
-			}
-		</script>
-		<script>
-			var pageNo=0;
-			
-			$(document).ready(function(){
-				$(document).on('scroll', _.throttle(function(){
-				    check_if_needs_more_content();
-				  }, 300));
-			
-				function check_if_needs_more_content() {
-					if ($(window).scrollTop()+1>=$(document).height() - $(window).height()){
-				    	pageNo++;
-				    	startBoardNo=pageNo*10;
-				    	endBoardNo=pageNo*10+9;
-				    	$.ajax({
-				    		url:"pageSection",
-				    		data:{startBoardNo:startBoardNo, endBoardNo:endBoardNo},
-				    		method:"POST",
-				    		success : function(data){
-				    			$("#paging").append(data);
-				    		}
-				    	});
-				    }
-				}
-			});
-			
-			/* $(window).scroll(function() {
-			    if ($(window).scrollTop()+1>=$(document).height() - $(window).height()){
-			    	pageNo++;
-			    	startBoardNo=pageNo*10;
-			    	endBoardNo=pageNo*10+9;
-			    	$.ajax({
-			    		url:"pageSection",
-			    		data:{startBoardNo:startBoardNo, endBoardNo:endBoardNo},
-			    		method:"POST",
-			    		success : function(data){
-			    			$("#paging").append(data);
-			    		}
-			    	});
-			    }
-			}); */
 		</script>
 	</div>
 </div>

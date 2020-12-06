@@ -38,8 +38,8 @@ public class BlikeService {
 		return rows;
 	}
 
-	public List<Blike> getLikemid(Integer boardbno) {
-		List<Blike> likeMid = blikeDao.selectLikeMid(boardbno);
-		return likeMid;
+	public int checkLikeClick(Blike blike) {
+		int likeClick = blikeDao.selectLikeClickCheck(blike);
+		return likeClick;
 	}
 }

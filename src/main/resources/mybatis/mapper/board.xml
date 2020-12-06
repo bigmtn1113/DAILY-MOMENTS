@@ -11,6 +11,18 @@
 		values(#{bno}, #{bphoto}, #{bcontent}, sysdate, #{mid})
 	</insert>
 	
+	<update id="updateOnlyBcontent" parameterType="board">
+		update board
+		set bcontent = #{bcontent}
+		where bno = #{bno}
+	</update>
+	
+	<update id="update" parameterType="board">
+		update board
+		set bphoto = #{bphoto}, bcontent = #{bcontent}
+		where bno = #{bno}
+	</update>
+	
 	<select id="selectBno" parameterType="String" resultType="int">
 		select bno
 		from board
@@ -36,19 +48,27 @@
 		order by bdate desc
 	</select>
 	
-	<select id="selectProfilePhotos" parameterType="String" resultType="String">
-		(select bphoto, bdate
+	<select id="selectMBAndMBMs" parameterType="String" resultType="board">
+		(select bphoto, bdate, mid
 		from board
 		where mid = #{mid}
 		
-		union
+		union all
 		
-		select bphoto, bmdate
-		from (select bno, bmdate
+		select bphoto, bmdate, b.mid
+		from (select mid, bno, bmdate
 		    from bookmark
 		    where mid = #{mid}) bm join board b
 		on bm.bno = b.bno)
 		order by bdate desc
+	</select>
+	
+	<select id="selectBoard" parameterType="String" resultType="board">
+		select b.bno, b.bphoto, b.bcontent, b.bdate, b.mid, m.mphoto
+		from(select bno, bphoto, bcontent, bdate, mid
+		    from board
+		    where bphoto = #{bphoto}) b join member m
+		on b.mid = m.mid
 	</select>
 
 	<select id="selectBoards" parameterType="String" resultType="board">
@@ -78,11 +98,10 @@
 		on t.bno = b.bno
 		order by bdate desc
 	</select>
-	
-	<select id="selectBoardbno" parameterType="String" resultType="int">
-		select bno
-		from board
-		where mid=#{mid}
-	</select>
-	
+
+	<delete id="delete" parameterType="int">
+		delete board
+		where bno = #{bno}
+	</delete>
+
 </mapper>

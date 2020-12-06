@@ -28,4 +28,9 @@ public class BookmarkDao {
 		List<Bookmark> bookmarks = sst.selectList("mybatis.mapper.bookmark.selectBookmarks", mid);
 		return bookmarks;
 	}
+
+	public int selectBookmarkClickCheck(Bookmark bookmark) {
+		int bookmarkClick = sst.selectOne("mybatis.mapper.bookmark.selectBookmarkClickCheck", bookmark);
+		return bookmarkClick;
+	}
 }
