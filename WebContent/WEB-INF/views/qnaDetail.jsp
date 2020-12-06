@@ -34,6 +34,104 @@
 		
 		<br/>
 		
+	
+		<div>
+			<span>댓글:</span> <br/>
+		
+		
+		
+
+
+
+
+
+
+
+
+
+	<div class="row portfolio-container">
+			<div class="col-sm-12 portfolio-item"
+				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
+				
+				<div
+	          		id="midqnacontentcomment_${qnaBoard.bno}"
+				    class="invisible-scrollbar" 
+					style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
+					color: white; overflow-y: auto;">
+					
+					<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
+						 <div style="white-space:pre;">${qnaBoard.bcontent}</div>
+					</div>
+					
+					<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
+					
+					
+					<div style="padding-left:30px; padding-right:30px; padding-bottom:15px;" id="qnaCommentlist_${qnaBoard.bno}">
+						<c:forEach var="qnaBoardComment" items="${qnaBoardCommentsList}">
+							<div style="padding-bottom:5px;">
+								<a href="#"><c:out value="${qnaBoardComment.mid}"/></a> : <c:out value="${qnaBoardComment.ccontent}"/><br/>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				
+				
+				<div style="height:20px; margin-bottom:70px;">
+		             <textarea class="invisible-scrollbar" id="qnaContent_${qnaBoard.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
+		             <button id="${qnaBoard.bno}" class="bx bx-subdirectory-left" onclick="qnaCommentWrite('${qnaBoard.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
+	          	</div>
+
+
+			</div>
+	</div>
+	
+
+
+
+
+		</div>
+		
+		<br/>
+
+
+
+
+			<script type="text/javascript">
+				function qnaCommentWrite(bno, mid) {
+					
+					var comment = $("#qnaContent_" + bno).val();
+					$.ajax({
+						url : "qnaCommentWrite",
+						data:{ccomment:comment, bno:bno, mid:mid},
+						method : "POST",
+						success : function(data) {
+							$("#qnaCommentlist_"+bno).html(data);
+							$("#qnaContent_"+bno).val("");
+							$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
+						}
+					});
+				}
+			</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+		
 		<c:if test="${mid == qnaBoard.mid}">
 		
 			<a class="btn btn-danger btn-sm" href="javascript:qnaDetailDelete(${qnaBoard.bno})">삭제</a>
@@ -76,3 +174,21 @@
 		
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

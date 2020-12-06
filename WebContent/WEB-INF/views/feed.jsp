@@ -53,8 +53,8 @@
 						    :
 						</button>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
-							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">삭제</a>
+							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">Update</a>
+							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">Delete</a>
 						</div>
 					</c:if>
 					
@@ -123,33 +123,6 @@
 		</c:forEach>
 		
 		<script type="text/javascript">
-			function goProfile() {
-				$.ajax({
-					url : "profile",
-					method : "GET",
-					success : function(data) {
-						$("#profile").html(data);
-						$("#li-profile").attr("href", "#profile");
-						$("#li-profile").click();
-						$("#li-profile").attr("href", "javascript:goProfile()");
-					}
-				});
-			}
-			
-			function goAtSign(mid) {
-				$.ajax({
-					url : "atSign",
-					data:{mid:mid},
-					method : "POST",
-					success : function(data) {
-						$("#atSign").html(data);
-						$("#li-atSign").attr("href", "#atSign");
-						$("#li-atSign").click();
-						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')");
-					}
-				});
-			}
-			
 			function updateBoard(bno, bphoto, bcontent) {
 				$.ajax({
 					url: "updateBoard",

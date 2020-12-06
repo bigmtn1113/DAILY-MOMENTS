@@ -16,13 +16,13 @@
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">	
 			<h3>ID : ${mid}</h3>
 
-			<div class="row">
+			<div class="row" style="margin-top: 10px">
 				<div class="col-lg-6">
 					<ul>
-						<li><i class="icofont-rounded-right"></i> <strong>게시물 : </strong>${memberBcnt}</li>
-						<li><i class="icofont-rounded-right"></i> <strong>북마크 : </strong>${memberBMcnt}</li>
-						<li><i class="icofont-rounded-right"></i> <a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollower">팔로워 : ${followerCnt}</a></li>
-						<li><i class="icofont-rounded-right"></i> <a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollowing">팔로잉 : ${followingCnt}</a></li>
+						<li><i class="icofont-rounded-right"></i> <strong>Board: </strong>${memberBcnt}</li>
+						<li><i class="icofont-rounded-right"></i> <strong>Bookmark: </strong>${memberBMcnt}</li>
+						<li><i class="icofont-rounded-right"></i> <a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollower">Follower: ${followerCnt}</a></li>
+						<li><i class="icofont-rounded-right"></i> <a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollowing">Following: ${followingCnt}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -154,13 +154,13 @@
 				</c:if>
 						<div class="portfolio-wrap">
 							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
+								src="<%=request.getContextPath()%>/resources/images/board/${mBAndMBM.bphoto}"
 								class="img-fluid" alt="">
 							<div class="portfolio-info">
 								<div class="portfolio-links">
-									<a href="portfolioDetails?mid=${mid}&bphoto=${mBAndMBM.bphoto}"
+									<a href="portfolioDetails?bphoto=${mBAndMBM.bphoto}"
 										data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox">
-										<i class="bx bx-link"></i>
+										<img src="<%=request.getContextPath()%>/resources/images/board/${mBAndMBM.bphoto}">
 									</a>
 									<script>
 										$(function(){

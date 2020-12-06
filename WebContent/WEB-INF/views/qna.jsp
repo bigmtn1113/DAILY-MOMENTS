@@ -162,18 +162,7 @@
 				
 				
 				
-				
-				<script type="text/javascript">
-					function boardDetail(bno) {
-						$.ajax({
-							url:"boardDetail",
-							data: {bno:bno},
-							success:function(data) {
-								$("#board_result").html(data);
-							}
-						});
-					}
-				</script>
+		
 			
 			</div>
 
@@ -216,7 +205,56 @@
 
 
 
-<div class="about-me container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+<%-- <div class="about-me container">
 
 	<div class="section-title">
 		<h2>Q&A 담당자</h2>
@@ -247,7 +285,7 @@
 			</p>
 		</div>
 	</div>
-</div>
+</div> --%>
 
 
 
@@ -328,7 +366,7 @@
 
 
 
-<div class="portfolio" id="protfolio">
+<%-- <div class="portfolio" id="protfolio">
 	<div class="container">
 		<div class="section-title">
 			<h2>Portfolio</h2>
@@ -556,7 +594,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --%>
 		
 		
 		
