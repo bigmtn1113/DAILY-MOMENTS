@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -34,9 +32,6 @@ import com.mycompany.webapp.service.QnaService;
 
 @Controller
 public class QnaController {
-	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
-
-	
 	@Resource private QnaService qnaService;
 	@Resource private QnaBoardCommentService qnaBoardCommentService;
 	
@@ -166,12 +161,7 @@ public class QnaController {
 	
 	
 	@RequestMapping("/qnaCommentWrite")
-	public String qnaCommentWrite(HttpSession session, String ccomment,int bno, String mid, Model model, HttpServletResponse response) throws IOException, ServletException {
-		
-		logger.info(mid);
-		logger.info(ccomment);
-		
-		
+	public String qnaCommentWrite(String ccomment,int bno, String mid, Model model) {
 		QnaBoardComment qnaBoardComment=new QnaBoardComment();
 		qnaBoardComment.setBno(bno);
 		qnaBoardComment.setCcontent(ccomment);   

@@ -53,7 +53,7 @@
 						    :
 						</button>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">Update</a>
+							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">Modify</a>
 							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">Delete</a>
 						</div>
 					</c:if>
@@ -244,7 +244,6 @@
 					    	pageNo++;
 					    	var startBoardNo=pageNo*10;
 					    	var endBoardNo=pageNo*10+9;
-					    	console.log(pageNo);
 					    	$.ajax({
 					    		url : "pageSection",
 					    		data : {startBoardNo:startBoardNo, endBoardNo:endBoardNo},
@@ -259,6 +258,6 @@
 			});
 			
 		</script>
-		<button type="button" onclick="$('html').animate({scrollTop : 0})" style="position:fixed;right:5px; bottom:5px;">▲</button>
+		<button type="button" onclick="$('html').animate({scrollTop : 0})" style="position:fixed;right:15px; bottom:15px;">▲</button>
 	</div>
 </div>

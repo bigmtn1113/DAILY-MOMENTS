@@ -6,6 +6,7 @@
 		select *
 		from bcomment
 		where bno=#{bno}
+		order by cdate ASC
 	</select>
 	
 	<select id="selectBoardCommentsWrite" parameterType="int" resultType="bcomment">
