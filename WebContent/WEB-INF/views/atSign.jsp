@@ -21,10 +21,10 @@
 				</c:if>
 			</c:forEach>
 			<c:if test="${isFollowingMember == true}">
-					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('false', '${mid}', '${member.mid}')" style="background-color:#bbb">언팔로우</button>
+				<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('false', '${mid}', '${member.mid}')" style="background-color:#bbb">UnFollow</button>
 			</c:if>
 			<c:if test="${isFollowingMember != true}">
-					<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('true', '${mid}', '${member.mid}')">팔로우</button>
+				<button type="button" class="btn btn-info btn-sm" id="button-follow" onclick="follow('true', '${mid}', '${member.mid}')">Follow</button>
 			</c:if>
 			<script>
 				var followerCnt = ${followerCnt};
@@ -39,11 +39,11 @@
 							data: {follower: follower, following: following},
 							success: function(data) {
 								if (data.result == "success") {
-									$("#button-follow").html("언팔로우");
+									$("#button-follow").html("UnFollow");
 									$("#button-follow").attr("style", "background-color:#bbb");
 									$("#button-follow").attr("onclick", "follow('false', '${mid}', '${member.mid}', '${followerCnt}')");
 									
-									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i><a style=\"color:white; font-weight: bold;\" href=\"#\" data-toggle=\"modal\" data-target=\"#atSignFollower\">팔로워 : " + followerCnt + "</a>");
+									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i><a style=\"color:white; font-weight: bold;\" href=\"#\" data-toggle=\"modal\" data-target=\"#atSignFollower\">Follower: " + followerCnt + "</a>");
 								}
 							}
 						});
@@ -56,23 +56,23 @@
 							data: {follower: follower, following: following},
 							success: function(data) {
 								if (data.result == "success") {
-									$("#button-follow").html("팔로우");
+									$("#button-follow").html("Follow");
 									$("#button-follow").removeAttr("style");
 									$("#button-follow").attr("onclick", "follow('true', '${mid}', '${member.mid}', '${followerCnt}')");
 									
-									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i><a style=\"color:white; font-weight: bold;\" href=\"#\" data-toggle=\"modal\" data-target=\"#atSignFollower\">팔로워 : " + followerCnt + "</a>");
+									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i><a style=\"color:white; font-weight: bold;\" href=\"#\" data-toggle=\"modal\" data-target=\"#atSignFollower\">Follower: " + followerCnt + "</a>");
 								}
 							}
 						});
 					}
 				}
 			</script>
-			<div class="row">
+			<div class="row" style="margin-top: 10px">
 				<div class="col-lg-6">
 					<ul>
-						<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> ${memberBcnt}</li>
-						<li id="li-followerCnt"><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollower">팔로워 : ${followerCnt}</a></li>
-						<li><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollowing">팔로잉 : ${followingCnt}</a></li>
+						<li><i class="icofont-rounded-right"></i> <strong>Board:</strong> ${memberBcnt}</li>
+						<li id="li-followerCnt"><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollower">Follower: ${followerCnt}</a></li>
+						<li><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollowing">Following: ${followingCnt}</a></li>
 					</ul>
 				</div>
 			</div>

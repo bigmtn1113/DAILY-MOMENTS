@@ -10,7 +10,7 @@
 	<div class="row">
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">	
 			<h3>#${searchedTag}</h3>
-			<div class="row">
+			<div class="row" style="margin-top: 10px">
 				<div class="col-lg-6">
 					<ul><li><i class="icofont-rounded-right"></i> <strong>Board:</strong> ${tagBoardCnt}</li></ul>
 				</div>

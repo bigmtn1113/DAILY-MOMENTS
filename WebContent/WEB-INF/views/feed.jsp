@@ -123,33 +123,6 @@
 		</c:forEach>
 		
 		<script type="text/javascript">
-			function goProfile() {
-				$.ajax({
-					url : "profile",
-					method : "GET",
-					success : function(data) {
-						$("#profile").html(data);
-						$("#li-profile").attr("href", "#profile");
-						$("#li-profile").click();
-						$("#li-profile").attr("href", "javascript:goProfile()");
-					}
-				});
-			}
-			
-			function goAtSign(mid) {
-				$.ajax({
-					url : "atSign",
-					data:{mid:mid},
-					method : "POST",
-					success : function(data) {
-						$("#atSign").html(data);
-						$("#li-atSign").attr("href", "#atSign");
-						$("#li-atSign").click();
-						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')");
-					}
-				});
-			}
-			
 			function updateBoard(bno, bphoto, bcontent) {
 				$.ajax({
 					url: "updateBoard",
