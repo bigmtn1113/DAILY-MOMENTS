@@ -13,5 +13,6 @@
 		<typeAlias alias="pager" type="com.mycompany.webapp.dto.Pager"/>
 		<typeAlias alias="notice" type="com.mycompany.webapp.dto.Notice"/>
 		<typeAlias alias="tag" type="com.mycompany.webapp.dto.Tag"/>
+		<typeAlias alias="qnaboardcomment" type="com.mycompany.webapp.dto.QnaBoardComment"/>
 	</typeAliases>
 </configuration>

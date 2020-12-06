@@ -8,8 +8,8 @@
 		<div>
 			
 			<div>
-				<%-- <td><img class="rounded-circle" width="70px" height="70px" src="photodownload?fileName=${noticeBoard.mphoto}"/></td> --%>
-				<td>사진자리</td>
+				<td><img class="rounded-circle" width="70px" height="70px" src="photodownload?fileName=${noticeBoard.mphoto}"/></td>
+				<!-- <td>사진자리</td> -->
 			</div>
 			
 			<br/>

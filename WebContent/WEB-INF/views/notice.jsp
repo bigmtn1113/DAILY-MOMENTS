@@ -15,7 +15,7 @@
 			<form id="noticeList" class="php-email-form mt-4">	<!-- qnaList 불러올 때 이 밑에 있는거 대체해서 이 자리에 넣는 거임. 이 아래 양식에 넣는 게 아니라, 대체하는 것! -->		
 				<table  style="color:#636568; width:100%; border-collapse: separate; border-spacing: 5px;">
 					<tr style="height: 30px; background-color: white;">
-						<th style="width:10px; background-color: #262626; padding-left: 15px" >번호</th>
+						<th style="width:10px; background-color: #262626; padding-left: 15px">번호</th>
 						<th style="width:50px; background-color: #262626; padding-left: 15px">제목</th>
 						<th style="width:50px; background-color: #262626; padding-left: 15px">글쓴이</th>
 						<th style="width:50px; background-color: #262626; padding-left: 15px">날짜</th>

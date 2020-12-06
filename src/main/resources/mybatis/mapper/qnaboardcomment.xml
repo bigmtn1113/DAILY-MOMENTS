@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.qnaboardcomment">
+	
+	
+	<insert id="insert" parameterType="qnaboardcomment">
+		
+		<selectKey order="BEFORE" resultType="int" keyProperty="cno">  <!-- before면 아래 sql문 보다 selectKey 부분을 먼저 실행하겠다. after면 반대. -->
+			select seq_qnaboardcomment_cno.nextval from dual
+		</selectKey>
+		
+		insert into qnaboardcomment(cno, bno, ccontent, cdate, mid)
+		values(#{cno}, #{bno}, #{ccontent}, sysdate, #{mid})
+	</insert>
+	
+	
+	<select id="selectQnaBoardCommentWrite" parameterType="int" resultType="qnaboardcomment">
+		select *
+		from qnaboardcomment
+		where bno=#{bno}
+		order by cdate ASC
+	</select>
+	
+	
+	
+	<select id="selectBoardComments" parameterType="int" resultType="qnaboardcomment">
+		select *
+		from qnaboardcomment
+		where bno=#{bno}
+		order by cdate desc
+	</select>
+	
+	
+</mapper>

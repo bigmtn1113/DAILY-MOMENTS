@@ -290,7 +290,7 @@
 										}
 									});
 								}
-	
+	"src/main/java/com/mycompany/webapp/dao/QnaBoardCommentDao.java"
 								function tag(searchedTag) {
 									$.ajax({
 										url : "tag",
