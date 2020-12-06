@@ -10,9 +10,9 @@
 	<div class="row">
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">	
 			<h3>#${searchedTag}</h3>
-			<div class="row">
+			<div class="row" style="margin-top: 10px">
 				<div class="col-lg-6">
-					<ul><li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> ${tagBoardCnt}</li></ul>
+					<ul><li><i class="icofont-rounded-right"></i> <strong>Board:</strong> ${tagBoardCnt}</li></ul>
 				</div>
 			</div>
 		</div>
@@ -28,18 +28,16 @@
 						class="img-fluid">
 					
 					<div class="portfolio-info">
-						<h4>App 1</h4>
-						<p>App</p>
 						<div class="portfolio-links">
-							<a href="<%=request.getContextPath()%>/resources/images/board/${tagBoardPhoto}"
-								data-gall="portfolioGallery" class="venobox" title="App 1"><i
-								class="bx bx-plus"></i>
+							<a href="portfolioDetails?bphoto=${tagBoardPhoto}"
+								data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox">
+								<img src="<%=request.getContextPath()%>/resources/images/board/${tagBoardPhoto}">
 							</a>
-							<a href="portfolioDetails"
-								data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-								class="venobox" title="Portfolio Details"><i
-								class="bx bx-link"></i>
-							</a>
+							<script>
+								$(function(){
+									$('.venobox').venobox({});
+								});
+							</script>
 						</div>
 					</div>
 				</div>

@@ -38,4 +38,24 @@ public class FollowDao {
 		int rows = sst.delete("mybatis.mapper.follow.delete", follow);
 		return rows;
 	}
+
+	public List<String> selectFollowerID(String mid) {
+		List<String> followerIDs = sst.selectList("mybatis.mapper.follow.selectFollowerID", mid);
+		return followerIDs;
+	}
+
+	public List<String> selectFollowingID(String mid) {
+		List<String> followingIDs = sst.selectList("mybatis.mapper.follow.selectFollowingID", mid);
+		return followingIDs;
+	}
+
+	public String selectFollowerPhoto(String followerID) {
+		String followerPhoto = sst.selectOne("mybatis.mapper.follow.selectFollowerPhoto", followerID);
+		return followerPhoto;
+	}
+
+	public String selectFollowingPhoto(String followingID) {
+		String followingPhoto = sst.selectOne("mybatis.mapper.follow.selectFollowingPhoto", followingID);
+		return followingPhoto;
+	}
 }

@@ -35,4 +35,24 @@ public class FollowService {
 	public void delete(Follow follow) {
 		followDao.delete(follow);
 	}
+
+	public List<String> getFollowerID(String mid) {
+		List<String> followerIDs = followDao.selectFollowerID(mid);
+		return followerIDs;
+	}
+
+	public List<String> getFollowingID(String mid) {
+		List<String> followingIDs = followDao.selectFollowingID(mid);
+		return followingIDs;
+	}
+
+	public String getFollowerPhotos(String followerID) {
+		String followerPhoto = followDao.selectFollowerPhoto(followerID);
+		return followerPhoto;
+	}
+
+	public String getFollowingPhotos(String followingID) {
+		String followingPhoto = followDao.selectFollowingPhoto(followingID);
+		return followingPhoto;
+	}
 }

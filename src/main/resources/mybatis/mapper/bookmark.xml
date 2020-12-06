@@ -13,8 +13,14 @@
 	</delete>
 	
 	<select id="selectBookmarks" parameterType="String" resultType="bookmark">
-		select *
+		select bno, mid, bmdate
 		from bookmark
 		where mid=#{mid}
+	</select>
+	
+	<select id="selectBookmarkClickCheck" parameterType="bookmark" resultType="int">
+		select count(*)
+		from bookmark
+		where bno = #{bno} and mid = #{mid}
 	</select>
 </mapper>

@@ -15,6 +15,10 @@ public class TagService {
 		tagDao.insert(tag);
 	}
 	
+	public void delete(Tag tag) {
+		tagDao.delete(tag);
+	}
+	
 	public String getTag(String searchedTag) {
 		String tag = tagDao.selectTag(searchedTag);
 		return tag;

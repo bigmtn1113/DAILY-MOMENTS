@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.Bcomment;
@@ -43,7 +45,9 @@ public class FeedController {
 		
 		for (Board board : boards) {
 			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
-			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
+			boardCommentsList.add(bcommentService.getBcomments(board.getBno()));
+			
+			board.setBcontent(board.getBcontent().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>"));
 		}
 
 		model.addAttribute("boards", boards);
@@ -73,9 +77,7 @@ public class FeedController {
 	@RequestMapping("/LikeClick")
 	public void LikeClick(int bno, String mid, HttpSession session, HttpServletResponse response,Model model) throws IOException, ServletException {
 		
-		Blike blike=new Blike();
-		blike.setBno(bno);
-		blike.setMid(mid);
+		Blike blike=new Blike(bno, mid);
 		blikeService.likeClick(blike);
 		
 		int likeCntsClick=blikeService.countLikes(bno);
@@ -95,9 +97,7 @@ public class FeedController {
 	@RequestMapping("/DisLikeClick")
 	public void DisLikeClick(int bno, String mid, HttpSession session, HttpServletResponse response, Model model) throws IOException, ServletException {
 		
-		Blike blike=new Blike();
-		blike.setBno(bno);
-		blike.setMid(mid);
+		Blike blike=new Blike(bno, mid);
 		blikeService.dislikeClick(blike);
 		
 		int likeCntsClick=blikeService.countLikes(bno);
@@ -117,9 +117,7 @@ public class FeedController {
 	
 	@RequestMapping("/BookmarkClick")
 	public void BookmarKClick(int bno, String mid, HttpServletResponse response) throws IOException, ServletException {
-		Bookmark bookmark=new Bookmark();
-		bookmark.setBno(bno);
-		bookmark.setMid(mid);
+		Bookmark bookmark=new Bookmark(bno, mid);
 		bookmarkService.bookmarkClick(bookmark);
 		
 		JSONObject jsonObject = new JSONObject();
@@ -135,9 +133,7 @@ public class FeedController {
 	
 	@RequestMapping("/DisBookmarkClick")
 	public void DisBookmarkClick(int bno, String mid, HttpServletResponse response) throws IOException, ServletException {
-		Bookmark bookmark=new Bookmark();
-		bookmark.setBno(bno);
-		bookmark.setMid(mid);
+		Bookmark bookmark=new Bookmark(bno, mid);
 		bookmarkService.disbookmarkClick(bookmark);
 		
 		JSONObject jsonObject = new JSONObject();
@@ -149,5 +145,46 @@ public class FeedController {
 		out.println(json);
 		out.flush();
 		out.close();
+	}
+	
+	@RequestMapping("/pageSection")
+	public String pageSection(HttpSession session, Model model, int startBoardNo, int endBoardNo) {
+		String mid = (String) session.getAttribute("mid");
+
+		List<Board> boards = boardService.getBoards(mid);
+		List<Integer> likeCnts = new ArrayList<>();
+		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
+		List<Blike> blikes = blikeService.getBlikes(mid);
+		List<Bookmark> bookmarks = bookmarkService.getBookmarks(mid);
+		
+		
+		for (Board board : boards) {
+			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
+			boardCommentsList.add(bcommentService.getBcomments(board.getBno()));
+		}
+
+		model.addAttribute("boards", boards);
+		model.addAttribute("likeCnts", likeCnts);
+		model.addAttribute("boardCommentsList", boardCommentsList);
+		model.addAttribute("blikes",blikes);
+		model.addAttribute("bookmarks",bookmarks);
+		
+		model.addAttribute("startBoardNo",startBoardNo);
+		model.addAttribute("endBoardNo",endBoardNo);
+		
+		return "pageSectionHTML";
+		
+	}
+	
+	@PostMapping("/deleteBoard")
+	public String deleteBoard(int bno, String bphoto) {
+		boardService.deleteBoard(bno);
+		
+		if (bphoto != null) {
+			File file = new File("D:/MyWorkspace/images/board/" + bphoto);
+			if (file.exists()) file.delete();
+		}
+		
+		return "feed";
 	}
 }

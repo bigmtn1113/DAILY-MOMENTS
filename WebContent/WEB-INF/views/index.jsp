@@ -41,6 +41,9 @@
 		
 		<!-- isop -->
 		<script src="<%=request.getContextPath()%>/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+		
+		<!-- modal -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	</head>
 
 	<body>
@@ -50,7 +53,7 @@
 					<a href="">FaceGram</a>
 				</h1>
 				<h2>
-					I'm a passionate <span>graphic designer</span> from New York
+					We're passionate <span>Web Programmer</span> from KOSA
 				</h2>
 	
 				<nav class="nav-menu d-none d-lg-block">
@@ -84,17 +87,17 @@
 								</script>
 							</li>
 							
-							<li><a id="li-join" href="javascript:join()">Join</a>
+							<li><a id="li-joinForm" href="javascript:joinForm()">Join</a>
 								<script type="text/javascript">
-									function join() {
+									function joinForm() {
 										$.ajax({
-											url : "join",
+											url : "joinForm",
 											method : "GET",
 											success : function(data) {
-												$("#join").html(data);
-												$("#li-join").attr("href", "#join");
-												$("#li-join").click();
-												$("#li-join").attr("href", "javascript:join()");
+												$("#joinForm").html(data);
+												$("#li-joinForm").attr("href", "#joinForm");
+												$("#li-joinForm").click();
+												$("#li-joinForm").attr("href", "javascript:joinForm()");
 											}
 										});
 									}
@@ -140,13 +143,11 @@
 									}
 								</script>
 							</li>
-		
-							<li><a href="#">Notification</a></li>
-		
+							
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
 								<div class="dropdown-menu" style="opacity: 0.5;">
 		
-									<a id="li-profile" class="dropdown-item" style="color: #0000ff;" href="javascript:profile()">Profile</a>
+									<a id="li-profile" class="dropdown-item" style="color: #18d26e;" href="javascript:profile()">Profile</a>
 									<script type="text/javascript">
 										function profile() {
 											$.ajax({
@@ -162,7 +163,7 @@
 										}
 									</script>
 		
-									<a id="li-setting" class="dropdown-item" style="color: #0000ff;" href="javascript:setting()">Setting</a>
+									<a id="li-setting" class="dropdown-item" style="color: #18d26e;" href="javascript:setting()">Setting</a>
 									<script type="text/javascript">
 										function setting() {
 											$.ajax({
@@ -178,7 +179,7 @@
 										}
 									</script>
 									
-									<a id="li-qna" class="dropdown-item" style="color: #0000ff;" href="javascript:qna()">Q&A</a>
+									<a id="li-qna" class="dropdown-item" style="color: #18d26e;" href="javascript:qna()">Q&A</a>
 									<script type="text/javascript">
 										function qna() {
 											$.ajax({
@@ -210,7 +211,7 @@
 										}
 									</script>
 		
-									<a class="dropdown-item" style="color: #0000ff;" href="logout">Logout</a>
+									<a class="dropdown-item" style="color: #18d26e;" href="logout">Logout</a>
 								</div>
 							</li>
 							
@@ -244,7 +245,8 @@
 															title: 'Oops...',
 															text: 'Can\'t find Member',
 															footer: 'You should search for the Member that exists.'
-														})
+														});
+														$('.swal2-container').css("z-index", "10000");
 													}
 												}
 											});
@@ -265,7 +267,8 @@
 														title: 'Oops...',
 														text: 'Can\'t find Tag',
 														footer: 'You should search for the Tag that exists.'
-													})
+													});
+													$('.swal2-container').css("z-index", "10000");
 												}
 											}
 										});
@@ -275,7 +278,8 @@
 											title: 'Oops...',
 											text: 'The searched keyword is not valid',
 											footer: 'You must write @ or # in front of the keyword you search for.'
-										})
+										});
+										$('.swal2-container').css("z-index", "10000");
 									}
 								}
 	
@@ -308,9 +312,9 @@
 				</nav>
 			</div>
 		</header>
-	
+
 		<section id="loginForm"></section>
-		<section id="join"></section>
+		<section id="joinForm"></section>
 		<section id="atSign"></section>
 		<section id="feed"></section>
 		<section id="tag"></section>

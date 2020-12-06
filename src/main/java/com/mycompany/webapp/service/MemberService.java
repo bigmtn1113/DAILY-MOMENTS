@@ -28,4 +28,9 @@ public class MemberService {
 		String mid = memberDao.selectMid(searchedId);
 		return mid;
 	}
+
+	public String getMphoto(String mid) {
+		String mphoto = memberDao.selectMphoto(mid);
+		return mphoto;
+	}
 }

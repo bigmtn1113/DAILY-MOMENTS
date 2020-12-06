@@ -30,4 +30,27 @@
 		where follower = #{follower} and following = #{following}
 	</delete>
 
+	<select id="selectFollowerID" parameterType="String" resultType="String">
+		select follower
+		from follow
+		where following = #{mid}
+	</select>
+	
+	<select id="selectFollowingID" parameterType="String" resultType="String">
+		select following
+		from follow
+		where follower = #{mid}
+	</select>
+	
+	<select id="selectFollowerPhoto" parameterType="String" resultType="String">
+		select mphoto
+		from member
+		where mid=#{followerID}
+	</select>
+	
+	<select id="selectFollowingPhoto" parameterType="String" resultType="String">
+		select mphoto
+		from member
+		where mid=#{followingID}
+	</select>
 </mapper>

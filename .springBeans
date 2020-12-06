@@ -14,8 +14,11 @@
 		<config>src/main/resources/spring/root/multipart_resolver.xml</config>
 		<config>src/main/resources/spring/root/datasource.xml</config>
 		<config>src/main/resources/spring/root/security.xml</config>
+<<<<<<< HEAD
 		<config>src/main/resources/mybatis/mapper/notice.xml</config>
 		<config>src/main/resources/mybatis/mapper/qnaboardcomment.xml</config>
+=======
+>>>>>>> branch 'master' of https://github.com/kva231/TeamProject
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

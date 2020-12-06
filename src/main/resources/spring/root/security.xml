@@ -12,6 +12,10 @@
 
 	<!-- #################### 보안 필터 체인 설정 #################### -->
 	<security:http>
+		<security:headers>
+        	<security:frame-options policy="SAMEORIGIN"/>
+    	</security:headers>	
+	
 		<!-- ### 로그인/로그아웃: 방법1 ### -->
 		<!-- 
 		<security:form-login login-page="/ch17/loginForm"

@@ -9,10 +9,10 @@
 		<p>Feed</p>
 	</div>
 	
-	<div class="row portfolio-container">
-		<c:forEach var="board" items="${boards}" varStatus="status">
+	<div class="row portfolio-container" id="paging">
+		<c:forEach begin='0' end='9' var="board" items="${boards}" varStatus="status">
 			<div class="col-sm-12 portfolio-item"
-				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
+				 style="border-radius:10px; width:100%; height:auto; border:2px solid white; margin-bottom:80px;">
 				
 				<c:set var="index" value="${status.index}"/>
 				<c:set var="isLikeboard" value="false"/>
@@ -31,15 +31,31 @@
 				</c:forEach>
 				
 				<div style="background-color: #1B1B1B; margin-top:30px;">	
-					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}">
+					<a href="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}" data-gall="portfolioDetailsGallery" class="venobox vbox-item">
 						<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 					</a>
-					
+					<script>
+						$(function(){
+							$('.venobox').venobox({	
+								
+							});
+						});
+					</script>
 					<c:if test="${board.mid == mid}">
-						<a href="javascript:goProfile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
+						<a href="javascript:profile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
 					</c:if>
 					<c:if test="${board.mid != mid}">
-						<a href="javascript:goAtSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
+						<a href="javascript:atSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
+					</c:if>
+					
+					<c:if test="${board.mid == mid}">
+						<button class="btn" style="float: right; margin-top: 8px; margin-right: 8px; background: #18d26e; color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    :
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">Update</a>
+							<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">Delete</a>
+						</div>
 					</c:if>
 					
 					<span style="float: right; margin-top: 15px; margin-right: 15px">
@@ -76,16 +92,16 @@
 		              		</button>
 	              		</c:if>
 						
-						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
+						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">Like ${likeCnts.get(index)}</div>
 					</div>
 
 		          	<div
 		          		id="midcontentcomment_${board.bno}"
 					    class="invisible-scrollbar" 
-						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
+						style="height: 250px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 						color: white; overflow-y: auto;">
 						<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
-							 <div style="white-space:pre;">${board.bcontent}</div>
+							 <div style="white-space:pre-line;">${board.bcontent}</div>
 						</div>
 						
 						<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
@@ -99,42 +115,48 @@
 						</div>
 					</div>
 					<div style="height:20px; margin-bottom:70px;">
-			             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
+			             <textarea class="invisible-scrollbar" id="content_${board.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="Write Comment... "></textarea>
 			             <button id="${board.bno}" class="bx bx-subdirectory-left" onclick="commentWrite('${board.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 		          	</div>
 				</div>
 			</div>
 		</c:forEach>
+		
 		<script type="text/javascript">
-			function goProfile() {
+			function updateBoard(bno, bphoto, bcontent) {
 				$.ajax({
-					url : "profile",
-					method : "GET",
-					success : function(data) {
-						$("#profile").html(data);
-						$("#li-profile").attr("href", "#profile");
-						$("#li-profile").click();
-						$("#li-profile").attr("href", "javascript:goProfile()");
+					url: "updateBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto, bcontent: bcontent},
+					success: function(data) {
+						$("#writeForm").html(data);
+						$("#li-writeForm").attr("href", "#writeForm");
+						$("#li-writeForm").click();
+						$("#li-writeForm").attr("href", "javascript:writeForm()");
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
-			function goAtSign(mid) {
+			
+			function deleteBoard(bno, bphoto) {
 				$.ajax({
-					url : "atSign",
-					data:{mid:mid},
-					method : "POST",
-					success : function(data) {
-						$("#atSign").html(data);
-						$("#li-atSign").attr("href", "#atSign");
-						$("#li-atSign").click();
-						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')");
+					url: "deleteBoard",
+					method: "POST",
+					data: {bno: bno, bphoto: bphoto},
+					success: function(data) {
+						$.ajax({
+							url: "feed",
+							method: "GET",
+							success: function(data) {
+								$("#feed").html(data);
+								$("#li-feed").attr("href", "#feed");
+								$("#li-feed").click();
+								$("#li-feed").attr("href", "javascript:feed()");
+							}
+						});
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function commentWrite(bno, mid) {
 				var comment = $("#content_" + bno).val();
 				$.ajax({
@@ -148,8 +170,7 @@
 					}
 				});
 			}
-		</script>
-		<script type="text/javascript">
+			
 			function ClickHeart(bno, mid) {
 				var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
 				var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
@@ -162,7 +183,7 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
@@ -175,14 +196,13 @@
 						success : function(data){
 							if(data.result=="success"){
 								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
-								$("#heartCount_"+bno).html("좋아요 "+data.likeCntsClick+"개");
+								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
 							}
 						}
 					});
 				}
 			}
-		</script>
-		<script>
+			
 			function ClickBookmark(bno, mid) {
 				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png";
 				var selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";

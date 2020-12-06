@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BlikeDao;
 import com.mycompany.webapp.dto.Blike;
-import com.mycompany.webapp.dto.Board;
 
 @Service
 public class BlikeService {
@@ -37,5 +36,10 @@ public class BlikeService {
 	public int countLikes(int bno) {
 		int rows=blikeDao.countLikeClick(bno);
 		return rows;
+	}
+
+	public int checkLikeClick(Blike blike) {
+		int likeClick = blikeDao.selectLikeClickCheck(blike);
+		return likeClick;
 	}
 }

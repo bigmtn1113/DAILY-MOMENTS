@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -33,13 +34,31 @@ public class AtSignController {
 		int memberBcnt = boardService.getMemberBcnt(searchedId);
 		int followerCnt = followService.getFollowerCnt(searchedId);
 		int followingCnt = followService.getFollowingCnt(searchedId);
+		List<String> followerIDs = followService.getFollowerID(searchedId);
+		List<String> followingIDs = followService.getFollowingID(searchedId);
+		List<String> followerPhotos = new ArrayList<>();
+		List<String> followingPhotos = new ArrayList<>();
 		List<String> memberBphotos = boardService.getMemberBphotos(searchedId);
+		
+		
+		for(String followerID : followerIDs) {
+			followerPhotos.add(followService.getFollowerPhotos(followerID));
+		}
+		
+		for(String followingID : followingIDs) {
+			followingPhotos.add(followService.getFollowingPhotos(followingID));
+		}
+		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("followingMembers", followingMembers);
 		model.addAttribute("memberBcnt", memberBcnt);
 		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("followingCnt", followingCnt);
+		model.addAttribute("followerIDs", followerIDs);
+		model.addAttribute("followingIDs", followingIDs);
+		model.addAttribute("followerPhotos", followerPhotos);
+		model.addAttribute("followingPhotos", followingPhotos);
 		model.addAttribute("memberBphotos", memberBphotos);
 		
 		return "atSign";
