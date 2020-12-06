@@ -17,8 +17,8 @@
 			<%-- <span>번호:</span> 
 			<span>${qnaBoard.bno}</span> <br/> --%>
 			
-			<span>제목 :</span> <br/>
-			<input id="btitleUpdate" name="btitleUpdate" style="line-height: 10px; width: 40%;" value="${qnaBoard.btitle}"></input> <br/>
+			<span>Title :</span> <br/>
+			<input id="btitleUpdate" name="btitleUpdate" style="height:10px; line-height: 10px; width: 100%;" value="${qnaBoard.btitle}"></input> <br/>
 			<span id="btitleUpdateError" ></span>
 			
 			<%-- <span>글쓴이:</span> 
@@ -32,8 +32,8 @@
 		<br/>
 		
 		<div>
-			<span>내용 :</span> <br/>
-			<textarea id="bcontentUpdate" name="bcontentUpdate" style="width:90%">${qnaBoard.bcontent}</textarea>
+			<span>Content :</span> <br/>
+			<textarea id="bcontentUpdate" name="bcontentUpdate" style="height:300px; width:100%">${qnaBoard.bcontent}</textarea>
 			<span id="bcontentUpdateError" ></span>
 		</div>
 		
@@ -49,7 +49,7 @@
 	
 		<c:if test="${mid == qnaBoard.mid}"> 
 		
-			<a class="btn btn-danger btn-sm" href="javascript:qnaDetailUpdate()">글수정</a>
+			<a class="btn btn-warning btn-sm" href="javascript:qnaDetailUpdate()">Modify</a>
 			<script type="text/javascript">
 				function qnaDetailUpdate() {
 					var bno = $("#bno").val(); //id로 검색
@@ -84,7 +84,7 @@
 			
 			
 			
-			<a class="btn btn-warning btn-sm" href="javascript:qnaList()">취소</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
+			<a class="btn btn-success btn-sm" href="javascript:qnaList()">List</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
 			<!-- <script type="text/javascript">
 				function qnaList(pageNo) {
 					if(!pageNo) {

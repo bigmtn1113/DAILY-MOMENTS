@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -159,7 +158,6 @@ public class QnaController {
 		out.close();
 	}
 	
-	
 	@RequestMapping("/qnaCommentWrite")
 	public String qnaCommentWrite(String ccomment,int bno, String mid, Model model) {
 		QnaBoardComment qnaBoardComment=new QnaBoardComment();
@@ -171,6 +169,11 @@ public class QnaController {
 		List<QnaBoardComment> qnaBoardCommentsListWrite = qnaBoardCommentService.getQnaBoardCommentWrite(bno);
 		
 		model.addAttribute("qnaBoardCommentsListWrite", qnaBoardCommentsListWrite);
+		
+		
+
+		
+		
 		return "qnaCommentHTML";
 	}	
 }

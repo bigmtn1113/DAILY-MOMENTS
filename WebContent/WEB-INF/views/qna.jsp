@@ -7,14 +7,14 @@
 	
 	<div class="section-title">
 		<h2>Q&A</h2>
-		<p>Q&A  - May I help you ?</p>
+		<p>Q&A - May I help you ?</p>
 	</div>
 		
 		
 	<div class="input-form container">
 	
 		<div class="sector">
-			<h5>Q&A 작성</h5>
+			<h5>Q&A Write Form</h5>
 		</div>	
 	
 		<form action="setting" method="post" role="form" class="php-email-form mt-4">
@@ -25,12 +25,12 @@
 			</div>
 			
 			<div class="form-group">
-				<textarea name="bcontent" class="form-control" id="bcontent" placeholder="Content"></textarea>
+				<textarea style="height: 200px;" name="bcontent" class="form-control" id="bcontent" placeholder="Content"></textarea>
 				<span style="color: orange" id="bcontentError"></span>
 			</div>
 	
 			<div style="text-align: center;">
-				<a class="btn btn-center" style="background: #18d26e; color: white" href="javascript:boardWrite()">글쓰기</a>
+				<a class="btn btn-center" style="background: #18d26e; color: white" href="javascript:boardWrite()">Write</a>
 			</div>
 			
 			<script type="text/javascript">
@@ -64,37 +64,39 @@
 	<div class="input-form container">
 		
 		<div class="sector">
-			<h5>Q&A 게시판</h5>
+			<h5>Q&A Bulletin Board</h5>
 		</div>	
 					
 			<div>	
 				<form id="qnaList" class="php-email-form mt-4">	<!-- qnaList 불러올 때 이 밑에 있는거 대체해서 이 자리에 넣는 거임. 이 아래 양식에 넣는 게 아니라, 대체하는 것! -->		
 					<table style="color:#636568; width:100%; border-collapse: separate; border-spacing: 5px;">
 						<tr style="height:30px; background-color: white;" align="center" >
-							<th style="width:30px; background-color: #262626;">번호</th>
-							<th style="width:200px; background-color: #262626;">제목</th>
-							<th style="width:100px; background-color: #262626;">글쓴이</th>
-							<th style="width:100px; background-color: #262626;">날짜</th>
+							<th style="width:30px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">No.</th>
+							<th style="width:200px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">Title</th>
+							<th style="width:100px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">ID</th>
+							<th style="width:100px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">Date</th>
 						</tr>
 						
 						<c:forEach var="board" items="${list}"> <!-- var= 는 변수 임의로 넣으면 되고, list 부분은 컨트롤러에서 받는 것. 어떻게 구분하냐? qna.jsp 올 때 클릭했지? 그 때 이 페이지 불러오면서 컨트롤러에서 list 정의했음. 그거 쓴다. -->
 							<tr align="center">
-								<td style="background-color: #262626;">${board.bno}</td>
-								<td style="background-color: #262626;"><a href="javascript:qnaDetail(${board.bno})">${board.btitle}</a></td>
-								<td style="background-color: #262626;">${board.mid}</td>
+								<td style="background-color: #262626; padding-bottom: 10px; padding-top: 10px;">${board.bno}</td>
+								<td style="background-color: #262626; padding-bottom: 10px; padding-top: 10px;"><a href="javascript:qnaDetail(${board.bno})">${board.btitle}</a></td>
+								<td style="background-color: #262626; padding-bottom: 10px; padding-top: 10px;">${board.mid}</td>
 								<%-- <td><img class="rounded-circle" width="50px" height="50px" src="photodownload?fileName=${board.mphoto}"/></td> --%>
-								<td style="background-color: #262626;"><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/></td>
+								<td style="background-color: #262626; padding-bottom: 10px; padding-top: 10px;"><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd"/></td>
 							</tr>
 						</c:forEach>
 									
 				
 					<!-- <div class="pageNo">
 						<tr style="text-align: center;"> -->
+						
 							<td colspan="4" style="text-align: center;">
-								<a class="btn btn-outline-warning btn-sm" href="javascript:qnaList(1)">처음</a>
+							<br>
+								<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(1)">First Page</a>
 								
 								<c:if test="${pager.groupNo > 1}">
-									<a class="btn btn-outline-info btn-sm" href="javascript:qnaList(${pager.startPageNo-1})">이전</a> <!-- 페이지 에서 '이전' 누르면 그 그룹 바로 전 페이지그룹으로 간다 ex)12345탭 페이지 -> 678910탭 페이지 ... 이렇게 됨 -->
+									<a class="btn btn-outline-info btn-sm" href="javascript:qnaList(${pager.startPageNo-1})">Prev</a> <!-- 페이지 에서 '이전' 누르면 그 그룹 바로 전 페이지그룹으로 간다 ex)12345탭 페이지 -> 678910탭 페이지 ... 이렇게 됨 -->
 								</c:if>
 								
 								<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
@@ -108,11 +110,12 @@
 								</c:forEach>
 								
 								<c:if test="${pager.groupNo < pager.totalGroupNo}">
-									<a class="btn btn-outline-info btn-sm" href="javascript:qnaList(${pager.endPageNo+1})">다음</a>
+									<a class="btn btn-outline-info btn-sm" href="javascript:qnaList(${pager.endPageNo+1})">Next</a>
 								</c:if>
 								
-								<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(${pager.totalPageNo})">맨끝</a>
+								<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(${pager.totalPageNo})">Last Page</a>
 							</td>
+						
 						<!-- </tr> -->
 						
 						<!-- <div id="board_result" style="margin-top:30px"></div> -->
