@@ -100,12 +100,12 @@
 
 			<script type="text/javascript">
 				function qnaCommentWrite(bno, mid) {
-					
 					var comment = $("#qnaContent_" + bno).val();
+					
 					$.ajax({
 						url : "qnaCommentWrite",
-						data:{ccomment:comment, bno:bno, mid:mid},
 						method : "POST",
+						data:{ccomment:comment, bno:bno, mid:mid},
 						success : function(data) {
 							$.ajax({
 								url: data,

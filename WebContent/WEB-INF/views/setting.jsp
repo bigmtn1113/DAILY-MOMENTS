@@ -12,7 +12,7 @@
 		
 		<div class="imageChange" style="text-align:center">
 			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
-				id="profile-img" style="width:280px; height:280px; margin-bottom:20px;">
+				id="profile-img" style="width:250px; height:250px; margin-bottom:20px;">
 		</div>
 		
 		<div style="text-align:center;">

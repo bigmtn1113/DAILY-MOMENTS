@@ -20,7 +20,7 @@
 		select *
 		from qnaboardcomment
 		where bno=#{bno}
-		order by cdate desc
+		order by cdate asc
 	</select>
 	
 	

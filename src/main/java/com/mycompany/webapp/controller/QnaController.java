@@ -10,14 +10,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -25,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Qna;
@@ -35,9 +31,6 @@ import com.mycompany.webapp.service.QnaService;
 
 @Controller
 public class QnaController {
-	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
-
-	
 	@Resource private QnaService qnaService;
 	@Resource private QnaBoardCommentService qnaBoardCommentService;
 	
@@ -103,7 +96,7 @@ public class QnaController {
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
-		String saveFilePath = "D:/MyWorkspace/photo/member/" + fileName;
+		String saveFilePath = "D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 		
 		//응답 HTTP 헤더 구성
@@ -165,15 +158,8 @@ public class QnaController {
 		out.close();
 	}
 	
-	@ResponseBody
-	@PostMapping("/qnaCommentWrite")
-	public String qnaCommentWrite(HttpSession session, String ccomment,int bno, String mid, Model model, HttpServletResponse response) throws IOException, ServletException {
-		
-		logger.info(mid);
-		logger.info(ccomment);
-		
-		
-		
+	@RequestMapping("/qnaCommentWrite")
+	public String qnaCommentWrite(String ccomment,int bno, String mid, Model model) {
 		QnaBoardComment qnaBoardComment=new QnaBoardComment();
 		qnaBoardComment.setBno(bno);
 		qnaBoardComment.setCcontent(ccomment);   
@@ -189,11 +175,5 @@ public class QnaController {
 		
 		
 		return "qnaCommentHTML";
-	}
-	
-	@RequestMapping("/qnaCommentHTML")
-	public String qnaCommentHTML() {
-		return "qnaCommentHTML";
-	}
-	
+	}	
 }
