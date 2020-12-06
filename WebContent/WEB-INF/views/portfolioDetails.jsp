@@ -93,7 +93,12 @@
 							
 							<c:if test="${board.mid != mid}">
 			              		<button type="button" style="float:right; border:none; outline:none; background:none;">
-			              			<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
+			              			<c:if test="${bookmarkClick == 1}">
+			              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
+			              			</c:if>
+			              			<c:if test="${bookmarkClick == 0}">
+			              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
+			              			</c:if>
 			              		</button>
 		              		</c:if>
 							

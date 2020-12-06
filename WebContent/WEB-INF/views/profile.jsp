@@ -154,13 +154,13 @@
 				</c:if>
 						<div class="portfolio-wrap">
 							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${profilePhotos.get(bcnt)}"
+								src="<%=request.getContextPath()%>/resources/images/board/${mBAndMBM.bphoto}"
 								class="img-fluid" alt="">
 							<div class="portfolio-info">
 								<div class="portfolio-links">
-									<a href="portfolioDetails?mid=${mid}&bphoto=${mBAndMBM.bphoto}"
+									<a href="portfolioDetails?bphoto=${mBAndMBM.bphoto}"
 										data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox">
-										<i class="bx bx-link"></i>
+										<img src="<%=request.getContextPath()%>/resources/images/board/${mBAndMBM.bphoto}">
 									</a>
 									<script>
 										$(function(){

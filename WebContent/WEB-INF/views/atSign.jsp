@@ -193,21 +193,18 @@
 							class="img-fluid">
 						
 						<div class="portfolio-info">
-							<h4>App 1</h4>
-							<p>App</p>
 							<div class="portfolio-links">
-								<a
-									href="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}"
-									data-gall="portfolioGallery" class="venobox" title="App 1"><i
-									class="bx bx-plus"></i>
-								</a>
-								<a
-								    id="li-portfolioDetails" href="javascript:portfolioDetails()"
+								<a href="portfolioDetails?bphoto=${memberBphoto}"
 									data-gall="portfolioDetailsGallery" data-vbtype="iframe"
-									class="venobox" title="Portfolio Details"><i
-									class="bx bx-link"></i>
+									class="venobox"> <img
+									src="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}">
 								</a>
-								<script type="text/javascript">
+								
+								<script>
+									$(function(){
+										$('.venobox').venobox({});
+									});
+									
 									function portfolioDetails() {
 										$.ajax({
 											url : "portfolioDetails",
