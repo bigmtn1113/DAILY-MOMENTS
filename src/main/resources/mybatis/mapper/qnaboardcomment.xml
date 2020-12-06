@@ -4,15 +4,7 @@
 <mapper namespace="mybatis.mapper.qnaboardcomment">
 	
 	
-	<insert id="insert" parameterType="qnaboardcomment">
-		
-		<selectKey order="BEFORE" resultType="int" keyProperty="cno">  <!-- before면 아래 sql문 보다 selectKey 부분을 먼저 실행하겠다. after면 반대. -->
-			select seq_qnaboardcomment_cno.nextval from dual
-		</selectKey>
-		
-		insert into qnaboardcomment(cno, bno, ccontent, cdate, mid)
-		values(#{cno}, #{bno}, #{ccontent}, sysdate, #{mid})
-	</insert>
+	
 	
 	
 	<select id="selectQnaBoardCommentWrite" parameterType="int" resultType="qnaboardcomment">
@@ -31,5 +23,16 @@
 		order by cdate desc
 	</select>
 	
+	
+	
+	<insert id="insert" parameterType="qnaboardcomment">
+		
+		<selectKey order="BEFORE" resultType="int" keyProperty="cno">  <!-- before면 아래 sql문 보다 selectKey 부분을 먼저 실행하겠다. after면 반대. -->
+			select seq_qnaboardcomment_cno.nextval from dual
+		</selectKey>
+		
+		insert into qnaboardcomment(cno, bno, ccontent, cdate, mid)
+		values(#{cno}, #{bno}, #{ccontent}, sysdate, #{mid})
+	</insert>
 	
 </mapper>

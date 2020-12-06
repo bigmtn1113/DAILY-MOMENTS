@@ -84,7 +84,7 @@
 				
 				<div style="height:20px; margin-bottom:45px;">
 		             <textarea class="invisible-scrollbar" id="qnaContent_${qnaBoard.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
-		             <button id="${qnaBoard.bno}" class="bx bx-subdirectory-left" onclick="qnaCommentWrite('${qnaBoard.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
+		             <button type="button" id="${qnaBoard.bno}" class="bx bx-subdirectory-left" onclick="qnaCommentWrite('${qnaBoard.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
 	          	</div>
 
 
@@ -107,9 +107,18 @@
 						data:{ccomment:comment, bno:bno, mid:mid},
 						method : "POST",
 						success : function(data) {
-							$("#qnaCommentlist_"+bno).html(data);
-							$("#qnaContent_"+bno).val("");
-							$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
+							$.ajax({
+								url: data,
+								method: "GET",
+								success: function(data) {
+									alert(data);
+									$("#qnaCommentlist_"+bno).html(data);
+									$("#qnaContent_"+bno).val("");
+									$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
+								}
+							});
+							
+							
 							
 							
 						}

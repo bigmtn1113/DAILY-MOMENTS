@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Qna;
@@ -164,8 +165,8 @@ public class QnaController {
 		out.close();
 	}
 	
-	
-	@RequestMapping("/qnaCommentWrite")
+	@ResponseBody
+	@PostMapping("/qnaCommentWrite")
 	public String qnaCommentWrite(HttpSession session, String ccomment,int bno, String mid, Model model, HttpServletResponse response) throws IOException, ServletException {
 		
 		logger.info(mid);
@@ -188,5 +189,11 @@ public class QnaController {
 		
 		
 		return "qnaCommentHTML";
-	}	
+	}
+	
+	@RequestMapping("/qnaCommentHTML")
+	public String qnaCommentHTML() {
+		return "qnaCommentHTML";
+	}
+	
 }
