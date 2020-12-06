@@ -195,7 +195,7 @@
 										}
 									</script>
 									
-									<a id="li-notice" class="dropdown-item" style="color: #0000ff;" href="javascript:notice()">Notice</a>
+									<a id="li-notice" class="dropdown-item" style="color: #18d26e;" href="javascript:notice()">Notice</a>
 									<script type="text/javascript">
 										function notice() {
 											$.ajax({

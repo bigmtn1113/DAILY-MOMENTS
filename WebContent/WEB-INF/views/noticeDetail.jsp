@@ -14,23 +14,23 @@
 			
 			<br/>
 			
-			<span>번호 :</span> 
-			<span>${noticeBoard.bno}</span> <br/>
+			<span>No. :</span> 
+			<span style="line-height: 2.0em;">${noticeBoard.bno}</span> <br/>
 			
-			<span>제목 :</span> 
-			<span>${noticeBoard.btitle}</span> <br/>
+			<span>Title :</span> 
+			<span style="line-height: 2.0em;">${noticeBoard.btitle}</span> <br/>
 			
-			<span>글쓴이 :</span> 
-			<span>${noticeBoard.mid}</span> <br/>
+			<span>ID :</span> 
+			<span style="line-height: 2.0em;">${noticeBoard.mid}</span> <br/>
 			
-			<span class="title">날짜 :</span> 
+			<span class="title">Date :</span> 
 			<span><fmt:formatDate value="${noticeBoard.bdate}" pattern="yyyy-MM-dd HH.mm.ss"/></span> <br/>
 		</div>
 		
 		<br/>
 		
 		<div>
-			<span class="title">내용 :</span> <br/>
+			<span class="title">Content :</span> <br/>
 			<textarea style="width:100%" readonly>${noticeBoard.bcontent}</textarea>
 		</div>
 		
@@ -38,7 +38,7 @@
 		
 		<c:if test="${mid == noticeBoard.mid}">
 		
-			<a class="btn btn-danger btn-sm" href="javascript:noticeDetailDelete(${noticeBoard.bno})">삭제</a>
+			<a class="btn btn-danger btn-sm" href="javascript:noticeDetailDelete(${noticeBoard.bno})">Delete</a>
 			<script type="text/javascript">
 				function noticeDetailDelete(bno) {
 					$.ajax({
@@ -54,7 +54,7 @@
 				}
 			</script>	
 			
-			<a class="btn btn-warning btn-sm" href="javascript:noticeDetailUpdate(${noticeBoard.bno})">수정</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
+			<a class="btn btn-warning btn-sm" href="javascript:noticeDetailUpdate(${noticeBoard.bno})">Modify</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
 			<script type="text/javascript">
 				function noticeDetailUpdate(bno) {
 					$.ajax({
@@ -68,11 +68,11 @@
 				}
 			</script>	
 			
-			<a class="btn btn-success btn-sm" href="javascript:noticeList()">목록</a>
+			<a class="btn btn-success btn-sm" href="javascript:noticeList()">List</a>
 		</c:if>
 				
 		<c:if test="${mid != noticeBoard.mid}">
-			<a class="btn btn-success btn-sm" href="javascript:noticeList()">목록</a>
+			<a class="btn btn-success btn-sm" href="javascript:noticeList()">List</a>
 		</c:if>
 		
 		

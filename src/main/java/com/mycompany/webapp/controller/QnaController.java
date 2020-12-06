@@ -172,6 +172,7 @@ public class QnaController {
 		logger.info(ccomment);
 		
 		
+		
 		QnaBoardComment qnaBoardComment=new QnaBoardComment();
 		qnaBoardComment.setBno(bno);
 		qnaBoardComment.setCcontent(ccomment);   
@@ -181,6 +182,11 @@ public class QnaController {
 		List<QnaBoardComment> qnaBoardCommentsListWrite = qnaBoardCommentService.getQnaBoardCommentWrite(bno);
 		
 		model.addAttribute("qnaBoardCommentsListWrite", qnaBoardCommentsListWrite);
+		
+		
+
+		
+		
 		return "qnaCommentHTML";
 	}	
 }
