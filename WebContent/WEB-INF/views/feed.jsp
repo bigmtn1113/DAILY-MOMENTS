@@ -98,10 +98,10 @@
 		          	<div
 		          		id="midcontentcomment_${board.bno}"
 					    class="invisible-scrollbar" 
-						style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
+						style="height: 250px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 						color: white; overflow-y: auto;">
 						<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
-							 <div style="white-space:pre;">${board.bcontent}</div>
+							 <div style="white-space:pre-line;">${board.bcontent}</div>
 						</div>
 						
 						<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">

@@ -35,26 +35,16 @@
 		<main id="main">
 			<div class="portfolio-details container">
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-lg-8" style="padding-top: 45px">
 					
-						<div style="background-color: #1B1B1B;">	
+						<div style="background-color: #1B1B1B;">
 							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 							
 							<c:if test="${board.mid == mid}">
-								<a href="javascript:profile()" style="text-decoration: none; color: white; font-size: 30px;" id="li-profile">${mid}</a>
+								<a style="text-decoration: none; color: white; font-size: 30px;">${mid}</a>
 							</c:if>
 							<c:if test="${board.mid != mid}">
-								<a href="javascript:atSign('${board.mid}')" style="text-decoration: none; color: white; font-size: 30px;" id="li-atSign">${board.mid}</a>
-							</c:if>
-							
-							<c:if test="${board.mid == mid}">
-								<button class="btn" style="float: right; margin-top: 8px; margin-right: 8px; background: #18d26e; color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								    :
-								</button>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="javascript:updateBoard('${board.bno}', '${board.bphoto}', '${board.bcontent}')">수정</a>
-									<a class="dropdown-item" href="javascript:deleteBoard('${board.bno}', '${board.bphoto}')">삭제</a>
-								</div>
+								<a style="text-decoration: none; color: white; font-size: 30px;">${board.mid}</a>
 							</c:if>
 							
 							<span style="float: right; margin-top: 15px; margin-right: 15px">
@@ -73,10 +63,10 @@
 						<div
 			          		id="midcontentcomment_${board.bno}"
 						    class="invisible-scrollbar" 
-							style="height: 200px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
+							style="height: 250px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
 							color: white; overflow-y: auto;">
 							<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
-								 <div style="white-space:pre;">${board.bcontent}</div>
+								 <div style="white-space:pre-line;">${board.bcontent}</div>
 							</div>
 							
 							<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
@@ -90,7 +80,7 @@
 							</div>
 						</div>
 
-						<div style="height: 40px; margin-bottom:10px">
+						<div style="height: 40px; margin-top: 20px; margin-bottom: 10px">
 
 							<button type="button" style="float:left; border:none; outline:none; background:none;">
 								<c:if test="${likeClick == 1}">
@@ -103,12 +93,7 @@
 							
 							<c:if test="${board.mid != mid}">
 			              		<button type="button" style="float:right; border:none; outline:none; background:none;">
-			              			<c:if test="${bookmarkClick == 1}">
-			              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
-			              			</c:if>
-			              			<c:if test="${bookmarkClick == 0}">
-			              				<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png">
-			              			</c:if>
+			              			<img onclick ="ClickBookmark('${board.bno}','${mid}');" id="img-bookmark_${board.bno}" src="<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png">
 			              		</button>
 		              		</c:if>
 							
@@ -248,113 +233,5 @@
 	
 		<!-- Template Main JS File -->
 		<script src="<%=request.getContextPath()%>/resources/assets/js/main.js"></script>
-		
-		<script type="text/javascript">
-			function goProfile() {
-				$.ajax({
-					url : "profile",
-					method : "GET",
-					success : function(data) {
-						$("#profile").html(data);
-						$("#li-profile").attr("href", "#profile");
-						$("#li-profile").click();
-						$("#li-profile").attr("href", "javascript:goProfile()");
-					}
-				});
-			}
-		</script>
-		<script type="text/javascript">
-			function goAtSign(mid) {
-				$.ajax({
-					url : "atSign",
-					data:{mid:mid},
-					method : "POST",
-					success : function(data) {
-						$("#atSign").html(data);
-						$("#li-atSign").attr("href", "#atSign");
-						$("#li-atSign").click();
-						$("#li-atSign").attr("href", "javascript:goAtSign('${board.mid}')");
-					}
-				});
-			}
-		</script>
-		<script type="text/javascript">
-			function commentWrite(bno, mid) {
-				var comment = $("#content_" + bno).val();
-				$.ajax({
-					url : "commentWrite",
-					data:{ccomment:comment, bno:bno, mid:mid},
-					method : "POST",
-					success : function(data) {
-						$("#commentlist_"+bno).html(data);
-						$("#content_"+bno).val("");
-						$("#midcontentcomment_"+bno).scrollTop($("#midcontentcomment_"+bno)[0].scrollHeight);
-					}
-				});
-			}
-		</script>
-		<script type="text/javascript">
-			function ClickHeart(bno, mid) {
-				var heart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/heart.png";
-				var	selectedHeart = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png";
-				
-				if(document.getElementById('img-heart_'+bno).src==heart){ // 빈 하트일 때
-					$.ajax({
-						url : "LikeClick",
-						data : {bno:bno, mid:mid},
-						method : "POST",
-						success : function(data){
-							if(data.result=="success"){
-								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_heart.png");
-								$("#heartCount_"+bno).html("Like "+data.likeCntsClick);
-							}
-						}
-					});
-				}
-				else{ // 선택된 하트일 때
-					$.ajax({
-						url : "DisLikeClick",
-						data : {bno:bno, mid:mid},
-						method : "POST",
-						success : function(data){
-							if(data.result=="success"){
-								$("#img-heart_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/heart.png");
-								$("#heartCount_"+bno).html("Like "+data.likeCntsClick+);
-							}
-						}
-					});
-				}
-			}
-		</script>
-		<script>
-			function ClickBookmark(bno, mid) {
-				var bookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png";
-				var selectedBookmark = location.protocol + "//" + location.host + "<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png";
-				if(document.getElementById('img-bookmark_'+bno).src==bookmark){ // 빈 북마크일 때
-					$.ajax({
-						url : "BookmarkClick",
-						data : {bno:bno, mid:mid},
-						method : "POST",
-						success : function(data){
-							if(data.result=="success"){
-								$("#img-bookmark_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/selected_bookmark.png");
-							}
-						}
-					});
-				}
-				else{ //선택된 북마크일 때
-					$.ajax({
-						url : "DisBookmarkClick", 
-						data : {bno:bno, mid:mid},
-						method : "POST",
-						success : function(data){
-							if(data.result=="success"){
-								$("#img-bookmark_"+bno).attr("src","<%=application.getContextPath()%>/resources/assets/img/need/bookmark.png");
-							}
-						}
-					});
-				}
-			}
-		</script>
 	</body>
 </html>

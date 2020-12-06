@@ -144,7 +144,7 @@
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
 								<div class="dropdown-menu" style="opacity: 0.5;">
 		
-									<a id="li-profile" class="dropdown-item" style="color: #0000ff;" href="javascript:profile()">Profile</a>
+									<a id="li-profile" class="dropdown-item" style="color: #18d26e;" href="javascript:profile()">Profile</a>
 									<script type="text/javascript">
 										function profile() {
 											$.ajax({
@@ -160,7 +160,7 @@
 										}
 									</script>
 		
-									<a id="li-setting" class="dropdown-item" style="color: #0000ff;" href="javascript:setting()">Setting</a>
+									<a id="li-setting" class="dropdown-item" style="color: #18d26e;" href="javascript:setting()">Setting</a>
 									<script type="text/javascript">
 										function setting() {
 											$.ajax({
@@ -176,7 +176,7 @@
 										}
 									</script>
 									
-									<a id="li-qna" class="dropdown-item" style="color: #0000ff;" href="javascript:qna()">Q&A</a>
+									<a id="li-qna" class="dropdown-item" style="color: #18d26e;" href="javascript:qna()">Q&A</a>
 									<script type="text/javascript">
 										function qna() {
 											$.ajax({
@@ -192,7 +192,7 @@
 										}
 									</script>
 		
-									<a class="dropdown-item" style="color: #0000ff;" href="logout">Logout</a>
+									<a class="dropdown-item" style="color: #18d26e;" href="logout">Logout</a>
 								</div>
 							</li>
 							
