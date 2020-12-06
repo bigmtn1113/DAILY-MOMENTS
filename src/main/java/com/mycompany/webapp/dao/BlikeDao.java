@@ -20,8 +20,8 @@ public class BlikeDao {
 	}
 
 
-	public List<String> selectLikeMid(Integer boardbno) {
-		List<String> likeMid = sst.selectList("mybatis.mapper.blike.selectLikeMid", boardbno);
+	public List<Blike> selectLikeMid(Integer boardbno) {
+		List<Blike> likeMid = sst.selectList("mybatis.mapper.blike.selectLikeMid", boardbno);
 		return likeMid;
 	}
 

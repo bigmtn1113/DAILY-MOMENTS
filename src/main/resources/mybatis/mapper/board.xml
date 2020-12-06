@@ -84,5 +84,5 @@
 		from board
 		where mid=#{mid}
 	</select>
-
+	
 </mapper>

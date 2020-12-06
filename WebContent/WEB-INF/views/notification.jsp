@@ -12,8 +12,7 @@
 		<c:forEach var="likeMid" items="${likeMids}" varStatus="status">
 			<div class="col-sm-12 portfolio-item filter-app">
 			<c:set var="index" value="${status.index}"/>
-			
-			<c:forEach var="test" items="${likeMid.get(index)}">
+			<c:forEach var="blike" items="${likeMid}">
 				<div style="background-color: #1B1B1B; height:85%; padding:15px">
 					<div class="row">
 						
@@ -21,16 +20,19 @@
 								<img class="rounded-circle" style="margin-top:25px;margin-left: 25px; margin-right: 10px; float: left" width="90px" height="90px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
 							</a> --%>
 							
-							<%-- <span style="margin-top:14px; margin-left:20px">
-								<fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" />				
-							</span> --%>
+							<span style="margin-top:14px; margin-left:20px">
+								<fmt:formatDate value="${blike.ldate}" pattern="yyyy-MM-dd" />				
+							</span> 
 							
 							<%-- <a class="col-sm-1.5" href="javascript:goAtSign('${board.mid}')"
 							   style="margin-left:-70px;margin-top:40px;text-decoration: none;  font-size: 30px;"
 							   id="li-atSign">${board.mid}</a> --%>
+							   <a class="col-sm-1.5" 
+							   style="margin-left:-70px;margin-top:40px;text-decoration: none;  font-size: 30px;"
+							   id="li-atSign">${blike.mid}</a>
 							   
 							<span style="padding-left: 20px;margin-top:40px; width:62%; text-align:center;">
-								${test}님이 스토리를 추가했습니다. 사라지기 전에 놓치지 말고 확인 해보세요.
+								${blike.mid}님이 스토리를 추가했습니다. 사라지기 전에 놓치지 말고 확인 해보세요.
 							</span>
 							
 								<%-- <img 

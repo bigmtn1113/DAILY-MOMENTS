@@ -41,6 +41,9 @@
 		
 		<!-- isop -->
 		<script src="<%=request.getContextPath()%>/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+		
+		<!-- modal -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	</head>
 
 	<body>
@@ -312,7 +315,7 @@
 				
 			</div>
 		</header>
-	
+
 		<section id="loginForm"></section>
 		<section id="join"></section>
 		<section id="atSign"></section>

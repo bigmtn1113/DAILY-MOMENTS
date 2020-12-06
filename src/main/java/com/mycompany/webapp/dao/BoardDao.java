@@ -58,4 +58,5 @@ public class BoardDao {
 		List<Integer> boardBno = sst.selectList("mybatis.mapper.board.selectBoardbno", mid);
 		return boardBno;
 	}
+
 }

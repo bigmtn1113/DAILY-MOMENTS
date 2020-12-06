@@ -41,6 +41,7 @@ public class FeedController {
 		List<Blike> blikes = blikeService.getBlikes(mid);
 		List<Bookmark> bookmarks = bookmarkService.getBookmarks(mid);
 		
+		
 		for (Board board : boards) {
 			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
 			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
@@ -149,5 +150,34 @@ public class FeedController {
 		out.println(json);
 		out.flush();
 		out.close();
+	}
+	
+	@RequestMapping("/pageSection")
+	public String pageSection(HttpSession session, Model model, int startBoardNo, int endBoardNo) {
+		String mid = (String) session.getAttribute("mid");
+
+		List<Board> boards = boardService.getBoards(mid);
+		List<Integer> likeCnts = new ArrayList<>();
+		List<List<Bcomment>> boardCommentsList = new ArrayList<>();
+		List<Blike> blikes = blikeService.getBlikes(mid);
+		List<Bookmark> bookmarks = bookmarkService.getBookmarks(mid);
+		
+		
+		for (Board board : boards) {
+			likeCnts.add(blikeService.getLikeCnt(board.getBno()));
+			boardCommentsList.add(bcommentService.getBoardComments(board.getBno()));
+		}
+
+		model.addAttribute("boards", boards);
+		model.addAttribute("likeCnts", likeCnts);
+		model.addAttribute("boardCommentsList", boardCommentsList);
+		model.addAttribute("blikes",blikes);
+		model.addAttribute("bookmarks",bookmarks);
+		
+		model.addAttribute("startBoardNo",startBoardNo);
+		model.addAttribute("endBoardNo",endBoardNo);
+		
+		return "pageSectionHTML";
+		
 	}
 }

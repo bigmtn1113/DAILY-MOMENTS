@@ -8,11 +8,10 @@
 		where bno=#{bno}
 	</select>	
 	
-	<select id="selectLikeMid" parameterType="int" resultType="String">
-		select mid
+	<select id="selectLikeMid" parameterType="int" resultType="blike">
+		select bno, mid, ldate
 		from blike
-		where bno=#{boardbno}
-		
+		where bno=#{boardbno}		
 	</select>
 	
 	

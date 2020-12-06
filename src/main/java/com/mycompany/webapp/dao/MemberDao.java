@@ -1,10 +1,13 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.webapp.dto.Blike;
 import com.mycompany.webapp.dto.Member;
 
 @Repository
@@ -31,4 +34,10 @@ public class MemberDao {
 		String mid = sst.selectOne("mybatis.mapper.member.selectMid", searchedId);
 		return mid;
 	}
+
+	public List<String> selectMemberProfile(List<Blike> likeMid) {
+		List<String> memberProfile = sst.selectList("mybatis.mapper.member.selectMemberProfile", likeMid);
+		return memberProfile;
+	}
+
 }

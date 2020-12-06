@@ -9,8 +9,8 @@
 		<p>Feed</p>
 	</div>
 	
-	<div class="row portfolio-container">
-		<c:forEach var="board" items="${boards}" varStatus="status">
+	<div class="row portfolio-container" id="paging">
+		<c:forEach begin='0' end='9' var="board" items="${boards}" varStatus="status">
 			<div class="col-sm-12 portfolio-item filter-app"
 				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:80px;">
 				
@@ -74,9 +74,60 @@
 	              			</c:if>
 	              		</button>
 						
-						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">좋아요 ${likeCnts.get(index)}개</div>
-					</div>
-
+						<div style="text-align:left; padding-top:10px" id="heartCount_${board.bno}">
+						<a style="color:white; font-weight: bold;" href="#mylike" data-toggle="modal" id="mylikeClick" value="${board.bno}">좋아요 ${likeCnts.get(index)}개</a></div>
+					</div>	
+					
+									
+					<!-- like -->
+					<div class="modal fade" id="mylike" role="dialog">
+						<script>
+							$('#mylike').appendTo("body");
+						</script>
+						<div class="modal-dialog-centered">
+							<div style="height: 100%; width: 100%; color: #18d26e"
+								class="modal-dialog">
+					
+								<div style="background-color: #1B1B1B" class="modal-content">
+					
+									<div class="modal-header">
+					
+										<%-- <img class="rounded-circle" style="width: 80px; height: 80px;"
+											src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}" /> --%>
+										<h1
+											style="font-family: Georgia, serif; margin-right: 150px; margin-top: 12px; -ms-overflow-style: none; white-space: pre-line"
+											class="modal-title">Like</h1>
+									</div>
+					
+									<a style="padding: 10px; font-family: fantasy; margin-top: 5px">Your
+										ID</a>
+									<div style="color: blue; overflow-y: scroll; height: 450px"
+										class="invisible-scrollbar">
+										
+										<c:forEach var="followerID" items="${followerIDs}" varStatus="status">
+											<div style="padding: 8px">
+												<img class="rounded-circle"
+													style="width: 60px; height: 60px; padding: 10dp"
+													src="<%=request.getContextPath()%>/resources/images/member/${followerPhotos[status.index]}" />
+												 <a
+													style="font-family: gulim; margin-left: 15px; color: white; font-size: 25px"> ${followerID}</a>
+											</div>
+										</c:forEach>
+									</div>
+					
+									<a style="padding: 10px; font-family: fantasy; margin-bottm: 5px">Many
+										follower</a>
+									<div class="modal-footer">
+										<button type="button" class="btn"
+											style="background-color: #18d26e; color: white"
+											data-dismiss="modal">Close</button>
+									</div>
+					
+								</div>
+							</div>
+						</div>
+					</div>	
+									
 		          	<div
 		          		id="midcontentcomment_${board.bno}"
 					    class="invisible-scrollbar" 
@@ -209,6 +260,63 @@
 					});
 				}
 			}
+		</script>
+		<script >
+			function LikePeople(likeBno){
+				console.log(likeBno);
+				$.ajax({
+					url : "feed",
+					method : "GET",
+					data:{likeBno:likeBno},
+					success : function(data) {
+						if(data.result=="success"){
+							;
+						}
+							
+					}
+				});
+			}
+		</script>
+		<script>
+			var pageNo=0;
+			
+			$(document).ready(function(){
+				$(document).on('scroll', _.throttle(function(){
+				    check_if_needs_more_content();
+				  }, 300));
+			
+				function check_if_needs_more_content() {
+					if ($(window).scrollTop()+1>=$(document).height() - $(window).height()){
+				    	pageNo++;
+				    	startBoardNo=pageNo*10;
+				    	endBoardNo=pageNo*10+9;
+				    	$.ajax({
+				    		url:"pageSection",
+				    		data:{startBoardNo:startBoardNo, endBoardNo:endBoardNo},
+				    		method:"POST",
+				    		success : function(data){
+				    			$("#paging").append(data);
+				    		}
+				    	});
+				    }
+				}
+			});
+			
+			/* $(window).scroll(function() {
+			    if ($(window).scrollTop()+1>=$(document).height() - $(window).height()){
+			    	pageNo++;
+			    	startBoardNo=pageNo*10;
+			    	endBoardNo=pageNo*10+9;
+			    	$.ajax({
+			    		url:"pageSection",
+			    		data:{startBoardNo:startBoardNo, endBoardNo:endBoardNo},
+			    		method:"POST",
+			    		success : function(data){
+			    			$("#paging").append(data);
+			    		}
+			    	});
+			    }
+			}); */
 		</script>
 	</div>
 </div>

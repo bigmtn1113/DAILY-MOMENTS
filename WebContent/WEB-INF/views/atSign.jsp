@@ -43,7 +43,7 @@
 									$("#button-follow").attr("style", "background-color:#bbb");
 									$("#button-follow").attr("onclick", "follow('false', '${mid}', '${member.mid}', '${followerCnt}')");
 									
-									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i> <strong>팔로워:</strong> " + followerCnt);
+									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i><a style=\"color:white; font-weight: bold;\" href=\"#\" data-toggle=\"modal\" data-target=\"#atSignFollower\">팔로워 : " + followerCnt + "</a>");
 								}
 							}
 						});
@@ -60,7 +60,7 @@
 									$("#button-follow").removeAttr("style");
 									$("#button-follow").attr("onclick", "follow('true', '${mid}', '${member.mid}', '${followerCnt}')");
 									
-									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i> <strong>팔로워:</strong> " + followerCnt);
+									$("#li-followerCnt").html("<i class=\"icofont-rounded-right\"></i><a style=\"color:white; font-weight: bold;\" href=\"#\" data-toggle=\"modal\" data-target=\"#atSignFollower\">팔로워 : " + followerCnt + "</a>");
 								}
 							}
 						});
@@ -70,10 +70,9 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<ul>
-						<li></li>
 						<li><i class="icofont-rounded-right"></i> <strong>게시물:</strong> ${memberBcnt}</li>
-						<li id="li-followerCnt"><i class="icofont-rounded-right"></i> <strong>팔로워:</strong> ${followerCnt}</li>
-						<li><i class="icofont-rounded-right"></i> <strong>팔로잉:</strong> ${followingCnt}</li>
+						<li id="li-followerCnt"><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollower">팔로워 : ${followerCnt}</a></li>
+						<li><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollowing">팔로잉 : ${followingCnt}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -83,6 +82,100 @@
 		</div>
 	</div>
 </div>
+
+<!-- follower -->
+<div class="modal fade" id="atSignFollower" role="dialog">
+	<script>
+		$('#atSignFollower').appendTo("body");
+	</script>
+	<div class="modal-dialog-centered">
+		<div style="height: 100%; width: 100%; color: #18d26e"
+			class="modal-dialog">
+
+			<div style="background-color: #1B1B1B" class="modal-content">
+
+				<div class="modal-header">
+					<div style="margin-left: 3px" class="row">
+						<img class="rounded-circle" style="width: 80px; height: 80px;"
+							src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}" />
+						<h1
+							style="margin-left:15px; margin-top: 8px; -ms-overflow-style: none; white-space: pre-line"
+							class="modal-title"><c:out value="${member.mid} Follower"></c:out></h1>
+					</div>
+				</div>
+
+				<a style="padding: 10px; margin-top: 5px">Follower</a>
+				<div style="color: blue; overflow-y: scroll; height: 350px"
+					class="invisible-scrollbar">
+					
+					<c:forEach var="followerID" items="${followerIDs}" varStatus="status">
+						<div style="padding: 8px">
+							<img class="rounded-circle"
+								style="width: 60px; height: 60px; padding: 10dp"
+								src="<%=request.getContextPath()%>/resources/images/member/${followerPhotos[status.index]}" />
+							 <a
+								style="margin-left: 15px; color: white; font-size: 25px"> ${followerID}</a>
+						</div>
+					</c:forEach>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn"
+						style="background-color: #18d26e; color: white"
+						data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- following -->
+<div class="modal fade" id="atSignFollowing" role="dialog">
+	<script>
+		$('#atSignFollowing').appendTo("body");
+	</script>
+	<div class="modal-dialog-centered">
+		<div style="height: 100%; width: 100%; color: #18d26e"
+			class="modal-dialog">
+
+			<div style="background-color: #1B1B1B" class="modal-content">
+
+				<div class="modal-header">
+					<div style="margin-left: 3px" class="row">
+						<img class="rounded-circle" style="width: 80px; height: 80px;"
+							src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}" />
+						<h1
+							style="margin-left: 15px; margin-top: 8px; -ms-overflow-style: none; white-space: pre-line"
+							class="modal-title"><c:out value="${member.mid} Following"></c:out></h1>
+					</div>
+				</div>
+
+				<a style="padding: 10px; margin-top: 5px">Following</a>
+				<div style="color: blue; overflow-y: scroll; height: 350px"
+					class="invisible-scrollbar">
+					<c:forEach var="followingID" items="${followingIDs}" varStatus="status">
+						<div style="padding: 8px">
+							<img class="rounded-circle"
+								style="width: 60px; height: 60px; padding: 10dp"
+								src="<%=request.getContextPath()%>/resources/images/member/${followingPhotos[status.index]}" />
+							<a
+								style="margin-left: 15px; color: white; font-size: 25px">${followingID}</a>
+						</div>
+					</c:forEach>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn"
+						style="background-color: #18d26e; color: white"
+						data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="portfolio" id="protfolio">
 	<div class="container">
 		<div class="section-title">
