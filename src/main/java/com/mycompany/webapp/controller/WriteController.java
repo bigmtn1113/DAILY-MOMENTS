@@ -53,7 +53,7 @@ public class WriteController {
 			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
 			try {
-				bphoto.transferTo(new File("D:/MyWorkspace/images/board/" + saveFileName));
+				bphoto.transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/board/" + saveFileName));
 				
 				Board board = new Board();
 				board.setBcontent(bcontent);
@@ -89,7 +89,7 @@ public class WriteController {
 		
 		//파일 삭제
 		if (bphoto != null) {
-			File file = new File("D:/MyWorkspace/images/board/" + existingBoard.getBphoto());
+			File file = new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/board/" + existingBoard.getBphoto());
 			if (file.exists()) file.delete();
 		}
 		
@@ -148,7 +148,7 @@ public class WriteController {
 			// 중복 방지를 위해 파일 앞에 시간 붙이기
 			String saveFileName = new Date().getTime() + "_" + bphoto.getOriginalFilename();
 			try {
-				bphoto.transferTo(new File("D:/MyWorkspace/images/board/" + saveFileName));
+				bphoto.transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/board/" + saveFileName));
 				
 				Board board = new Board();
 				board.setBno(existingBoard.getBno());
