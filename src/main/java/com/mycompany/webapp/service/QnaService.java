@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.QnaDao;
+import com.mycompany.webapp.dto.Bcomment;
+import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Qna;
+import com.mycompany.webapp.dto.QnaBoardComment;
 
 @Service
 public class QnaService {
@@ -42,4 +45,54 @@ public class QnaService {
 		int rows = qnaDao.updateQnaDetail(qna);
 	}
 
+	public List<Qna> getBoards(String mid) {
+		List<Qna> qna = qnaDao.selectQna(mid);
+		return qna;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

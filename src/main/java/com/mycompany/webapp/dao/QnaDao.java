@@ -7,8 +7,11 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.webapp.dto.Bcomment;
+import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Qna;
+import com.mycompany.webapp.dto.QnaBoardComment;
 
 @Repository
 public class QnaDao {
@@ -46,5 +49,58 @@ public class QnaDao {
 		int rows = sst.update("mybatis.mapper.qna.update", qna);
 		return rows;
 	}
+
+	public List<Qna> selectQna(String mid) {
+		List<Qna> qna = sst.selectList("mybatis.mapper.qna.selectQna", mid);
+		return qna;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

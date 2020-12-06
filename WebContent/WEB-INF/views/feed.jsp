@@ -231,6 +231,34 @@
 					});
 				}
 			}
+			
+			var pageNo=0;
+			var timer;
+			$(document).scroll(function() {
+				if(!timer){
+					timer=setTimeout(function(){
+						timer=null;
+						var maxHeight = $(document).height();
+					    var currentScroll = $(window).scrollTop() + $(window).height();
+					    if (maxHeight <= currentScroll + 1) {
+					    	pageNo++;
+					    	var startBoardNo=pageNo*10;
+					    	var endBoardNo=pageNo*10+9;
+					    	console.log(pageNo);
+					    	$.ajax({
+					    		url : "pageSection",
+					    		data : {startBoardNo:startBoardNo, endBoardNo:endBoardNo},
+					    		method : "POST",
+					    		success : function(data){
+					    			$("#paging").append(data);
+					    		}
+					    	});
+					    }
+					},100);
+				}
+			});
+			
 		</script>
+		<button type="button" onclick="$('html').animate({scrollTop : 0})" style="position:fixed;right:5px; bottom:5px;">▲</button>
 	</div>
 </div>

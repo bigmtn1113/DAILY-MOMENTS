@@ -10,25 +10,36 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Qna;
+import com.mycompany.webapp.dto.QnaBoardComment;
+import com.mycompany.webapp.service.QnaBoardCommentService;
 import com.mycompany.webapp.service.QnaService;
 
 @Controller
 public class QnaController {
+	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
+
+	
 	@Resource private QnaService qnaService;
+	@Resource private QnaBoardCommentService qnaBoardCommentService;
+	
 	
 	@GetMapping("/qna")
 	public String qna(Model model) {
@@ -76,11 +87,17 @@ public class QnaController {
 	}
 	
 	@GetMapping("/qnaDetail")
-	public String qnaDetail(int bno, Model model) {
+	public String qnaDetail(HttpSession session, int bno, Model model) {
 		Qna qnaBoard = qnaService.getQnaBoard(bno);
 		model.addAttribute("qnaBoard", qnaBoard);
+		
+		List<QnaBoardComment> qnaBoardCommentsList = qnaBoardCommentService.getBoardComments(bno);
+		model.addAttribute("qnaBoardCommentsList", qnaBoardCommentsList);
+		
 		return "qnaDetail";
 	}
+	
+	
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -107,8 +124,7 @@ public class QnaController {
 		is.close();
 		
 	}	
-	
-	
+		
 	@PostMapping("/qnaDetailDelete")
 	public void	qnaDetailDelete(int bno, HttpServletResponse response) throws IOException {
 		qnaService.qnaDetailDelete(bno);
@@ -123,17 +139,13 @@ public class QnaController {
 		out.flush();
 		out.close();
 	}
-		
-	
-	
-		
+					
 	@GetMapping("/qnaDetailUpdate")
 	public String qnaDetailUpdate(int bno, Model model) {
 		Qna qnaBoard = qnaService.getQnaBoard(bno);
 		model.addAttribute("qnaBoard", qnaBoard);
 		return "qnaDetailUpdate";
 	}
-	
 	
 	@PostMapping("/qnaDetailUpdate")
 	public void qnaDetailUpdate(Qna qna, HttpServletResponse response) throws IOException {
@@ -151,4 +163,24 @@ public class QnaController {
 		out.flush();
 		out.close();
 	}
+	
+	
+	@RequestMapping("/qnaCommentWrite")
+	public String qnaCommentWrite(HttpSession session, String ccomment,int bno, String mid, Model model, HttpServletResponse response) throws IOException, ServletException {
+		
+		logger.info(mid);
+		logger.info(ccomment);
+		
+		
+		QnaBoardComment qnaBoardComment=new QnaBoardComment();
+		qnaBoardComment.setBno(bno);
+		qnaBoardComment.setCcontent(ccomment);   
+		qnaBoardComment.setMid(mid);
+		qnaBoardCommentService.QnaCommentsWrite(qnaBoardComment);
+		
+		List<QnaBoardComment> qnaBoardCommentsListWrite = qnaBoardCommentService.getQnaBoardCommentWrite(bno);
+		
+		model.addAttribute("qnaBoardCommentsListWrite", qnaBoardCommentsListWrite);
+		return "qnaCommentHTML";
+	}	
 }

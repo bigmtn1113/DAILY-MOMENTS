@@ -23,7 +23,6 @@
 		where rnum &gt;=#{startRowNo}
 	</select>
 
-
 	<insert id="insert" parameterType="qna"> 
 		<selectKey order="BEFORE" resultType="int" keyProperty="bno">  <!-- before면 아래 sql문 보다 selectKey 부분을 먼저 실행하겠다. after면 반대. -->
 			select seq_qnaboard_bno.nextval from dual
@@ -40,20 +39,6 @@
 		where qb.mid = m.mid and qb.bno=#{bno}
 	</select>
 	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<delete id="deleteByBno" parameterType="int">
 		delete from qnaboard where bno = #{bno}	
 	</delete>
@@ -62,16 +47,20 @@
 		update qnaboard set btitle = #{btitle}, bcontent = #{bcontent} where bno = #{bno}
 	</update>
 	
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectQna" parameterType="String" resultType="qna">
+		select bno, btitle, bcontent, bdate, qb.mid
+		from qnaboard qb
+		where qb.mid = #{mid}
+	</select>
+	
+	
+	
+	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
