@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -33,7 +35,7 @@ import com.mycompany.webapp.service.QnaService;
 public class QnaController {
 	@Resource private QnaService qnaService;
 	@Resource private QnaBoardCommentService qnaBoardCommentService;
-	
+	Logger logger = LoggerFactory.getLogger(QnaController.class);
 	
 	@GetMapping("/qna")
 	public String qna(Model model) {

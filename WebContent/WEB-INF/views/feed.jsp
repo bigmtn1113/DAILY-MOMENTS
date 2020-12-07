@@ -258,6 +258,7 @@
 			});
 			
 		</script>
-		<button type="button" onclick="$('html').animate({scrollTop : 0})" style="position:fixed;right:15px; bottom:15px;">▲</button>
+		
 	</div>
+	<button type="button" onclick="$('html').animate({scrollTop : 0})" style="position:fixed;right:15px; bottom:15px;">▲</button>
 </div>
