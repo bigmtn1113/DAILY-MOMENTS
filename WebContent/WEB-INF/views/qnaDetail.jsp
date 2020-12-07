@@ -154,7 +154,7 @@
 				}
 			</script>	
 			
-			<a class="btn btn-warning btn-sm" href="javascript:qnaDetailUpdate(${qnaBoard.bno})">Modify</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
+			<a class="btn btn-warning btn-sm" style="color: white" href="javascript:qnaDetailUpdate(${qnaBoard.bno})">Modify</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
 			<script type="text/javascript">
 				function qnaDetailUpdate(bno) {
 					$.ajax({
