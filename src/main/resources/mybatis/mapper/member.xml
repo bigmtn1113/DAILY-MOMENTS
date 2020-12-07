@@ -20,7 +20,12 @@
 	</select>
 	
 	<update id="updateMember" parameterType="member">
-		update member set mname = #{mname}, mtel = #{mtel}, msex = '1', mpassword = #{mpassword}, mintroduce = #{mintroduce}, mphoto = #{mphoto} 
+		update member set mname = #{mname}, mtel = #{mtel}, msex = '1', mpassword = #{mpassword}, mintroduce = #{mintroduce}, mphoto = #{mphoto}
+		where mid = #{mid}
+	</update>
+	
+	<update id="updateMemberExcludeImage" parameterType="member">
+		update member set mname = #{mname}, mtel = #{mtel}, msex = '1', mpassword = #{mpassword}, mintroduce = #{mintroduce}
 		where mid = #{mid}
 	</update>
 	
