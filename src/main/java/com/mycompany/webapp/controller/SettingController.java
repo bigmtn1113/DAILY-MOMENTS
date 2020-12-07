@@ -33,14 +33,17 @@ public class SettingController {
 	public String setting(Member member, HttpSession session) {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(member.getMpassword());
-		String saveFileName = member.getMid() + "_" + member.getAttachMphoto().getOriginalFilename();
+		String fileName = member.getAttachMphoto().getOriginalFilename();
 		
 		member.setMpassword(encodedPassword);
 		try {
-			member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + saveFileName));
-			member.setMphoto(saveFileName);
-			memberService.memberUpdate(member);
-			
+			if (!fileName.equals("")) {String saveFileName = member.getMid() + "_" + fileName;
+				member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + saveFileName));
+				member.setMphoto(saveFileName);
+				memberService.memberUpdate(member);
+			} else {
+				memberService.memberUpdateExcludeImage(member);
+			}
 		} catch (Exception e) {}
 		
 		session.setAttribute("member", member);

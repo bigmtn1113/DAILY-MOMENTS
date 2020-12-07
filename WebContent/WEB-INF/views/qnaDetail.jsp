@@ -109,7 +109,7 @@
 						success : function(data) {
 							$("#qnaCommentlist_"+bno).html(data);
 							$("#qnaContent_"+bno).val("");
-							$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
+					 		$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
 							
 							
 						}
