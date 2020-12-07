@@ -46,7 +46,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	</head>
 
-	<body>
+	<body class="invisible-scrollbar" style="-ms-overflow-style:none; scrollbar-width:none;">
 		<header id="header" class="header-tops">
 			<div class="container">
 				<h1>
