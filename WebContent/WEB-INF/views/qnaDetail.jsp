@@ -109,7 +109,7 @@
 						success : function(data) {
 							$("#qnaCommentlist_"+bno).html(data);
 							$("#qnaContent_"+bno).val("");
-							$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
+					 		$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
 							
 							
 						}
@@ -154,7 +154,7 @@
 				}
 			</script>	
 			
-			<a class="btn btn-warning btn-sm" href="javascript:qnaDetailUpdate(${qnaBoard.bno})">Modify</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
+			<a class="btn btn-warning btn-sm" style="color: white" href="javascript:qnaDetailUpdate(${qnaBoard.bno})">Modify</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
 			<script type="text/javascript">
 				function qnaDetailUpdate(bno) {
 					$.ajax({

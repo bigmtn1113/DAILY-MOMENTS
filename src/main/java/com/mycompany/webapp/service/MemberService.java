@@ -23,6 +23,10 @@ public class MemberService {
 	public void memberUpdate(Member member) {
 		memberDao.updateMember(member);
 	}
+	
+	public void memberUpdateExcludeImage(Member member) {
+		memberDao.updateMemberExcludeImage(member);
+	}
 
 	public String getMid(String searchedId) {
 		String mid = memberDao.selectMid(searchedId);

@@ -21,7 +21,7 @@
 	</c:forEach>
 				
 
-	<!-- <div class="pageNo">
+	<!-- <div class="pageNo"> -->
 		<tr style="text-align: center;">
 			<td colspan="4" style="text-align: center;">
 			<br>
@@ -47,7 +47,7 @@
 				
 				<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(${pager.totalPageNo})">Last Page</a>
 			</td>
-		<!-- </tr> -->
+		</tr>
 		
 		<!-- <div id="board_result" style="margin-top:30px"></div> -->
 		

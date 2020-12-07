@@ -49,7 +49,7 @@
 	
 		<c:if test="${mid == qnaBoard.mid}"> 
 		
-			<a class="btn btn-warning btn-sm" href="javascript:qnaDetailUpdate()">Modify</a>
+			<a class="btn btn-warning btn-sm" style="color: white" href="javascript:qnaDetailUpdate()">Modify</a>
 			<script type="text/javascript">
 				function qnaDetailUpdate() {
 					var bno = $("#bno").val(); //id로 검색

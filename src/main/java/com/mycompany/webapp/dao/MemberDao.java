@@ -26,6 +26,11 @@ public class MemberDao {
 		int rows = sst.update("mybatis.mapper.member.updateMember", member);
 		return rows;
 	}
+	
+	public int updateMemberExcludeImage(Member member) {
+		int rows = sst.update("mybatis.mapper.member.updateMemberExcludeImage", member);
+		return rows;
+	}
 
 	public String selectMid(String searchedId) {
 		String mid = sst.selectOne("mybatis.mapper.member.selectMid", searchedId);
