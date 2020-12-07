@@ -33,7 +33,7 @@
 
 	<body>
 		<main id="main">
-			<div class="portfolio-details container">
+			<div class="portfolio-details container invisible-scrollbar" style="-ms-overflow-style:none; scrollbar-width:none;">
 				<div class="row">
 					<div class="col-lg-8" style="padding-top: 45px">
 					
