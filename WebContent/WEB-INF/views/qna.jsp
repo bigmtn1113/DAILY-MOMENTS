@@ -53,6 +53,8 @@
 						data: {btitle:btitle, bcontent:bcontent},
 						success:function(data) {
 							$("#qnaList").html(data);
+							$("#btitleQna").val("");
+							$("#bcontentQna").val("");
 						}
 					});
 				}
