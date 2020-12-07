@@ -20,13 +20,13 @@
 		<form action="setting" method="post" role="form" class="php-email-form mt-4">
 		
 			<div class="form-group">
-				<input type="text" name="btitle" class="form-control" id="btitle" placeholder="Title"/>
-				<span style="color: orange" id="btitleError" ></span>
+				<input type="text" name="btitleQna" class="form-control" id="btitleQna" placeholder="Title"/>
+				<span style="color: orange" id="btitleErrorQna" ></span>
 			</div>
 			
 			<div class="form-group">
-				<textarea style="height: 200px;" name="bcontent" class="form-control" id="bcontent" placeholder="Content"></textarea>
-				<span style="color: orange" id="bcontentError"></span>
+				<textarea style="height: 200px;" name="bcontentQna" class="form-control" id="bcontentQna" placeholder="Content"></textarea>
+				<span style="color: orange" id="bcontentErrorQna"></span>
 			</div>
 	
 			<div style="text-align: center;">
@@ -35,13 +35,13 @@
 			
 			<script type="text/javascript">
 				function boardWrite() {
-					var btitle = $("#btitle").val().trim();  //var는 int, string 등 타입 그냥 다 받음. 만능 타입. / #btitle 은 btitle 찾아라! 는 뜻. 여기선 위로 가서 찾겠지. form태그 밑 div그룹 내 id가 btitle이니까 거기로 간다.
-					if(btitle == "") { $("#btitleError").text("Title란을 공백으로 작성하실 수 없습니다."); }
-					else { $("#btitleError").text(""); }
+					var btitle = $("#btitleQna").val().trim();  //var는 int, string 등 타입 그냥 다 받음. 만능 타입. / #btitle 은 btitle 찾아라! 는 뜻. 여기선 위로 가서 찾겠지. form태그 밑 div그룹 내 id가 btitle이니까 거기로 간다.
+					if(btitle == "") { $("#btitleErrorQna").text("Title란을 공백으로 작성하실 수 없습니다."); }
+					else { $("#btitleErrorQna").text(""); }
 					
-					var bcontent = $("#bcontent").val().trim();
-					if(bcontent == "") { $("#bcontentError").text("Content란을 공백으로 작성하실 수 없습니다."); }
-					else { $("#bcontentError").text(""); }
+					var bcontent = $("#bcontentQna").val().trim();
+					if(bcontent == "") { $("#bcontentErrorQna").text("Content란을 공백으로 작성하실 수 없습니다."); }
+					else { $("#bcontentErrorQna").text(""); }
 					
 					if(btitle == "" || bcontent == "") {
 						return;	

@@ -107,16 +107,9 @@
 						method : "POST",
 						data:{ccomment:comment, bno:bno, mid:mid},
 						success : function(data) {
-							$.ajax({
-								url: data,
-								method: "GET",
-								success: function(data) {
-									alert(data);
-									$("#qnaCommentlist_"+bno).html(data);
-									$("#qnaContent_"+bno).val("");
-									$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
-								}
-							});
+							$("#qnaCommentlist_"+bno).html(data);
+							$("#qnaContent_"+bno).val("");
+							$("#midqnacontentcomment_"+bno).scrollTop($("#midqnacontentcomment_"+bno)[0].scrollHeight);
 							
 							
 							
