@@ -225,7 +225,7 @@
 								function search() {
 									var windowWidth = $(window).width();
 									var searchedContent;
-									if(windowWidth < 500) {
+									if(windowWidth < 992) {
 										searchedContent = document.querySelectorAll('#searchedContent')[1].value;
 										document.querySelectorAll('#searchedContent')[1].value = "";
 									}
