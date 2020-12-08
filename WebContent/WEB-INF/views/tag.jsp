@@ -24,14 +24,14 @@
 		<c:forEach var="tagBoardPhoto" items="${tagBoardPhotos}">
 			<div class="col-lg-4 col-md-6 portfolio-item filter-app">
 				<div class="portfolio-wrap">
-					<img src="<%=request.getContextPath()%>/resources/images/board/${tagBoardPhoto}"
+					<img src="<%=request.getContextPath()%>/displayBoardImg?fileName=${tagBoardPhoto}"
 						class="img-fluid">
 					
 					<div class="portfolio-info">
 						<div class="portfolio-links">
 							<a href="portfolioDetails?bphoto=${tagBoardPhoto}"
 								data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox">
-								<img src="<%=request.getContextPath()%>/resources/images/board/${tagBoardPhoto}">
+								<img src="<%=request.getContextPath()%>/displayBoardImg?fileName=${tagBoardPhoto}">
 							</a>
 							<script>
 								$(function(){

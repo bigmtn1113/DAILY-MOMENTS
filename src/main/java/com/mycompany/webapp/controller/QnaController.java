@@ -98,7 +98,7 @@ public class QnaController {
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
-		String saveFilePath = "D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + fileName;
+		String saveFilePath = "D:/MyWorkspace/images/member/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 		
 		//응답 HTTP 헤더 구성

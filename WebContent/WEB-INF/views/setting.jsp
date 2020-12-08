@@ -11,7 +11,7 @@
 	<form action="setting" method="post" id="form-setting" class="php-email-form mt-4" enctype="multipart/form-data">
 		
 		<div class="imageChange" style="text-align:center">
-			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
+			<img src="<%=request.getContextPath()%>/displayMemberImg?fileName=${member.mphoto}"
 				id="profile-img" style="width:250px; height:250px; margin-bottom:20px;">
 		</div>
 		

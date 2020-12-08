@@ -38,7 +38,7 @@
 					<div class="col-lg-8" style="padding-top: 45px">
 					
 						<div style="background-color: #1B1B1B;">
-							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/resources/images/member/${board.mphoto}"/>
+							<img class="rounded-circle" style="margin-left: 5px; margin-right: 10px" width="50px" height="50px" src="<%=request.getContextPath()%>/displayMemberImg?fileName=${board.mphoto}"/>
 							
 							<c:if test="${board.mid == mid}">
 								<a style="text-decoration: none; color: white; font-size: 30px;">${mid}</a>
@@ -54,7 +54,7 @@
 						
 						<div class="container mt-3" style="text-align: center">
 							<img
-								src="<%=request.getContextPath()%>/resources/images/board/${board.bphoto}"
+								src="<%=request.getContextPath()%>/displayBoardImg?fileName=${board.bphoto}"
 								class="img-fluid">
 						</div>
 					</div>

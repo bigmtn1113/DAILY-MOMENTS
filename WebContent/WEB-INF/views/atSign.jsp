@@ -10,7 +10,7 @@
 
 	<div class="row">
 		<div class="col-lg-4" data-aos="fade-right">
-			<img src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}"
+			<img src="<%=request.getContextPath()%>/displayMemberImg?fileName=${member.mphoto}"
 				class="img-fluid" style="width:330px; height:330px;">
 		</div>
 		<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
@@ -97,7 +97,7 @@
 				<div class="modal-header">
 					<div style="margin-left: 3px" class="row">
 						<img class="rounded-circle" style="width: 80px; height: 80px;"
-							src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}" />
+							src="<%=request.getContextPath()%>/displayMemberImg?fileName=${member.mphoto}" />
 						<h1
 							style="margin-left:15px; margin-top: 8px; -ms-overflow-style: none; white-space: pre-line"
 							class="modal-title"><c:out value="${member.mid} Follower"></c:out></h1>
@@ -112,7 +112,7 @@
 						<div style="padding: 8px">
 							<img class="rounded-circle"
 								style="width: 60px; height: 60px; padding: 10dp"
-								src="<%=request.getContextPath()%>/resources/images/member/${followerPhotos[status.index]}" />
+								src="<%=request.getContextPath()%>/displayMemberImg?fileName=${followerPhotos[status.index]}" />
 							 <a
 								style="margin-left: 15px; color: white; font-size: 25px"> ${followerID}</a>
 						</div>
@@ -144,7 +144,7 @@
 				<div class="modal-header">
 					<div style="margin-left: 3px" class="row">
 						<img class="rounded-circle" style="width: 80px; height: 80px;"
-							src="<%=request.getContextPath()%>/resources/images/member/${member.mphoto}" />
+							src="<%=request.getContextPath()%>/displayMemberImg?fileName=${member.mphoto}" />
 						<h1
 							style="margin-left: 15px; margin-top: 8px; -ms-overflow-style: none; white-space: pre-line"
 							class="modal-title"><c:out value="${member.mid} Following"></c:out></h1>
@@ -158,7 +158,7 @@
 						<div style="padding: 8px">
 							<img class="rounded-circle"
 								style="width: 60px; height: 60px; padding: 10dp"
-								src="<%=request.getContextPath()%>/resources/images/member/${followingPhotos[status.index]}" />
+								src="<%=request.getContextPath()%>/displayMemberImg?fileName=${followingPhotos[status.index]}" />
 							<a
 								style="margin-left: 15px; color: white; font-size: 25px">${followingID}</a>
 						</div>
@@ -189,7 +189,7 @@
 				<div class="col-lg-4 col-md-6 portfolio-item filter-app">
 					<div class="portfolio-wrap">
 						<img
-							src="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}"
+							src="<%=request.getContextPath()%>/displayBoardImg?fileName=${memberBphoto}"
 							class="img-fluid">
 						
 						<div class="portfolio-info">
@@ -197,7 +197,7 @@
 								<a href="portfolioDetails?bphoto=${memberBphoto}"
 									data-gall="portfolioDetailsGallery" data-vbtype="iframe"
 									class="venobox"> <img
-									src="<%=request.getContextPath()%>/resources/images/board/${memberBphoto}">
+									src="<%=request.getContextPath()%>/displayBoardImg?fileName=${memberBphoto}">
 								</a>
 								
 								<script>

@@ -38,7 +38,7 @@ public class SettingController {
 		member.setMpassword(encodedPassword);
 		try {
 			if (!fileName.equals("")) {String saveFileName = member.getMid() + "_" + fileName;
-				member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/java-projects/TeamProject/WebContent/resources/images/member/" + saveFileName));
+				member.getAttachMphoto().transferTo(new File("D:/MyWorkspace/images/member/" + saveFileName));
 				member.setMphoto(saveFileName);
 				memberService.memberUpdate(member);
 			} else {

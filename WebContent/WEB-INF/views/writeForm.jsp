@@ -18,7 +18,7 @@
 		</c:if>
 		<c:if test="${board.bno != null}">
 			<div class="form-group" id="imageChange" style="text-align: center">
-				<img id="id_viewimg" src="<%=request.getContextPath()%>/resources/images/board/${board.bphoto}" style=" max-width:100%; height:auto" name="preview" border="0"/>
+				<img id="id_viewimg" src="<%=request.getContextPath()%>/displayBoardImg?fileName=${board.bphoto}" style=" max-width:100%; height:auto" name="preview" border="0"/>
 			</div>
 		</c:if>
 		<div class="form-group">
