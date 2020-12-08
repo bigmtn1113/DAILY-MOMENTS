@@ -161,7 +161,7 @@
 							</li>
 							
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
-								<div class="dropdown-menu" style="opacity: 0.5;">
+								<div class="dropdown-menu" style="opacity: 1;">
 		
 									<a id="li-profile" class="dropdown-item" style="color: #18d26e;" href="javascript:profile()">Profile</a>
 									<script type="text/javascript">
