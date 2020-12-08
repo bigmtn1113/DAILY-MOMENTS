@@ -50,10 +50,10 @@
 		<header id="header" class="header-tops">
 			<div class="container">
 				<h1>
-					<a href="">FaceGram</a>
+					<a href="">DAILY MOMENTS</a>
 				</h1>
 				<h2>
-					We're passionate <span>Web Programmer</span> from KOSA
+					Share Your <span>Days</span>
 				</h2>
 	
 				<nav class="nav-menu d-none d-lg-block">
