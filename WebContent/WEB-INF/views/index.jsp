@@ -8,7 +8,7 @@
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 		
-		<title>FaceGram</title>
+		<title>DAILY MOMENTS</title>
 		<meta content="" name="description">
 		<meta content="" name="keywords">
 		
@@ -66,10 +66,10 @@
 		<header id="header" class="header-tops">
 			<div class="container">
 				<h1>
-					<a href="">FaceGram</a>
+					<a href="">DAILY MOMENTS</a>
 				</h1>
 				<h2>
-					We're passionate <span>Web Programmer</span> from KOSA
+					Share Your <span>Days</span>
 				</h2>
 	
 				<nav class="nav-menu d-none d-lg-block">
@@ -161,7 +161,7 @@
 							</li>
 							
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
-								<div class="dropdown-menu" style="opacity: 1;">
+								<div class="dropdown-menu" style="opacity: 0.5;">
 		
 									<a id="li-profile" class="dropdown-item" style="color: #18d26e;" href="javascript:profile()">Profile</a>
 									<script type="text/javascript">
@@ -239,16 +239,8 @@
 								var mid = '${mid}';
 								
 								function search() {
-									var windowWidth = $(window).width();
-									var searchedContent;
-									if(windowWidth < 500) {
-										searchedContent = document.querySelectorAll('#searchedContent')[1].value;
-										document.querySelectorAll('#searchedContent')[1].value = "";
-									}
-									else {
-										searchedContent = document.querySelectorAll('#searchedContent')[0].value;
-										document.querySelectorAll('#searchedContent')[0].value = "";
-									}
+									var searchedContent = document.querySelector('#searchedContent').value;
+									$('#searchedContent').val("");
 									
 									if (searchedContent.charAt(0) === '@') {
 										searchedId = searchedContent.substr(1);
@@ -318,7 +310,7 @@
 										}
 									});
 								}
-								
+	"src/main/java/com/mycompany/webapp/dao/QnaBoardCommentDao.java"
 								function tag(searchedTag) {
 									$.ajax({
 										url : "tag",
