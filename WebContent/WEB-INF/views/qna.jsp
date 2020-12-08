@@ -25,7 +25,7 @@
 			</div>
 			
 			<div class="form-group">
-				<textarea style="height: 200px;" name="bcontentQna" class="form-control" id="bcontentQna" placeholder="Content"></textarea>
+				<textarea style="height: 150px;" name="bcontentQna" class="form-control" id="bcontentQna" placeholder="Content"></textarea>
 				<span style="color: orange" id="bcontentErrorQna"></span>
 			</div>
 	
@@ -53,6 +53,8 @@
 						data: {btitle:btitle, bcontent:bcontent},
 						success:function(data) {
 							$("#qnaList").html(data);
+							$("#btitleQna").val("");
+							$("#bcontentQna").val("");
 						}
 					});
 				}
@@ -71,10 +73,10 @@
 				<form id="qnaList" class="php-email-form mt-4">	<!-- qnaList 불러올 때 이 밑에 있는거 대체해서 이 자리에 넣는 거임. 이 아래 양식에 넣는 게 아니라, 대체하는 것! -->		
 					<table style="color:#636568; width:100%; border-collapse: separate; border-spacing: 5px;">
 						<tr style="height:30px; background-color: white;" align="center" >
-							<th style="width:30px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">No.</th>
-							<th style="width:200px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">Title</th>
-							<th style="width:100px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">ID</th>
-							<th style="width:100px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">Date</th>
+							<th style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">No.</th>
+							<th style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">Title</th>
+							<th style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">ID</th>
+							<th style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px;">Date</th>
 						</tr>
 						
 						<c:forEach var="board" items="${list}"> <!-- var= 는 변수 임의로 넣으면 되고, list 부분은 컨트롤러에서 받는 것. 어떻게 구분하냐? qna.jsp 올 때 클릭했지? 그 때 이 페이지 불러오면서 컨트롤러에서 list 정의했음. 그거 쓴다. -->
@@ -90,7 +92,7 @@
 				
 					<!-- <div class="pageNo">
 						<tr style="text-align: center;"> -->
-						
+						<tr>
 							<td colspan="4" style="text-align: center;">
 							<br>
 								<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(1)">First Page</a>
@@ -115,7 +117,7 @@
 								
 								<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(${pager.totalPageNo})">Last Page</a>
 							</td>
-						
+						</tr>
 						<!-- </tr> -->
 						
 						<!-- <div id="board_result" style="margin-top:30px"></div> -->

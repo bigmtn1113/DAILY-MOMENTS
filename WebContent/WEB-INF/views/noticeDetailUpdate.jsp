@@ -45,7 +45,7 @@
 		
 			<a class="btn btn-danger btn-sm" href="javascript:noticeDetailDelete(${noticeBoard.bno})">Delete</a>
 			
-			<a class="btn btn-warning btn-sm" href="javascript:noticeDetailUpdate(${noticeBoard.bno})">Modify</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
+			<a class="btn btn-warning btn-sm" style="color: white" href="javascript:noticeDetailUpdate(${noticeBoard.bno})">Modify</a> <!-- 자바스크립트 안 붙이면  페이지 이동 -->
 			<script type="text/javascript">
 				function noticeDetailUpdate() {
 					var bno = $("#bno").val();
