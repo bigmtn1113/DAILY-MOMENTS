@@ -70,7 +70,7 @@
 			<div class="row" style="margin-top: 10px">
 				<div class="col-lg-6">
 					<ul>
-						<li><i class="icofont-rounded-right"></i> <strong>Board:</strong> ${memberBcnt}</li>
+						<li><i class="icofont-rounded-right"></i><strong>Board:</strong> ${memberBcnt}</li>
 						<li id="li-followerCnt"><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollower">Follower: ${followerCnt}</a></li>
 						<li><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#atSignFollowing">Following: ${followingCnt}</a></li>
 					</ul>

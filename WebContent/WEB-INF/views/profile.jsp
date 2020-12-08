@@ -19,10 +19,10 @@
 			<div class="row" style="margin-top: 10px">
 				<div class="col-lg-6">
 					<ul>
-						<li><i class="icofont-rounded-right"></i> <strong>Board: </strong>${memberBcnt}</li>
-						<li><i class="icofont-rounded-right"></i> <strong>Bookmark: </strong>${memberBMcnt}</li>
-						<li><i class="icofont-rounded-right"></i> <a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollower">Follower: ${followerCnt}</a></li>
-						<li><i class="icofont-rounded-right"></i> <a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollowing">Following: ${followingCnt}</a></li>
+						<li><i class="icofont-rounded-right"></i><strong>Board: </strong>${memberBcnt}</li>
+						<li><i class="icofont-rounded-right"></i><strong>Bookmark: </strong>${memberBMcnt}</li>
+						<li><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollower">Follower: ${followerCnt}</a></li>
+						<li><i class="icofont-rounded-right"></i><a style="color:white; font-weight: bold;" href="#" data-toggle="modal" data-target="#myFollowing">Following: ${followingCnt}</a></li>
 					</ul>
 				</div>
 			</div>

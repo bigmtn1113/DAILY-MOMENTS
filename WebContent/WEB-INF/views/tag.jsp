@@ -12,7 +12,7 @@
 			<h3>#${searchedTag}</h3>
 			<div class="row" style="margin-top: 10px">
 				<div class="col-lg-6">
-					<ul><li><i class="icofont-rounded-right"></i> <strong>Board:</strong> ${tagBoardCnt}</li></ul>
+					<ul><li><i class="icofont-rounded-right"></i><strong>Board:</strong> ${tagBoardCnt}</li></ul>
 				</div>
 			</div>
 		</div>
