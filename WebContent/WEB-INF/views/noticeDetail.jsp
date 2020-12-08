@@ -29,9 +29,25 @@
 		
 		<br/>
 		
-		<div>
-			<span class="title">Content :</span> <br/>
-			<textarea style="width:100%" readonly>${noticeBoard.bcontent}</textarea>
+		<div class="col-sm-12 portfolio-item"
+			 style="border-radius:10px;width:100%;height:auto;border:2px solid white;">
+			
+			<div
+          		id="midqnacontentcomment_${qnaBoard.bno}"
+			    class="invisible-scrollbar" 
+				style="height: 250px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
+				color: white; overflow-y: auto; margin-top: 15px; margin-bottom: 15px; padding-top: 5px;">
+				
+				
+				<span class="title" style="padding-left: 10px;">Content :</span> <br/>
+				<div style="padding-left:20px; padding-right:20px; padding-top:10px;">
+					 <div style="white-space:pre-line;">${noticeBoard.bcontent}</div>
+				</div>
+				
+				<br>
+			</div>
+
+
 		</div>
 		
 		<br/>

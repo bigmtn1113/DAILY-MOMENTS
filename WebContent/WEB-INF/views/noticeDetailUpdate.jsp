@@ -32,7 +32,7 @@
 		
 		<div>
 			<span class="title">Content :</span> <br/>
-			<textarea id="bcontentDetailUpdate" style="width:100%">${noticeBoard.bcontent}</textarea>
+			<textarea id="bcontentDetailUpdate" style="width:100%; height: 250px;">${noticeBoard.bcontent}</textarea>
 		</div>
 		
 		<br/>
