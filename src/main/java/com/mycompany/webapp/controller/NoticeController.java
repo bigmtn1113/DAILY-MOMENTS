@@ -1,6 +1,5 @@
 package com.mycompany.webapp.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Notice;
 import com.mycompany.webapp.dto.Pager;
-import com.mycompany.webapp.dto.Qna;
 import com.mycompany.webapp.service.NoticeService;
 
 @Controller
