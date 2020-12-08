@@ -145,7 +145,7 @@
 							</li>
 							
 							<li class="dropdown" id="test"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My Page</a>
-								<div class="dropdown-menu" style="opacity: 0.5;">
+								<div class="dropdown-menu" style="opacity: 1;">
 		
 									<a id="li-profile" class="dropdown-item" style="color: #18d26e;" href="javascript:profile()">Profile</a>
 									<script type="text/javascript">
@@ -223,8 +223,16 @@
 								var mid = '${mid}';
 								
 								function search() {
-									var searchedContent = document.querySelector('#searchedContent').value;
-									$('#searchedContent').val("");
+									var windowWidth = $(window).width();
+									var searchedContent;
+									if(windowWidth < 500) {
+										searchedContent = document.querySelectorAll('#searchedContent')[1].value;
+										document.querySelectorAll('#searchedContent')[1].value = "";
+									}
+									else {
+										searchedContent = document.querySelectorAll('#searchedContent')[0].value;
+										document.querySelectorAll('#searchedContent')[0].value = "";
+									}
 									
 									if (searchedContent.charAt(0) === '@') {
 										searchedId = searchedContent.substr(1);
@@ -294,7 +302,7 @@
 										}
 									});
 								}
-	"src/main/java/com/mycompany/webapp/dao/QnaBoardCommentDao.java"
+								
 								function tag(searchedTag) {
 									$.ajax({
 										url : "tag",
