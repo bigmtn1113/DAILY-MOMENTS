@@ -50,7 +50,7 @@
 		<header id="header" class="header-tops">
 			<div class="container">
 				<h1>
-					<a href="">FaceGram</a>
+					<a href="">Daily Moments</a>
 				</h1>
 				<h2>
 					We're passionate <span>Web Programmer</span> from KOSA
