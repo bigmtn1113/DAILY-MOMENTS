@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div>
-	<div  class="portfolio container">
+	<div  class="portfolio">
 		<div>
 			
 			<div>
@@ -50,7 +50,7 @@
 
 	<div class="row portfolio-container">
 			<div class="col-sm-12 portfolio-item"
-				 style="border-radius:10px;width:100%;height:auto;border:2px solid white;margin-bottom:30px;">
+				 style="border-radius:10px;width:100%;height:auto;border:2px solid white;">
 				
 				<div
 	          		id="midqnacontentcomment_${qnaBoard.bno}"

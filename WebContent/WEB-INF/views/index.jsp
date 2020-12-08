@@ -44,6 +44,22 @@
 		
 		<!-- modal -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		
+		<style>
+			@media screen and (max-width: 1000px) {
+				.mobileCase {
+					display: none;
+				}
+				
+				.mobileList {
+					margin-left: 0px;
+					margin-right: 0px;
+					max-width: 100%;
+					padding-left: 0px;
+					padding-right: 0px;
+				}
+			}
+		</style>
 	</head>
 
 	<body class="invisible-scrollbar" style="-ms-overflow-style:none; scrollbar-width:none;">
