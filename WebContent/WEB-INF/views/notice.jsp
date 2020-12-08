@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <div id="notice" class="about-me container">
 	<div   class="section-title">
@@ -15,10 +16,10 @@
 			<form id="noticeList" class="php-email-form mt-4">	<!-- qnaList 불러올 때 이 밑에 있는거 대체해서 이 자리에 넣는 거임. 이 아래 양식에 넣는 게 아니라, 대체하는 것! -->		
 				<table  style="color:#636568; width:100%; border-collapse: separate; border-spacing: 5px;">
 					<tr style="height: 30px; background-color: white;" align="center">
-						<th style="width:10px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">No.</th>
-						<th style="width:50px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">Title</th>
-						<th style="width:50px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">ID</th>
-						<th style="width:50px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">Date</th>
+						<th style="width:00px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">No.</th>
+						<th style="width:00px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">Title</th>
+						<th style="width:00px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">ID</th>
+						<th style="width:00px; background-color: #262626; padding-left: 0px;  padding-bottom: 10px; padding-top: 10px;">Date</th>
 					</tr>
 	
 					<c:forEach var="board" items="${list}">
@@ -45,17 +46,19 @@
 
 
 					
-					
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<!-- <div class="pageNo">
 						<tr style="text-align: center;"> -->
-					<c:if test="${mid != adminnnnnnnnnnnnnnnnnnnnnnnn}">  <%-- ${}는 자바스크립트에서 값을 문자열로 반환함. ex) var val = 123 이라면 "123"으로 바꿔줌 --%>
+					<%-- <c:if test="${mid != adminnnnnnnnnnnnnnnnnnnnnnnn}"> --%>  <%-- ${}는 자바스크립트에서 값을 문자열로 반환함. ex) var val = 123 이라면 "123"으로 바꿔줌 --%>
 						<tr>	
 							<td>
 								<br style="padding-top: 30px;">
 								<a class="btn" style="background: #18d26e; color: white; text-align: center;" href="javascript:noticeWrite()">Write</a>
 							</td>	
 						</tr>
-					</c:if>		
+					<%-- </c:if> --%>	
+				</sec:authorize>	
+					
 					
 					
 					<script type="text/javascript">
@@ -76,6 +79,7 @@
 				
 					<tr>
 						<td colspan="4" style="text-align: center;">
+						<br>
 							<a class="btn btn-outline-primary btn-sm" href="javascript:noticeList(1)">First Page</a>
 							
 							<c:if test="${pager.groupNo > 1}">

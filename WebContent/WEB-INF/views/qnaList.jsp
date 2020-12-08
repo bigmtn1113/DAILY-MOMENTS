@@ -4,10 +4,10 @@
 
 <table style="color:#636568; width:100%; border-collapse: separate; border-spacing: 5px;">
 	<tr style="height: 30px; background-color: white;" align="center">
-		<th  style="width:40px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">No.</th>
-		<th  style="width:280px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">Title</th>
-		<th  style="width:50px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">ID</th>
-		<th  style="width:80px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">Date</th>
+		<th  style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">No.</th>
+		<th  style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">Title</th>
+		<th  style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">ID</th>
+		<th  style="width:0px; background-color: #262626; padding-bottom: 10px; padding-top: 10px; padding-left: 0px;">Date</th>
 	</tr>
 	
 	<c:forEach var="board" items="${list}">
@@ -22,7 +22,7 @@
 				
 
 	<!-- <div class="pageNo"> -->
-		<tr style="text-align: center;">
+		<tr>
 			<td colspan="4" style="text-align: center;">
 			<br>
 				<a class="btn btn-outline-primary btn-sm" href="javascript:qnaList(1)">First Page</a>

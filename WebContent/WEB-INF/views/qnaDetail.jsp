@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div>
-	<div>
+	<div  class="portfolio container">
 		<div>
 			
 			<div>
@@ -50,19 +50,20 @@
 
 	<div class="row portfolio-container">
 			<div class="col-sm-12 portfolio-item"
-				 style="border-radius:10px;width:auto;height:auto;border:2px solid white;margin-bottom:30px;">
+				 style="border-radius:10px;width:100%;height:auto;border:2px solid white;margin-bottom:30px;">
 				
 				<div
 	          		id="midqnacontentcomment_${qnaBoard.bno}"
 				    class="invisible-scrollbar" 
 					style="height: 250px; width: 100%; resize: none; -ms-overflow-style: none; background-color: #1B1B1B; clear: both;
-					color: white; overflow-y: auto;">
-					<span class="title">Content :</span> <br/>
+					color: white; overflow-y: auto; margin-top: 15px; padding-top: 5px;">
 					
+					
+					<span class="title" style="padding-left: 10px;">Content :</span> <br/>
 					
 						
-					<div style="padding-left:30px; padding-right:30px; padding-top:15px;">
-						 <div style="white-space:pre;">${qnaBoard.bcontent}</div>
+					<div style="padding-left:20px; padding-right:20px; padding-top:10px;">
+						 <div style="white-space:pre-line;">${qnaBoard.bcontent}</div>
 					</div>
 					
 					<br>
@@ -70,9 +71,9 @@
 					
 					<hr	style="height:1px; background: linear-gradient(to right, gray, lightgray, gray); width:95%">
 					
-					<span>Comment :</span> <br/>
+					<span style="padding-left: 10px;">Comment :</span> <br/>
 					
-					<div style="padding-left:30px; padding-right:30px; padding-bottom:15px;" id="qnaCommentlist_${qnaBoard.bno}">
+					<div style="padding-left:20px; padding-right:20px; padding-bottom:15px; padding-top:10px;" id="qnaCommentlist_${qnaBoard.bno}">
 						<c:forEach var="qnaBoardComment" items="${qnaBoardCommentsList}">
 							<div style="padding-bottom:5px;">
 								<a href="#"><c:out value="${qnaBoardComment.mid}"/></a> : <c:out value="${qnaBoardComment.ccontent}"/><br/>
@@ -83,8 +84,8 @@
 				
 				
 				<div style="height:20px; margin-bottom:45px;">
-		             <textarea class="invisible-scrollbar" id="qnaContent_${qnaBoard.bno}" style="float:left; resize:none; width:87%; height:50px; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="댓글달기... "></textarea>
-		             <button type="button" id="${qnaBoard.bno}" class="bx bx-subdirectory-left" onclick="qnaCommentWrite('${qnaBoard.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:50px; font-size:20px;"></button>
+		             <textarea class="invisible-scrollbar" id="qnaContent_${qnaBoard.bno}" style="float:left; resize:none; width:87%; height:2.8rem; padding:0.8em; -ms-overflow-style:none; scrollbar-width:none;" placeholder="Write Comment... "></textarea>
+		             <button type="button" id="${qnaBoard.bno}" class="bx bx-subdirectory-left" onclick="qnaCommentWrite('${qnaBoard.bno}','${mid}')" style="float:right; background-color:#18d26e; color:white; width:13%; height:2.8rem; font-size:1rem;"></button>
 	          	</div>
 
 
