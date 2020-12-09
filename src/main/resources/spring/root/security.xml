@@ -76,7 +76,7 @@
 			expired-url: 사용자의 액션이 있을 때 강제 로그아웃된 브라우저가 이동할 경로 
 			-->
 			
-			<security:concurrency-control max-sessions="1" 
+			<security:concurrency-control max-sessions="2" 
 										  error-if-maximum-exceeded="false" 
 										  expired-url="/loginForm"/>
 			
