@@ -23,3 +23,38 @@ SCM | Git, Github
 OS | Window 10 64bit
 HW | Intel® Core™ i7-4790 CPU @ 3.60Hz, 16GB RAM
 
+<br/>
+
+## DataBase 설계
+![DB](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/DB.JPG)
+
+<br/>
+
+## 결과 화면
+### Web
+#### Home(Before Login), Login, Join
+![Web Result Image 1](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Web%20Result%20Image%201.JPG)
+
+#### Home(After Login), Feed, Write
+![Web Result Image 2](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Web%20Result%20Image%202.JPG)
+
+#### Profile, Setting, Search - Tag
+![Web Result Image 3](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Web%20Result%20Image%203.JPG)
+
+#### Search - Member, Q&A, Notice
+![Web Result Image 4](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Web%20Result%20Image%204.JPG)
+
+<br/>
+
+### Android
+#### Home, Join, Login
+![Android Result Image 1](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Android%20Result%20Image%201.JPG)
+
+#### Feed, Write, Profile
+![Android Result Image 2](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Android%20Result%20Image%202.JPG)
+
+#### Setting, Search - Member, Search - Tag
+![Android Result Image 3](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Android%20Result%20Image%203.JPG)
+
+#### Notice, Q&A
+![Android Result Image 4](https://github.com/kva231/DAILY-MOMENTS/blob/master/images/Android%20Result%20Image%204.JPG)
